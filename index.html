@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Practice Hours Audit — Frigeri &amp; Co.</title>
+<meta name="description" content="A nurse-led operations audit for small practices. Forty-five minutes on a call, then a prescription: the specific software that fixes your specific bottlenecks, what it costs, and whether it can touch patient data. Five hours a week back, or you don't pay.">
+<meta name="author" content="Frigeri &amp; Co.">
+<meta name="theme-color" content="#F6F7F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1A19" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Frigeri &amp; Co.">
+<meta property="og:title" content="The Practice Hours Audit — Frigeri &amp; Co.">
+<meta property="og:description" content="A nurse's diagnosis for the hours your practice is losing. Five hours a week back, or you don't pay.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Practice Hours Audit — Frigeri &amp; Co.">
+<meta name="twitter:description" content="A nurse's diagnosis for the hours your practice is losing. Five hours a week back, or you don't pay.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%230B5F54'/%3E%3Cpath d='M9 22V10h9M9 16h7' stroke='%23F6F7F4' stroke-width='2.6' fill='none' stroke-linecap='square'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<script>
+  /* set before first paint: avoids a theme flash, and keeps the reveal
+     animation from ever hiding content when JS is unavailable */
+  (function () {
+    var r = document.documentElement;
+    r.setAttribute("data-js", "on");
+    try {
+      var t = window.localStorage.getItem("fc-theme");
+      r.setAttribute("data-theme", (t === "light" || t === "dark") ? t : "auto");
+    } catch (e) { r.setAttribute("data-theme", "auto"); }
+  })();
+</script>
+
+<style>
+  :root{
+    --ground:#F6F7F4;
+    --surface:#FFFFFF;
+    --ink:#12211F;
+    --ink-soft:#4A5A57;
+    --rule:#D9DEDA;
+    --accent:#0B5F54;
+    --accent-soft:#E4EFEC;
+    --amber:#B4620E;
+    --shadow:0 1px 2px rgba(18,33,31,.05), 0 8px 24px -16px rgba(18,33,31,.25);
+    --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body:"Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --veil:rgba(246,247,244,.88);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1A19;
+      --surface:#142322;
+      --ink:#EAF0ED;
+      --ink-soft:#A3B4B0;
+      --rule:#273936;
+      --accent:#5FC9B6;
+      --accent-soft:#1B322E;
+      --amber:#E3A163;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+      --veil:rgba(14,26,25,.88);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1A19;
+    --surface:#142322;
+    --ink:#EAF0ED;
+    --ink-soft:#A3B4B0;
+    --rule:#273936;
+    --accent:#5FC9B6;
+    --accent-soft:#1B322E;
+    --amber:#E3A163;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    --veil:rgba(14,26,25,.88);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:86px}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.6;
+    margin:0;
+    padding-inline:20px;
+    padding-block:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto}
+  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;text-wrap:balance;margin:0}
+  h1{font-size:clamp(33px,6.2vw,56px);line-height:1.05}
+  h2{font-size:clamp(25px,3.6vw,34px);line-height:1.15}
+  h3{font-size:19px;letter-spacing:-.01em}
+  p{margin:0}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--ground);
+    font-family:var(--display);font-size:14px;padding:10px 16px;z-index:60;text-decoration:none;
+  }
+  .skip:focus{left:12px;top:12px}
+
+  .label{
+    font-family:var(--mono);font-size:11.5px;text-transform:uppercase;
+    letter-spacing:.14em;color:var(--ink-soft);
+  }
+
+  /* ——— masthead / nav ——— */
+  .masthead{
+    position:sticky;top:0;z-index:40;
+    background:var(--veil);backdrop-filter:saturate(1.4) blur(8px);
+    border-bottom:1px solid transparent;
+    margin-inline:-20px;padding-inline:20px;
+    transition:border-color .2s ease;
+  }
+  .masthead[data-stuck="true"]{border-bottom-color:var(--rule)}
+  .masthead-in{
+    max-width:860px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding-block:16px;
+  }
+  .firm{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+  .firm span{color:var(--accent)}
+  .firm small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
+  .nav{display:flex;align-items:center;gap:22px}
+  .nav a{
+    font-family:var(--display);font-weight:500;font-size:14px;text-decoration:none;
+    color:var(--ink-soft);white-space:nowrap;padding-block:4px;border-bottom:1.5px solid transparent;
+  }
+  .nav a:hover{color:var(--ink)}
+  .nav a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+  .nav-links{display:flex;gap:22px}
+  @media (max-width:800px){ .nav-links{display:none} }
+  .theme-toggle{
+    background:none;border:1px solid var(--rule);color:var(--ink-soft);
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:7px 11px;border-radius:2px;cursor:pointer;line-height:1;
+  }
+  .theme-toggle:hover{border-color:var(--accent);color:var(--ink)}
+  .nav-book{
+    font-family:var(--display);font-weight:600;font-size:14px;text-decoration:none;
+    background:var(--accent);color:var(--ground);padding:9px 16px;border-radius:2px;white-space:nowrap;
+  }
+  @media (max-width:460px){ .nav-book{display:none} }
+
+  section{padding-block:56px;border-top:1px solid var(--rule)}
+  section:first-of-type{border-top:0}
+  .rail{display:grid;grid-template-columns:132px minmax(0,1fr);gap:28px;align-items:start}
+  @media (max-width:720px){ .rail{grid-template-columns:1fr;gap:14px} }
+  .stack{display:flex;flex-direction:column;gap:18px}
+  .stack-tight{display:flex;flex-direction:column;gap:10px}
+
+  .hero{padding-block:44px 52px}
+  .hero-kicker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+  .lede{font-size:clamp(18px,2.2vw,20px);color:var(--ink-soft);max-width:60ch}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+
+  .figure-block{
+    display:flex;gap:18px;align-items:flex-start;
+    margin-block:30px 26px;padding-left:18px;border-left:3px solid var(--accent);
+  }
+  .figure-num{
+    font-family:var(--mono);font-size:clamp(38px,7vw,54px);line-height:1;
+    font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;
+  }
+  .figure-note{font-size:15px;color:var(--ink-soft);max-width:36ch;padding-top:4px}
+
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-block;font-family:var(--display);font-weight:600;font-size:16px;
+    padding:15px 26px;border-radius:2px;text-decoration:none;border:1px solid transparent;
+    cursor:pointer;transition:transform .12s ease, background .12s ease;
+  }
+  .btn-primary{background:var(--accent);color:var(--ground);}
+  .btn-primary:hover{transform:translateY(-1px)}
+  .btn-ghost{border-color:var(--rule);color:var(--ink);background:none}
+  .btn-ghost:hover{border-color:var(--accent)}
+  .cta-note{font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.02em}
+
+  .strip{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+    background:var(--rule);border:1px solid var(--rule);margin-top:34px;
+  }
+  @media (max-width:640px){ .strip{grid-template-columns:1fr} }
+  .strip div{background:var(--ground);padding:16px 18px}
+  .strip strong{display:block;font-family:var(--display);font-size:15px;margin-bottom:3px}
+  .strip span{font-size:14px;color:var(--ink-soft)}
+
+  ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+  ol.steps li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px dotted var(--rule)}
+  ol.steps li:last-child{border-bottom:0}
+  .step-n{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:3px}
+  .step-time{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:4px}
+
+  ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+  ul.ticks li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;font-size:16px}
+  ul.ticks li::before{content:"—";color:var(--accent);font-family:var(--mono)}
+
+  .price-table{width:100%;border-collapse:collapse;font-size:15px}
+  .price-table th,.price-table td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+  .price-table th{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:400}
+  .price-table td:last-child{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .price-wrap{overflow-x:auto}
+  .price-name{font-family:var(--display);font-weight:600}
+  .founding{background:var(--accent-soft)}
+  .price-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-top:4px}
+
+  .fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+  @media (max-width:640px){ .fit{grid-template-columns:1fr} }
+  .fit ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:15.5px;color:var(--ink-soft)}
+
+  .founder{background:var(--surface);border:1px solid var(--rule);padding:26px;box-shadow:var(--shadow)}
+  .founder p+p{margin-top:12px}
+
+  details{border-bottom:1px solid var(--rule);padding-block:14px}
+  details summary{
+    font-family:var(--display);font-weight:600;font-size:16.5px;cursor:pointer;
+    list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  }
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-size:18px}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:10px;color:var(--ink-soft);font-size:16px;max-width:62ch}
+  details p+p{margin-top:8px}
+
+  /* ——— the arithmetic ——— */
+  .calc{background:var(--surface);border:1px solid var(--rule);box-shadow:var(--shadow);padding:24px}
+  .calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  @media (max-width:560px){ .calc-grid{grid-template-columns:1fr} }
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);line-height:1.5}
+  .calc .field label{min-height:2.2em}
+  .field-val{font-family:var(--mono);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+  input[type=range]{
+    width:100%;accent-color:var(--accent);background:transparent;cursor:pointer;
+  }
+  .calc-out{
+    margin-top:22px;padding-top:20px;border-top:1px solid var(--rule);
+    display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end;
+  }
+  .calc-figure{font-family:var(--mono);font-size:clamp(30px,5.4vw,42px);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+  .calc-cap{font-size:14.5px;color:var(--ink-soft);max-width:40ch}
+
+  /* ——— contact ——— */
+  .close-block{background:var(--accent-soft);border:1px solid var(--rule);padding:34px 28px;margin-block:8px}
+  .form{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+  .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  @media (max-width:560px){ .form-grid{grid-template-columns:1fr} }
+  .form input[type=text],.form input[type=email],.form textarea,.form select{
+    width:100%;font-family:var(--body);font-size:16px;color:var(--ink);
+    background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:12px 13px;
+  }
+  .form textarea{min-height:110px;resize:vertical}
+  .form-note{font-family:var(--mono);font-size:12px;color:var(--ink-soft);line-height:1.6}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+  footer{padding-block:34px 42px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
+  footer p, footer a{font-size:13.5px;color:var(--ink-soft)}
+  .foot-links{display:flex;gap:16px;flex-wrap:wrap}
+  .foot-links a{text-decoration:none}
+  .foot-links a:hover{color:var(--ink)}
+
+  .setup-flag{
+    font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--amber);
+    border:1px dashed var(--amber);padding:10px 12px;margin-top:14px;max-width:62ch;
+  }
+
+  :root[data-js="on"] .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
+  :root[data-js="on"] .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important;animation:none!important}
+    :root[data-js="on"] .reveal{opacity:1;transform:none}
+  }
+
+  @media print{
+    .masthead,.nav,.calc,.form,.skip{display:none!important}
+    body{font-size:11pt;padding:0}
+    section{padding-block:18px;break-inside:avoid}
+    a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead" data-masthead>
+  <div class="masthead-in">
+    <a class="firm" href="#top">Frigeri <span>&amp; Co.</span><small>Operations for small practices</small></a>
+    <nav class="nav" aria-label="Sections">
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#report">The report</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#about">Who we are</a>
+        <a href="#faq">Questions</a>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+      <a class="nav-book" href="#book" data-book>Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero-kicker">
+      <span class="label">The Practice Hours Audit</span>
+    </div>
+
+    <h1 id="hero-h">A nurse's diagnosis for <em>the hours your practice is losing.</em></h1>
+
+    <div class="figure-block">
+      <div class="figure-num">5+</div>
+      <p class="figure-note">hours a week back, or you don't pay. That's the whole guarantee.</p>
+    </div>
+
+    <p class="lede">Forty-five minutes on a call, then a prescription: the specific software that fixes your specific bottlenecks, what each costs, how long it takes to set up — and, for anything that touches patient information, whether the vendor will sign a BAA. No jargon, no course to sit through, nothing to learn.</p>
+
+    <div class="cta-row" style="margin-top:28px">
+      <a class="btn btn-primary" href="#book" data-book>Book a free 15-minute call</a>
+      <span class="cta-note">No pitch — you'll leave with one tool you can use</span>
+    </div>
+
+    <div class="strip">
+      <div><strong>Run by a critical-care RN</strong><span>Trained where a dropped handoff isn't a missed email. Same eye, turned on your week.</span></div>
+      <div><strong>We know what a BAA is</strong><span>Every recommendation is checked against what your data rules allow.</span></div>
+      <div><strong>We sell no software</strong><span>No commissions, no reseller deals. You pay vendors directly.</span></div>
+    </div>
+  </section>
+
+  <section id="problem" class="reveal" aria-labelledby="problem-h">
+    <div class="rail">
+      <div class="label">The problem</div>
+      <div class="stack">
+        <h2 id="problem-h">You know exactly what's wrong with your week</h2>
+        <p>The inquiry that came in at 9pm and sat until morning, by which point she booked down the street. The consult who said "let me think about it" five weeks ago and never heard from anyone again — a treatment that quietly became nothing. The Friday no-show you can't resell at four hours' notice. The same five questions, answered by hand, forever.</p>
+        <p>None of that is a mystery to you. What you don't have is three weekends to work out which of four thousand tools fixes it, whether it talks to the system you already pay for, and — the part that stops most practices cold — whether it's even allowed near patient information.</p>
+        <p>So it stays on the list. And every week it stays there has a number attached.</p>
+        <p><strong>That's the job.</strong> Not to make you an AI person. To hand you three decisions already made, by someone who understands both sides of the problem.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="math" class="reveal" aria-labelledby="math-h">
+    <div class="rail">
+      <div class="label">The arithmetic</div>
+      <div class="stack">
+        <h2 id="math-h">What the list is costing you while it sits there</h2>
+        <p>Move the two sliders. This is the same arithmetic that goes in the back of the report — your hours, your number, nothing padded.</p>
+
+        <div class="calc">
+          <div class="calc-grid">
+            <div class="field">
+              <label for="calc-hours">Admin hours a week you'd rather not do</label>
+              <input type="range" id="calc-hours" min="2" max="25" step="1" value="8" data-calc-hours>
+              <div class="field-val"><span data-out-hours>8</span> hours</div>
+            </div>
+            <div class="field">
+              <label for="calc-rate">What an hour of that time is worth</label>
+              <input type="range" id="calc-rate" min="25" max="300" step="5" value="85" data-calc-rate>
+              <div class="field-val">$<span data-out-rate>85</span> / hour</div>
+            </div>
+          </div>
+
+          <div class="calc-out" aria-live="polite">
+            <div>
+              <div class="label" style="margin-bottom:8px">Per year, at those numbers</div>
+              <div class="calc-figure" data-out-year>$35,360</div>
+            </div>
+            <p class="calc-cap">Against a $999 audit, one-time. If we can't find five hours a week in your practice, the audit is free and you keep the report.</p>
+          </div>
+        </div>
+
+        <p style="font-size:15px;color:var(--ink-soft)">A rough number on purpose. The report replaces it with a specific one: which hours, in which part of your week, and what each fix costs against them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="reveal" aria-labelledby="how-h">
+    <div class="rail">
+      <div class="label">How it works</div>
+      <div class="stack">
+        <h2 id="how-h">Four steps, about a week</h2>
+        <ol class="steps">
+          <li>
+            <div class="step-n">01</div>
+            <div>
+              <h3>A free 15 minutes</h3>
+              <p>You tell us what's eating the week. We name one thing you could fix immediately, free, whether or not you go further. Worst case you leave with a tool you didn't know existed.</p>
+              <div class="step-time">15 minutes · no obligation</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-n">02</div>
+            <div>
+              <h3>The audit call</h3>
+              <p>A recorded working session through your actual week — front desk, scheduling, billing, follow-up, what software you already pay for, where it breaks. You do most of the talking.</p>
+              <div class="step-time">45 minutes · phone or video</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-n">03</div>
+            <div>
+              <h3>The prescription</h3>
+              <p>Five pages. Your bottlenecks in your own words, the tool that fixes each, the real price, the honest setup time, the data question answered — and a four-day plan where no step takes over ten minutes.</p>
+              <div class="step-time">Two days after the call</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-n">04</div>
+            <div>
+              <h3>We walk you through it</h3>
+              <p>Screen-share, page by page. Then you decide: set it up yourself, or have us do it. Both are fine, and neither is a subscription to us.</p>
+              <div class="step-time">30 minutes</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="report" class="reveal" aria-labelledby="report-h">
+    <div class="rail">
+      <div class="label">The prescription</div>
+      <div class="stack">
+        <h2 id="report-h">What's actually in it</h2>
+        <ul class="ticks">
+          <li>The three to seven bottlenecks costing you the most, quoted back in the words you used</li>
+          <li>A named tool for each, with its real monthly price on its real plan tier</li>
+          <li>Honest setup time — if it needs a developer, we say so and it doesn't make the list</li>
+          <li>For anything touching PHI: whether the vendor signs a BAA, which plan tier that takes, and what should never be entered into it</li>
+          <li>A four-day start plan, ten minutes a day, in order</li>
+          <li>The arithmetic: hours returned, at your hourly value, minus what the tools cost</li>
+        </ul>
+        <p style="font-size:15px;color:var(--ink-soft)">Where a vendor's position on a BAA can't be verified, the report says "needs verification before use with patient data" rather than guessing. That line is the difference between advice you can act on and advice that creates a problem.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="reveal" aria-labelledby="pricing-h">
+    <div class="rail">
+      <div class="label">Pricing</div>
+      <div class="stack">
+        <h2 id="pricing-h">Published, because you shouldn't have to ask</h2>
+        <div class="price-wrap">
+          <table class="price-table">
+            <thead>
+              <tr><th scope="col">Engagement</th><th scope="col">What happens</th><th scope="col">Price</th></tr>
+            </thead>
+            <tbody>
+              <tr class="founding">
+                <td class="price-name">Introductory rate<span class="price-tag">Five a quarter</span></td>
+                <td>The full audit at half price. We take five practices at this rate each quarter, so the calendar stays open for the work that follows it.</td>
+                <td>$499</td>
+              </tr>
+              <tr>
+                <td class="price-name">The Practice Hours Audit</td>
+                <td>The call, the prescription, the walkthrough. Free if we can't find five hours a week.</td>
+                <td>$999</td>
+              </tr>
+              <tr>
+                <td class="price-name">Setup</td>
+                <td>We implement what the report recommends, so nothing sits on a list.</td>
+                <td>from $750</td>
+              </tr>
+              <tr>
+                <td class="price-name">Build</td>
+                <td>One real thing: a workflow automated, a knowledge system, a process rebuilt.</td>
+                <td>from $1,500</td>
+              </tr>
+              <tr>
+                <td class="price-name">Monthly</td>
+                <td>Two working sessions a month, plus questions answered between them. A handful of practices at a time.</td>
+                <td>from $1,200/mo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:15px;color:var(--ink-soft)">Software subscriptions are paid by you, directly to the vendors, at their public prices. We take nothing from them. If you go ahead with setup or a build, the audit fee comes off the price.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fit" class="reveal" aria-labelledby="fit-h">
+    <div class="rail">
+      <div class="label">Fit</div>
+      <div class="stack">
+        <h2 id="fit-h">Who this is for</h2>
+        <div class="fit">
+          <div>
+            <h3>A good fit</h3>
+            <ul>
+              <li>Dental, chiropractic, med spa, vet, therapy and small medical practices</li>
+              <li>Home care and private-duty agencies</li>
+              <li>Owner-operated, roughly 5 to 30 people</li>
+              <li>The owner or office manager still does admin someone shouldn't</li>
+              <li>Anyone who has said "we should look into AI" for a year and never had time</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Not a fit</h3>
+            <ul>
+              <li>Looking to cut staff — that isn't what this does</li>
+              <li>Wanting custom software built from scratch</li>
+              <li>Hospital systems and enterprise rollouts</li>
+              <li>Already running a tight, automated operation</li>
+              <li>Wanting anything that puts patient data somewhere it shouldn't go</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="reveal" aria-labelledby="about-h">
+    <div class="rail">
+      <div class="label">Who we are</div>
+      <div class="founder">
+        <h2 id="about-h" style="font-size:24px;margin-bottom:14px">We read the charts after it goes wrong. This is the other end of that job.</h2>
+        <p>Frigeri &amp; Co. is a small operations practice founded by <strong>Quinn Frigeri, RN</strong> — critical care, and medical-legal record review. The second one is why this exists.</p>
+        <p>Reviewing records for attorneys means reading a practice's documentation after something has already gone wrong. And the pattern is almost never one person having a bad day. It's a process nobody had time to fix: a follow-up with no owner, a form that lived in two places, a handoff that depended on somebody remembering. By the time it reaches a file, it's expensive in ways that have nothing to do with software.</p>
+        <p>So we read your week the way we'd read a record — for where it breaks, not for what to buy. That work also means years of handling protected health information under rules with teeth, which is why every recommendation here answers the data question instead of waving at it. Most people selling AI into practices have never heard of a BAA. That's how a clinic ends up with a compliance problem instead of an extra five hours.</p>
+        <p>We also build the systems we recommend, which is the difference between advice and a brochure. If a tool goes in your practice, we've set it up before — and if it can't do what the vendor's website claims, we'd rather find that out on our time than on yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="reveal" aria-labelledby="faq-h">
+    <div class="rail">
+      <div class="label">Questions</div>
+      <div class="stack-tight">
+        <h2 id="faq-h" style="margin-bottom:8px">The ones we get asked</h2>
+
+        <details>
+          <summary>Can we even use these tools with patient information?</summary>
+          <p>Some, on specific plan tiers, with a signed BAA. Others never. That distinction is in the report for every recommendation, because it's the question that stops most practices from adopting anything — and the one most consultants answer wrong.</p>
+          <p>We're not lawyers and this isn't legal advice. We tell you what the vendor commits to in writing, and what we couldn't verify.</p>
+        </details>
+
+        <details>
+          <summary>Do I have to learn any of this?</summary>
+          <p>No. That's the point of a prescription — the decisions are already made. If you'd rather not do the setup either, we do that part.</p>
+        </details>
+
+        <details>
+          <summary>We barely use technology. Is it too early for us?</summary>
+          <p>It's the opposite. Most of what we recommend isn't AI at all — it's ordinary software you didn't know existed. The measurement is hours, not technology.</p>
+        </details>
+
+        <details>
+          <summary>Is this going to replace our front desk?</summary>
+          <p>No, and practices that try it usually make a mess. This is about the admin drag on the people you already have. Nobody's job gets smaller; their week does.</p>
+        </details>
+
+        <details>
+          <summary>We tried something like this and it didn't work.</summary>
+          <p>Usually a tool got dropped onto a broken process. That's why the first session is spent on how you actually work before anything is recommended, and why anything needing a six-week rollout doesn't make the report.</p>
+        </details>
+
+        <details>
+          <summary>How does the guarantee work?</summary>
+          <p>If the report can't identify at least five hours a week, you pay nothing and you keep the report. We'd rather refund than pad a number — the arithmetic is only worth anything if you can trust it.</p>
+        </details>
+
+        <details>
+          <summary>How long does the whole thing take on our end?</summary>
+          <p>Ninety minutes of your time, total: fifteen on the first call, forty-five on the audit, thirty on the walkthrough. Nothing to prepare, no documents to gather — we ask about the week you already have.</p>
+        </details>
+
+        <details>
+          <summary>Are you reselling software?</summary>
+          <p>No. No affiliate deals, no commissions, no vendor relationships. You buy directly at public prices. It's the only way a recommendation means anything.</p>
+        </details>
+
+        <details>
+          <summary>Do you work outside Miami?</summary>
+          <p>Yes — everything runs by phone and video, and most of our work is remote. Practices anywhere in the US.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" aria-labelledby="book-h">
+    <div class="close-block">
+      <div class="label" style="margin-bottom:12px">Next step</div>
+      <h2 id="book-h">Fifteen minutes, and you'll know if this is worth your time</h2>
+      <p style="margin-top:14px;max-width:58ch;color:var(--ink-soft)">No pitch and no obligation. Tell us what's eating your week, and we'll name one thing you can fix immediately — whether or not you ever pay us anything.</p>
+
+      <div class="cta-row" style="margin-top:24px">
+        <a class="btn btn-primary" href="#book" data-book>Book a free 15-minute call</a>
+        <a class="btn btn-ghost" href="#contact-form" data-jump-form>Or send a note instead</a>
+      </div>
+
+      <form class="form" id="contact-form" data-contact-form novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-practice">Practice</label>
+            <input type="text" id="f-practice" name="practice" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-size">People in the practice</label>
+            <select id="f-size" name="size">
+              <option>Just me</option>
+              <option>2–5</option>
+              <option selected>5–15</option>
+              <option>15–30</option>
+              <option>30+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-note">What's eating the week?</label>
+          <textarea id="f-note" name="note" placeholder="The thing you'd hand off tomorrow if you could."></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="f-company">Company (leave blank)</label>
+          <input type="text" id="f-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="cta-row">
+          <button class="btn btn-primary" type="submit">Send it</button>
+          <span class="form-note" data-form-status role="status"></span>
+        </div>
+        <p class="form-note">This opens your own email app with the note filled in — nothing is stored on this site, and no patient information should go in it.</p>
+      </form>
+
+      <p class="setup-flag" data-setup-flag hidden>Setup needed: put your booking link and contact address into the SITE config at the top of this page's script, and these buttons go live. Until then they sit here doing nothing.</p>
+    </div>
+  </section>
+
+</main>
+
+  <footer>
+    <div>
+      <p>Frigeri &amp; Co. · Operations for small practices</p>
+      <p>Remote across the US · Based in Miami</p>
+    </div>
+    <div class="foot-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+      <a href="#book" data-book>Book a call</a>
+      <a href="#" data-email hidden>Email</a>
+    </div>
+    <p style="width:100%;margin-top:6px">© <span data-year>2026</span> Frigeri &amp; Co. Nothing here is legal or clinical advice.</p>
+  </footer>
+
+</div>
+
+<script>
+  /* ——————————————————————————————————————————————
+     SETUP: fill these in and the buttons go live.
+     BOOKING_URL  — your Cal.com / Calendly / SavvyCal link
+     CONTACT_EMAIL — the address you want replies at
+     —————————————————————————————————————————————— */
+  var SITE = {
+    BOOKING_URL: "",
+    CONTACT_EMAIL: "",
+    SUBJECT: "The Practice Hours Audit — a question"
+  };
+
+  (function () {
+    "use strict";
+
+    var store = {
+      get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+      set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+    };
+
+    /* ——— theme (initial value is set by the head script) ——— */
+    var root = document.documentElement;
+    var toggle = document.querySelector("[data-theme-toggle]");
+    function systemDark() {
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    function labelTheme() {
+      if (!toggle) return;
+      var t = root.getAttribute("data-theme");
+      var dark = t === "dark" || (t === "auto" && systemDark());
+      toggle.textContent = dark ? "Light" : "Dark";
+      toggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+    }
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        var t = root.getAttribute("data-theme");
+        var dark = t === "dark" || (t === "auto" && systemDark());
+        var next = dark ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        store.set("fc-theme", next);
+        labelTheme();
+      });
+      labelTheme();
+    }
+
+    /* ——— booking + email wiring ——— */
+    var bookButtons = document.querySelectorAll("[data-book]");
+    var emailLinks = document.querySelectorAll("[data-email]");
+    var flag = document.querySelector("[data-setup-flag]");
+
+    function mailto(subject, body) {
+      if (!SITE.CONTACT_EMAIL) return "";
+      var url = "mailto:" + SITE.CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject || SITE.SUBJECT);
+      if (body) url += "&body=" + encodeURIComponent(body);
+      return url;
+    }
+
+    if (SITE.BOOKING_URL) {
+      Array.prototype.forEach.call(bookButtons, function (b) {
+        b.href = SITE.BOOKING_URL;
+        b.target = "_blank";
+        b.rel = "noopener";
+      });
+    } else {
+      /* no calendar yet: send the booking buttons to the form on the page */
+      Array.prototype.forEach.call(bookButtons, function (b) { b.setAttribute("href", "#contact-form"); });
+    }
+
+    if (SITE.CONTACT_EMAIL) {
+      Array.prototype.forEach.call(emailLinks, function (b) {
+        b.href = mailto(SITE.SUBJECT, "");
+        b.hidden = false;
+      });
+    }
+
+    if (flag && !SITE.BOOKING_URL && !SITE.CONTACT_EMAIL) flag.hidden = false;
+
+    /* ——— contact form → email draft ——— */
+    var form = document.querySelector("[data-contact-form]");
+    var status = document.querySelector("[data-form-status]");
+    function say(msg) { if (status) status.textContent = msg || ""; }
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (form.querySelector("#f-company").value) return; /* honeypot */
+
+        var name = form.querySelector("#f-name").value.trim();
+        var email = form.querySelector("#f-email").value.trim();
+        if (!name || !email || email.indexOf("@") < 1) {
+          say("Name and email, and we'll write back today.");
+          return;
+        }
+        if (!SITE.CONTACT_EMAIL) {
+          say("Email address not set up on this page yet.");
+          if (flag) flag.hidden = false;
+          return;
+        }
+
+        var body = [
+          "Name: " + name,
+          "Practice: " + form.querySelector("#f-practice").value.trim(),
+          "Email: " + email,
+          "Size: " + form.querySelector("#f-size").value,
+          "",
+          "What's eating the week:",
+          form.querySelector("#f-note").value.trim()
+        ].join("\n");
+
+        window.location.href = mailto("Practice Hours Audit — " + name, body);
+        say("Opening your email app…");
+      });
+    }
+
+    var jump = document.querySelector("[data-jump-form]");
+    if (jump && form) {
+      jump.addEventListener("click", function (e) {
+        e.preventDefault();
+        form.scrollIntoView({ behavior: "smooth", block: "center" });
+        var first = form.querySelector("#f-name");
+        if (first) setTimeout(function () { first.focus(); }, 320);
+      });
+    }
+
+    /* ——— the arithmetic ——— */
+    var hours = document.querySelector("[data-calc-hours]");
+    var rate = document.querySelector("[data-calc-rate]");
+    var outH = document.querySelector("[data-out-hours]");
+    var outR = document.querySelector("[data-out-rate]");
+    var outY = document.querySelector("[data-out-year]");
+
+    function money(n) {
+      return "$" + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function recalc() {
+      if (!hours || !rate) return;
+      var h = Number(hours.value), r = Number(rate.value);
+      if (outH) outH.textContent = String(h);
+      if (outR) outR.textContent = String(r);
+      if (outY) outY.textContent = money(h * r * 52);
+    }
+    if (hours && rate) {
+      hours.addEventListener("input", recalc);
+      rate.addEventListener("input", recalc);
+      recalc();
+    }
+
+    /* ——— sticky masthead shadow ——— */
+    var masthead = document.querySelector("[data-masthead]");
+    function onScroll() {
+      if (masthead) masthead.setAttribute("data-stuck", window.scrollY > 8 ? "true" : "false");
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    /* ——— reveal + active nav ——— */
+    if ("IntersectionObserver" in window) {
+      var reveals = document.querySelectorAll(".reveal");
+      var ro = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+      Array.prototype.forEach.call(reveals, function (el) { ro.observe(el); });
+
+      var navLinks = document.querySelectorAll(".nav-links a");
+      var byId = {};
+      Array.prototype.forEach.call(navLinks, function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var link = byId[en.target.id];
+          if (!link) return;
+          if (en.isIntersecting) {
+            Array.prototype.forEach.call(navLinks, function (a) { a.removeAttribute("aria-current"); });
+            link.setAttribute("aria-current", "true");
+          }
+        });
+      }, { rootMargin: "-40% 0px -55% 0px" });
+      Object.keys(byId).forEach(function (id) {
+        var sec = document.getElementById(id);
+        if (sec) spy.observe(sec);
+      });
+    } else {
+      Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (el) { el.classList.add("in"); });
+    }
+
+    /* ——— footer year ——— */
+    var year = document.querySelector("[data-year]");
+    if (year) year.textContent = String(new Date().getFullYear());
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Frigeri & Co.",
+  "description": "Nurse-led operations audits for small healthcare practices. The Practice Hours Audit finds and fixes the admin hours a practice loses each week.",
+  "areaServed": "US",
+  "founder": { "@type": "Person", "name": "Quinn Frigeri", "honorificSuffix": "RN" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Miami", "addressRegion": "FL", "addressCountry": "US" },
+  "offers": {
+    "@type": "Offer",
+    "name": "The Practice Hours Audit",
+    "price": "999",
+    "priceCurrency": "USD",
+    "description": "A 45-minute audit call, a five-page prescription of specific software fixes with pricing and BAA status, and a 30-minute walkthrough."
+  }
+}
+</script>
+
+</body>
+</html>

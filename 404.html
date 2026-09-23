@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Frigeri &amp; Co.</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,400&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+  :root{--ground:#F6F7F4;--ink:#12211F;--ink-soft:#4A5A57;--rule:#D9DEDA;--accent:#0B5F54}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){--ground:#0E1A19;--ink:#EAF0ED;--ink-soft:#A3B4B0;--rule:#273936;--accent:#5FC9B6}
+  }
+  :root[data-theme="dark"]{--ground:#0E1A19;--ink:#EAF0ED;--ink-soft:#A3B4B0;--rule:#273936;--accent:#5FC9B6}
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:var(--ground);color:var(--ink);padding:24px;
+    font-family:"Source Serif 4",Georgia,serif;font-size:17px;line-height:1.6;
+  }
+  .card{max-width:520px}
+  .label{font-family:"IBM Plex Mono",monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-soft)}
+  h1{font-family:Archivo,Arial,sans-serif;font-size:clamp(28px,6vw,44px);letter-spacing:-.02em;line-height:1.08;margin:14px 0 16px}
+  p{margin:0 0 24px;color:var(--ink-soft)}
+  a.btn{
+    display:inline-block;font-family:Archivo,Arial,sans-serif;font-weight:600;font-size:16px;
+    background:var(--accent);color:var(--ground);padding:14px 24px;border-radius:2px;text-decoration:none;
+  }
+  a.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">404 · Frigeri &amp; Co.</div>
+    <h1>This page isn't here.</h1>
+    <p>Which is its own kind of dropped handoff. The rest of the practice is one click away.</p>
+    <a class="btn" href="/">Back to the audit</a>
+  </div>
+</body>
+</html>
