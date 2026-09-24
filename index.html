@@ -1,881 +1,738 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Practice Hours Audit — Frigeri &amp; Co.</title>
-<meta name="description" content="A nurse-led operations audit for small practices. Forty-five minutes on a call, then a prescription: the specific software that fixes your specific bottlenecks, what it costs, and whether it can touch patient data. Five hours a week back, or you don't pay.">
-<meta name="author" content="Frigeri &amp; Co.">
-<meta name="theme-color" content="#F6F7F4" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E1A19" media="(prefers-color-scheme: dark)">
-<meta name="color-scheme" content="light dark">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Frigeri &amp; Co.">
-<meta property="og:title" content="The Practice Hours Audit — Frigeri &amp; Co.">
-<meta property="og:description" content="A nurse's diagnosis for the hours your practice is losing. Five hours a week back, or you don't pay.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Practice Hours Audit — Frigeri &amp; Co.">
-<meta name="twitter:description" content="A nurse's diagnosis for the hours your practice is losing. Five hours a week back, or you don't pay.">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%230B5F54'/%3E%3Cpath d='M9 22V10h9M9 16h7' stroke='%23F6F7F4' stroke-width='2.6' fill='none' stroke-linecap='square'/%3E%3C/svg%3E">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-
-<script>
-  /* set before first paint: avoids a theme flash, and keeps the reveal
-     animation from ever hiding content when JS is unavailable */
-  (function () {
-    var r = document.documentElement;
-    r.setAttribute("data-js", "on");
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marcha — AI tools assessments for medspas &amp; studios</title>
+  <meta name="description" content="Your business shouldn’t need you at 9pm. Marcha finds the money medspas, studios, and practices lose to missed calls, no-shows, and “I’ll book later,” then prescribes the fix. RN-led.">
+  <meta name="author" content="Marcha">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="https://runmarcha.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Marcha">
+  <meta property="og:url" content="https://runmarcha.com/">
+  <meta property="og:title" content="Marcha — AI tools assessments for medspas &amp; studios">
+  <meta property="og:description" content="Fully booked isn’t fully paid. We find where the money goes and prescribe the tools that stop it. RN-led. Off-the-shelf only.">
+  <meta property="og:image" content="https://runmarcha.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Marcha: Your business shouldn’t need you at 9pm. RN-led AI tools assessments for medspas and studios.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Marcha — AI tools assessments for medspas &amp; studios">
+  <meta name="twitter:description" content="Fully booked isn’t fully paid. We find where the money goes and prescribe the tools that stop it. RN-led. Off-the-shelf only.">
+  <meta name="twitter:image" content="https://runmarcha.com/assets/og.png">
+  <meta name="twitter:image:alt" content="Marcha: Your business shouldn’t need you at 9pm. RN-led AI tools assessments for medspas and studios.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    document.documentElement.classList.add("js");
     try {
-      var t = window.localStorage.getItem("fc-theme");
-      r.setAttribute("data-theme", (t === "light" || t === "dark") ? t : "auto");
-    } catch (e) { r.setAttribute("data-theme", "auto"); }
-  })();
-</script>
-
-<style>
-  :root{
-    --ground:#F6F7F4;
-    --surface:#FFFFFF;
-    --ink:#12211F;
-    --ink-soft:#4A5A57;
-    --rule:#D9DEDA;
-    --accent:#0B5F54;
-    --accent-soft:#E4EFEC;
-    --amber:#B4620E;
-    --shadow:0 1px 2px rgba(18,33,31,.05), 0 8px 24px -16px rgba(18,33,31,.25);
-    --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
-    --body:"Source Serif 4", Georgia, "Times New Roman", serif;
-    --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    --veil:rgba(246,247,244,.88);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --ground:#0E1A19;
-      --surface:#142322;
-      --ink:#EAF0ED;
-      --ink-soft:#A3B4B0;
-      --rule:#273936;
-      --accent:#5FC9B6;
-      --accent-soft:#1B322E;
-      --amber:#E3A163;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
-      --veil:rgba(14,26,25,.88);
-    }
-  }
-  :root[data-theme="dark"]{
-    --ground:#0E1A19;
-    --surface:#142322;
-    --ink:#EAF0ED;
-    --ink-soft:#A3B4B0;
-    --rule:#273936;
-    --accent:#5FC9B6;
-    --accent-soft:#1B322E;
-    --amber:#E3A163;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
-    --veil:rgba(14,26,25,.88);
-  }
-
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:86px}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
-  body{
-    background:var(--ground);
-    color:var(--ink);
-    font-family:var(--body);
-    font-size:17px;
-    line-height:1.6;
-    margin:0;
-    padding-inline:20px;
-    padding-block:0;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:860px;margin:0 auto}
-  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;text-wrap:balance;margin:0}
-  h1{font-size:clamp(33px,6.2vw,56px);line-height:1.05}
-  h2{font-size:clamp(25px,3.6vw,34px);line-height:1.15}
-  h3{font-size:19px;letter-spacing:-.01em}
-  p{margin:0}
-  a{color:inherit}
-  :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
-
-  .skip{
-    position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--ground);
-    font-family:var(--display);font-size:14px;padding:10px 16px;z-index:60;text-decoration:none;
-  }
-  .skip:focus{left:12px;top:12px}
-
-  .label{
-    font-family:var(--mono);font-size:11.5px;text-transform:uppercase;
-    letter-spacing:.14em;color:var(--ink-soft);
-  }
-
-  /* ——— masthead / nav ——— */
-  .masthead{
-    position:sticky;top:0;z-index:40;
-    background:var(--veil);backdrop-filter:saturate(1.4) blur(8px);
-    border-bottom:1px solid transparent;
-    margin-inline:-20px;padding-inline:20px;
-    transition:border-color .2s ease;
-  }
-  .masthead[data-stuck="true"]{border-bottom-color:var(--rule)}
-  .masthead-in{
-    max-width:860px;margin:0 auto;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-    padding-block:16px;
-  }
-  .firm{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
-  .firm span{color:var(--accent)}
-  .firm small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
-  .nav{display:flex;align-items:center;gap:22px}
-  .nav a{
-    font-family:var(--display);font-weight:500;font-size:14px;text-decoration:none;
-    color:var(--ink-soft);white-space:nowrap;padding-block:4px;border-bottom:1.5px solid transparent;
-  }
-  .nav a:hover{color:var(--ink)}
-  .nav a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--accent)}
-  .nav-links{display:flex;gap:22px}
-  @media (max-width:800px){ .nav-links{display:none} }
-  .theme-toggle{
-    background:none;border:1px solid var(--rule);color:var(--ink-soft);
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    padding:7px 11px;border-radius:2px;cursor:pointer;line-height:1;
-  }
-  .theme-toggle:hover{border-color:var(--accent);color:var(--ink)}
-  .nav-book{
-    font-family:var(--display);font-weight:600;font-size:14px;text-decoration:none;
-    background:var(--accent);color:var(--ground);padding:9px 16px;border-radius:2px;white-space:nowrap;
-  }
-  @media (max-width:460px){ .nav-book{display:none} }
-
-  section{padding-block:56px;border-top:1px solid var(--rule)}
-  section:first-of-type{border-top:0}
-  .rail{display:grid;grid-template-columns:132px minmax(0,1fr);gap:28px;align-items:start}
-  @media (max-width:720px){ .rail{grid-template-columns:1fr;gap:14px} }
-  .stack{display:flex;flex-direction:column;gap:18px}
-  .stack-tight{display:flex;flex-direction:column;gap:10px}
-
-  .hero{padding-block:44px 52px}
-  .hero-kicker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
-  .lede{font-size:clamp(18px,2.2vw,20px);color:var(--ink-soft);max-width:60ch}
-  .hero h1 em{font-style:normal;color:var(--accent)}
-
-  .figure-block{
-    display:flex;gap:18px;align-items:flex-start;
-    margin-block:30px 26px;padding-left:18px;border-left:3px solid var(--accent);
-  }
-  .figure-num{
-    font-family:var(--mono);font-size:clamp(38px,7vw,54px);line-height:1;
-    font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;
-  }
-  .figure-note{font-size:15px;color:var(--ink-soft);max-width:36ch;padding-top:4px}
-
-  .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .btn{
-    display:inline-block;font-family:var(--display);font-weight:600;font-size:16px;
-    padding:15px 26px;border-radius:2px;text-decoration:none;border:1px solid transparent;
-    cursor:pointer;transition:transform .12s ease, background .12s ease;
-  }
-  .btn-primary{background:var(--accent);color:var(--ground);}
-  .btn-primary:hover{transform:translateY(-1px)}
-  .btn-ghost{border-color:var(--rule);color:var(--ink);background:none}
-  .btn-ghost:hover{border-color:var(--accent)}
-  .cta-note{font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:.02em}
-
-  .strip{
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
-    background:var(--rule);border:1px solid var(--rule);margin-top:34px;
-  }
-  @media (max-width:640px){ .strip{grid-template-columns:1fr} }
-  .strip div{background:var(--ground);padding:16px 18px}
-  .strip strong{display:block;font-family:var(--display);font-size:15px;margin-bottom:3px}
-  .strip span{font-size:14px;color:var(--ink-soft)}
-
-  ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
-  ol.steps li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px dotted var(--rule)}
-  ol.steps li:last-child{border-bottom:0}
-  .step-n{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:3px}
-  .step-time{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:4px}
-
-  ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
-  ul.ticks li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;font-size:16px}
-  ul.ticks li::before{content:"—";color:var(--accent);font-family:var(--mono)}
-
-  .price-table{width:100%;border-collapse:collapse;font-size:15px}
-  .price-table th,.price-table td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
-  .price-table th{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:400}
-  .price-table td:last-child{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
-  .price-wrap{overflow-x:auto}
-  .price-name{font-family:var(--display);font-weight:600}
-  .founding{background:var(--accent-soft)}
-  .price-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-top:4px}
-
-  .fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
-  @media (max-width:640px){ .fit{grid-template-columns:1fr} }
-  .fit ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:15.5px;color:var(--ink-soft)}
-
-  .founder{background:var(--surface);border:1px solid var(--rule);padding:26px;box-shadow:var(--shadow)}
-  .founder p+p{margin-top:12px}
-
-  details{border-bottom:1px solid var(--rule);padding-block:14px}
-  details summary{
-    font-family:var(--display);font-weight:600;font-size:16.5px;cursor:pointer;
-    list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:baseline;
-  }
-  details summary::-webkit-details-marker{display:none}
-  details summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-size:18px}
-  details[open] summary::after{content:"–"}
-  details p{margin-top:10px;color:var(--ink-soft);font-size:16px;max-width:62ch}
-  details p+p{margin-top:8px}
-
-  /* ——— the arithmetic ——— */
-  .calc{background:var(--surface);border:1px solid var(--rule);box-shadow:var(--shadow);padding:24px}
-  .calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-  @media (max-width:560px){ .calc-grid{grid-template-columns:1fr} }
-  .field{display:flex;flex-direction:column;gap:8px}
-  .field label{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);line-height:1.5}
-  .calc .field label{min-height:2.2em}
-  .field-val{font-family:var(--mono);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
-  input[type=range]{
-    width:100%;accent-color:var(--accent);background:transparent;cursor:pointer;
-  }
-  .calc-out{
-    margin-top:22px;padding-top:20px;border-top:1px solid var(--rule);
-    display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end;
-  }
-  .calc-figure{font-family:var(--mono);font-size:clamp(30px,5.4vw,42px);line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
-  .calc-cap{font-size:14.5px;color:var(--ink-soft);max-width:40ch}
-
-  /* ——— contact ——— */
-  .close-block{background:var(--accent-soft);border:1px solid var(--rule);padding:34px 28px;margin-block:8px}
-  .form{display:flex;flex-direction:column;gap:16px;margin-top:24px}
-  .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  @media (max-width:560px){ .form-grid{grid-template-columns:1fr} }
-  .form input[type=text],.form input[type=email],.form textarea,.form select{
-    width:100%;font-family:var(--body);font-size:16px;color:var(--ink);
-    background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:12px 13px;
-  }
-  .form textarea{min-height:110px;resize:vertical}
-  .form-note{font-family:var(--mono);font-size:12px;color:var(--ink-soft);line-height:1.6}
-  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-
-  footer{padding-block:34px 42px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:flex-start}
-  footer p, footer a{font-size:13.5px;color:var(--ink-soft)}
-  .foot-links{display:flex;gap:16px;flex-wrap:wrap}
-  .foot-links a{text-decoration:none}
-  .foot-links a:hover{color:var(--ink)}
-
-  .setup-flag{
-    font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--amber);
-    border:1px dashed var(--amber);padding:10px 12px;margin-top:14px;max-width:62ch;
-  }
-
-  :root[data-js="on"] .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease}
-  :root[data-js="on"] .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none!important;animation:none!important}
-    :root[data-js="on"] .reveal{opacity:1;transform:none}
-  }
-
-  @media print{
-    .masthead,.nav,.calc,.form,.skip{display:none!important}
-    body{font-size:11pt;padding:0}
-    section{padding-block:18px;break-inside:avoid}
-    a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555}
-  }
-</style>
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("reduce");
+      }
+      var preview = new URLSearchParams(location.search).get("preview");
+      if (preview) document.documentElement.setAttribute("data-preview", preview);
+    } catch (e) {}
+  </script>
+  <style>
+    html.reduce .loader, html:not(.js) .loader { display: none !important; }
+  </style>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="masthead" data-masthead>
-  <div class="masthead-in">
-    <a class="firm" href="#top">Frigeri <span>&amp; Co.</span><small>Operations for small practices</small></a>
-    <nav class="nav" aria-label="Sections">
-      <div class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#report">The report</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">Who we are</a>
-        <a href="#faq">Questions</a>
-      </div>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">Theme</button>
-      <a class="nav-book" href="#book" data-book>Book a call</a>
-    </nav>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-mark">
+      <svg viewBox="0 0 80 80" width="88" height="88" fill="none" aria-hidden="true">
+        <circle class="loader-ring" cx="40" cy="40" r="36" stroke="#FF5A1F" stroke-width="1.6"/>
+        <path d="M22 56V24h7.4l8.4 20.6L46.2 24H53.6v32h-5.9V35.2L39.6 56h-4.5L27.9 35.2V56H22z" fill="#FFFFFF"/>
+      </svg>
+    </div>
   </div>
-</header>
 
-<div class="wrap" id="top">
-<main id="main">
+  <div class="grain" aria-hidden="true"></div>
 
-  <section class="hero" aria-labelledby="hero-h">
-    <div class="hero-kicker">
-      <span class="label">The Practice Hours Audit</span>
-    </div>
+  <header class="header" id="header">
+    <div class="header-bar">
+      <a class="logo" href="#hero" aria-label="Marcha home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="38" height="38" fill="none">
+            <circle cx="20" cy="20" r="18.25" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M11.2 28V12.2h4.2l4.6 11L24.6 12.2H28.8V28h-3.2v-9.2L21.4 28h-2.5l-4.2-9.2V28h-3.5z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="logo-word" data-brand>Marcha</span>
+      </a>
 
-    <h1 id="hero-h">A nurse's diagnosis for <em>the hours your practice is losing.</em></h1>
-
-    <div class="figure-block">
-      <div class="figure-num">5+</div>
-      <p class="figure-note">hours a week back, or you don't pay. That's the whole guarantee.</p>
-    </div>
-
-    <p class="lede">Forty-five minutes on a call, then a prescription: the specific software that fixes your specific bottlenecks, what each costs, how long it takes to set up — and, for anything that touches patient information, whether the vendor will sign a BAA. No jargon, no course to sit through, nothing to learn.</p>
-
-    <div class="cta-row" style="margin-top:28px">
-      <a class="btn btn-primary" href="#book" data-book>Book a free 15-minute call</a>
-      <span class="cta-note">No pitch — you'll leave with one tool you can use</span>
-    </div>
-
-    <div class="strip">
-      <div><strong>Run by a critical-care RN</strong><span>Trained where a dropped handoff isn't a missed email. Same eye, turned on your week.</span></div>
-      <div><strong>We know what a BAA is</strong><span>Every recommendation is checked against what your data rules allow.</span></div>
-      <div><strong>We sell no software</strong><span>No commissions, no reseller deals. You pay vendors directly.</span></div>
-    </div>
-  </section>
-
-  <section id="problem" class="reveal" aria-labelledby="problem-h">
-    <div class="rail">
-      <div class="label">The problem</div>
-      <div class="stack">
-        <h2 id="problem-h">You know exactly what's wrong with your week</h2>
-        <p>The inquiry that came in at 9pm and sat until morning, by which point she booked down the street. The consult who said "let me think about it" five weeks ago and never heard from anyone again — a treatment that quietly became nothing. The Friday no-show you can't resell at four hours' notice. The same five questions, answered by hand, forever.</p>
-        <p>None of that is a mystery to you. What you don't have is three weekends to work out which of four thousand tools fixes it, whether it talks to the system you already pay for, and — the part that stops most practices cold — whether it's even allowed near patient information.</p>
-        <p>So it stays on the list. And every week it stays there has a number attached.</p>
-        <p><strong>That's the job.</strong> Not to make you an AI person. To hand you three decisions already made, by someone who understands both sides of the problem.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="math" class="reveal" aria-labelledby="math-h">
-    <div class="rail">
-      <div class="label">The arithmetic</div>
-      <div class="stack">
-        <h2 id="math-h">What the list is costing you while it sits there</h2>
-        <p>Move the two sliders. This is the same arithmetic that goes in the back of the report — your hours, your number, nothing padded.</p>
-
-        <div class="calc">
-          <div class="calc-grid">
-            <div class="field">
-              <label for="calc-hours">Admin hours a week you'd rather not do</label>
-              <input type="range" id="calc-hours" min="2" max="25" step="1" value="8" data-calc-hours>
-              <div class="field-val"><span data-out-hours>8</span> hours</div>
-            </div>
-            <div class="field">
-              <label for="calc-rate">What an hour of that time is worth</label>
-              <input type="range" id="calc-rate" min="25" max="300" step="5" value="85" data-calc-rate>
-              <div class="field-val">$<span data-out-rate>85</span> / hour</div>
-            </div>
-          </div>
-
-          <div class="calc-out" aria-live="polite">
-            <div>
-              <div class="label" style="margin-bottom:8px">Per year, at those numbers</div>
-              <div class="calc-figure" data-out-year>$35,360</div>
-            </div>
-            <p class="calc-cap">Against a $999 audit, one-time. If we can't find five hours a week in your practice, the audit is free and you keep the report.</p>
-          </div>
-        </div>
-
-        <p style="font-size:15px;color:var(--ink-soft)">A rough number on purpose. The report replaces it with a specific one: which hours, in which part of your week, and what each fix costs against them.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="how" class="reveal" aria-labelledby="how-h">
-    <div class="rail">
-      <div class="label">How it works</div>
-      <div class="stack">
-        <h2 id="how-h">Four steps, about a week</h2>
-        <ol class="steps">
-          <li>
-            <div class="step-n">01</div>
-            <div>
-              <h3>A free 15 minutes</h3>
-              <p>You tell us what's eating the week. We name one thing you could fix immediately, free, whether or not you go further. Worst case you leave with a tool you didn't know existed.</p>
-              <div class="step-time">15 minutes · no obligation</div>
+      <div class="nav-panel" id="nav-panel">
+        <ul class="nav-links">
+          <li><a href="#offer" data-nav="offer">Offer</a></li>
+          <li class="has-sub">
+            <a href="#how" data-nav="how" aria-haspopup="true" aria-expanded="false" aria-controls="process-sub">Process</a>
+            <div class="sub-clip" id="process-sub">
+              <a href="#how" data-step-jump="0">Discover</a>
+              <a href="#how" data-step-jump="1">Map the leak</a>
+              <a href="#how" data-step-jump="2">Prescribe</a>
+              <a href="#how" data-step-jump="3">Deliver</a>
             </div>
           </li>
-          <li>
-            <div class="step-n">02</div>
-            <div>
-              <h3>The audit call</h3>
-              <p>A recorded working session through your actual week — front desk, scheduling, billing, follow-up, what software you already pay for, where it breaks. You do most of the talking.</p>
-              <div class="step-time">45 minutes · phone or video</div>
-            </div>
-          </li>
-          <li>
-            <div class="step-n">03</div>
-            <div>
-              <h3>The prescription</h3>
-              <p>Five pages. Your bottlenecks in your own words, the tool that fixes each, the real price, the honest setup time, the data question answered — and a four-day plan where no step takes over ten minutes.</p>
-              <div class="step-time">Two days after the call</div>
-            </div>
-          </li>
-          <li>
-            <div class="step-n">04</div>
-            <div>
-              <h3>We walk you through it</h3>
-              <p>Screen-share, page by page. Then you decide: set it up yourself, or have us do it. Both are fine, and neither is a subscription to us.</p>
-              <div class="step-time">30 minutes</div>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section id="report" class="reveal" aria-labelledby="report-h">
-    <div class="rail">
-      <div class="label">The prescription</div>
-      <div class="stack">
-        <h2 id="report-h">What's actually in it</h2>
-        <ul class="ticks">
-          <li>The three to seven bottlenecks costing you the most, quoted back in the words you used</li>
-          <li>A named tool for each, with its real monthly price on its real plan tier</li>
-          <li>Honest setup time — if it needs a developer, we say so and it doesn't make the list</li>
-          <li>For anything touching PHI: whether the vendor signs a BAA, which plan tier that takes, and what should never be entered into it</li>
-          <li>A four-day start plan, ten minutes a day, in order</li>
-          <li>The arithmetic: hours returned, at your hourly value, minus what the tools cost</li>
+          <li><a href="#who" data-nav="who">Who we help</a></li>
+          <li><a href="#why" data-nav="why">Why RN</a></li>
+          <li><a href="#faq" data-nav="faq">FAQ</a></li>
         </ul>
-        <p style="font-size:15px;color:var(--ink-soft)">Where a vendor's position on a BAA can't be verified, the report says "needs verification before use with patient data" rather than guessing. That line is the difference between advice you can act on and advice that creates a problem.</p>
+        <a class="cta nav-cta" href="#book">Book assessment <span aria-hidden="true">→</span></a>
       </div>
-    </div>
-  </section>
 
-  <section id="pricing" class="reveal" aria-labelledby="pricing-h">
-    <div class="rail">
-      <div class="label">Pricing</div>
-      <div class="stack">
-        <h2 id="pricing-h">Published, because you shouldn't have to ask</h2>
-        <div class="price-wrap">
-          <table class="price-table">
-            <thead>
-              <tr><th scope="col">Engagement</th><th scope="col">What happens</th><th scope="col">Price</th></tr>
-            </thead>
-            <tbody>
-              <tr class="founding">
-                <td class="price-name">Introductory rate<span class="price-tag">Five a quarter</span></td>
-                <td>The full audit at half price. We take five practices at this rate each quarter, so the calendar stays open for the work that follows it.</td>
-                <td>$499</td>
-              </tr>
-              <tr>
-                <td class="price-name">The Practice Hours Audit</td>
-                <td>The call, the prescription, the walkthrough. Free if we can't find five hours a week.</td>
-                <td>$999</td>
-              </tr>
-              <tr>
-                <td class="price-name">Setup</td>
-                <td>We implement what the report recommends, so nothing sits on a list.</td>
-                <td>from $750</td>
-              </tr>
-              <tr>
-                <td class="price-name">Build</td>
-                <td>One real thing: a workflow automated, a knowledge system, a process rebuilt.</td>
-                <td>from $1,500</td>
-              </tr>
-              <tr>
-                <td class="price-name">Monthly</td>
-                <td>Two working sessions a month, plus questions answered between them. A handful of practices at a time.</td>
-                <td>from $1,200/mo</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="font-size:15px;color:var(--ink-soft)">Software subscriptions are paid by you, directly to the vendors, at their public prices. We take nothing from them. If you go ahead with setup or a build, the audit fee comes off the price.</p>
-      </div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
     </div>
-  </section>
+  </header>
 
-  <section id="fit" class="reveal" aria-labelledby="fit-h">
-    <div class="rail">
-      <div class="label">Fit</div>
-      <div class="stack">
-        <h2 id="fit-h">Who this is for</h2>
-        <div class="fit">
-          <div>
-            <h3>A good fit</h3>
-            <ul>
-              <li>Dental, chiropractic, med spa, vet, therapy and small medical practices</li>
-              <li>Home care and private-duty agencies</li>
-              <li>Owner-operated, roughly 5 to 30 people</li>
-              <li>The owner or office manager still does admin someone shouldn't</li>
-              <li>Anyone who has said "we should look into AI" for a year and never had time</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Not a fit</h3>
-            <ul>
-              <li>Looking to cut staff — that isn't what this does</li>
-              <li>Wanting custom software built from scratch</li>
-              <li>Hospital systems and enterprise rollouts</li>
-              <li>Already running a tight, automated operation</li>
-              <li>Wanting anything that puts patient data somewhere it shouldn't go</li>
-            </ul>
+  <div class="rail" data-rail aria-hidden="true">
+    <span class="rail-seg" data-rail-seg></span>
+  </div>
+  <p class="rail-name" data-rail-name aria-hidden="true">01 · Hero</p>
+
+  <div class="scroll-nav">
+    <button type="button" data-scroll="prev" aria-label="Previous section">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 11V3M7 3L3.5 6.5M7 3L10.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" data-scroll="next" aria-label="Next section">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 3V11M7 11L3.5 7.5M7 11L10.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <button class="scene-launcher" type="button" aria-expanded="false" aria-controls="scene-menu" aria-label="Open section list">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="scene-menu" id="scene-menu" aria-label="Sections" hidden>
+    <a href="#problem">The leak</a>
+    <a href="#hours">Booked vs paid</a>
+    <a href="#shift">The shift</a>
+    <a href="#how">How it works</a>
+    <a href="#who">Who we help</a>
+    <a href="#why">Why Marcha</a>
+    <a href="#offer">The offer</a>
+    <a href="#faq">FAQ</a>
+    <a href="#book">Book</a>
+  </nav>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-bubble">
+      <span>Scroll</span>
+      <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true">
+        <path d="M5 1.5V6M5 1.5L2.5 4M5 1.5L7.5 4M5 16.5V12M5 16.5L2.5 14M5 16.5L7.5 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section class="hero" id="hero" data-scene="hero" aria-labelledby="hero-heading">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-track" aria-hidden="true"><span></span></div>
+          <div class="hero-copy-in">
+            <p class="eyebrow reveal">Welcome to <span data-brand>Marcha</span></p>
+            <p class="hero-kicker reveal">For medspas, studios &amp; owner-led practices</p>
+            <h1 id="hero-heading" class="display reveal">Your business<br>shouldn’t need you<br>at 9pm.</h1>
+            <div class="hero-rule reveal">
+              <span class="rule" aria-hidden="true"></span>
+              <p>Missed call. 4:30 no-show. “I’ll book later.” That’s all money.</p>
+              <span class="rule" aria-hidden="true"></span>
+            </div>
+            <p class="micro reveal">We find the money. Your evenings come with it.</p>
+            <a class="cta cta-lg reveal" href="#problem">See what it’s costing <span aria-hidden="true">→</span></a>
+            <p class="hero-next reveal"><a href="#book">Book the assessment</a></p>
           </div>
         </div>
+
+        <div class="hero-visual" data-parallax>
+          <div class="orb-halo" data-py="halo" aria-hidden="true"></div>
+          <div class="orb" data-py="orb" aria-hidden="true"></div>
+          <div class="ground" aria-hidden="true"></div>
+
+          <article class="back-card" data-py="back">
+            <p class="mock-kicker">Already paid for</p>
+            <ul>
+              <li>Online deposits</li>
+              <li>Waitlist texts</li>
+              <li>Review asks</li>
+            </ul>
+            <p class="back-card-foot">Never switched on</p>
+          </article>
+
+          <article class="browser" data-py="mock" data-cursor-zone>
+            <div class="browser-chrome">
+              <span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="browser-url">runmarcha.com / the-leak</span>
+            </div>
+            <div class="browser-screen">
+              <p class="mock-kicker">Meanwhile, at 9pm</p>
+              <h2>Where the money went</h2>
+              <ul class="mock-rows">
+                <li>
+                  <span>Missed consult</span>
+                  <span class="mock-mid">Mid-service</span>
+                  <b>$400–1k</b>
+                </li>
+                <li>
+                  <span>6pm reformer</span>
+                  <span class="mock-mid">3 late cancels/wk</span>
+                  <b>~$6.2k/yr</b>
+                </li>
+                <li>
+                  <span>Gel regular</span>
+                  <span class="mock-mid">“I’ll book later”</span>
+                  <b>~$935/yr</b>
+                </li>
+              </ul>
+              <div class="mock-foot">
+                <span>Illustrative</span>
+                <b>Yours, in dollars</b>
+              </div>
+            </div>
+            <div class="scroll-pill" aria-hidden="true"><i></i> Scroll</div>
+          </article>
+
+          <aside class="hours-badge" data-py="badge">
+            <p>Tonight</p>
+            <strong>9pm</strong>
+            <span>you, still answering DMs</span>
+          </aside>
+
+          <div class="mark-badge" data-py="mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="46" height="46" fill="none">
+              <circle cx="24" cy="24" r="22" fill="#fff"/>
+              <path d="M14 33V15.5h3.6l3.9 9.4 3.9-9.4H29v17.5h-2.8v-11l-3.6 8.6h-2.1l-3.6-8.6v11H14z" fill="#FF5A1F"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Who the work is for">
+      <p>Built for owners who are also the backup receptionist</p>
+      <ul>
+        <li class="is-lead">Medspa</li>
+        <li>Pilates &amp; fitness</li>
+        <li>Nail &amp; beauty</li>
+        <li>Dental</li>
+        <li>Clinics</li>
+      </ul>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <p>They don’t leave voicemails — The 4:30 no-show — The DM from four hours ago — “I’ll book later” — The fee you never charge — <span>Money found</span> — </p>
+        <p>They don’t leave voicemails — The 4:30 no-show — The DM from four hours ago — “I’ll book later” — The fee you never charge — <span>Money found</span> — </p>
       </div>
     </div>
-  </section>
 
-  <section id="about" class="reveal" aria-labelledby="about-h">
-    <div class="rail">
-      <div class="label">Who we are</div>
-      <div class="founder">
-        <h2 id="about-h" style="font-size:24px;margin-bottom:14px">We read the charts after it goes wrong. This is the other end of that job.</h2>
-        <p>Frigeri &amp; Co. is a small operations practice founded by <strong>Quinn Frigeri, RN</strong> — critical care, and medical-legal record review. The second one is why this exists.</p>
-        <p>Reviewing records for attorneys means reading a practice's documentation after something has already gone wrong. And the pattern is almost never one person having a bad day. It's a process nobody had time to fix: a follow-up with no owner, a form that lived in two places, a handoff that depended on somebody remembering. By the time it reaches a file, it's expensive in ways that have nothing to do with software.</p>
-        <p>So we read your week the way we'd read a record — for where it breaks, not for what to buy. That work also means years of handling protected health information under rules with teeth, which is why every recommendation here answers the data question instead of waving at it. Most people selling AI into practices have never heard of a BAA. That's how a clinic ends up with a compliance problem instead of an extra five hours.</p>
-        <p>We also build the systems we recommend, which is the difference between advice and a brochure. If a tool goes in your practice, we've set it up before — and if it can't do what the vendor's website claims, we'd rather find that out on our time than on yours.</p>
+    <section class="problem" id="problem" data-scene="problem" aria-labelledby="problem-heading">
+      <p class="plate" data-plate="problem" aria-hidden="true">Leak</p>
+      <div class="problem-layout">
+      <div class="problem-head reveal">
+        <p class="eyebrow">The leak</p>
+        <h2 id="problem-heading" class="display display-md">You didn’t open your own place to answer DMs.</h2>
+        <p class="lede">Busy all day. Somehow still short. It’s not a slow month. It’s the call you couldn’t take, the slot nobody refilled, and the client who never came back.</p>
       </div>
-    </div>
-  </section>
-
-  <section id="faq" class="reveal" aria-labelledby="faq-h">
-    <div class="rail">
-      <div class="label">Questions</div>
-      <div class="stack-tight">
-        <h2 id="faq-h" style="margin-bottom:8px">The ones we get asked</h2>
-
-        <details>
-          <summary>Can we even use these tools with patient information?</summary>
-          <p>Some, on specific plan tiers, with a signed BAA. Others never. That distinction is in the report for every recommendation, because it's the question that stops most practices from adopting anything — and the one most consultants answer wrong.</p>
-          <p>We're not lawyers and this isn't legal advice. We tell you what the vendor commits to in writing, and what we couldn't verify.</p>
-        </details>
-
-        <details>
-          <summary>Do I have to learn any of this?</summary>
-          <p>No. That's the point of a prescription — the decisions are already made. If you'd rather not do the setup either, we do that part.</p>
-        </details>
-
-        <details>
-          <summary>We barely use technology. Is it too early for us?</summary>
-          <p>It's the opposite. Most of what we recommend isn't AI at all — it's ordinary software you didn't know existed. The measurement is hours, not technology.</p>
-        </details>
-
-        <details>
-          <summary>Is this going to replace our front desk?</summary>
-          <p>No, and practices that try it usually make a mess. This is about the admin drag on the people you already have. Nobody's job gets smaller; their week does.</p>
-        </details>
-
-        <details>
-          <summary>We tried something like this and it didn't work.</summary>
-          <p>Usually a tool got dropped onto a broken process. That's why the first session is spent on how you actually work before anything is recommended, and why anything needing a six-week rollout doesn't make the report.</p>
-        </details>
-
-        <details>
-          <summary>How does the guarantee work?</summary>
-          <p>If the report can't identify at least five hours a week, you pay nothing and you keep the report. We'd rather refund than pad a number — the arithmetic is only worth anything if you can trust it.</p>
-        </details>
-
-        <details>
-          <summary>How long does the whole thing take on our end?</summary>
-          <p>Ninety minutes of your time, total: fifteen on the first call, forty-five on the audit, thirty on the walkthrough. Nothing to prepare, no documents to gather — we ask about the week you already have.</p>
-        </details>
-
-        <details>
-          <summary>Are you reselling software?</summary>
-          <p>No. No affiliate deals, no commissions, no vendor relationships. You buy directly at public prices. It's the only way a recommendation means anything.</p>
-        </details>
-
-        <details>
-          <summary>Do you work outside Miami?</summary>
-          <p>Yes — everything runs by phone and video, and most of our work is remote. Practices anywhere in the US.</p>
-        </details>
+      <div class="problem-stage">
+        <div class="problem-halo" aria-hidden="true"></div>
+        <div class="problem-disc" data-disc aria-hidden="true"></div>
+        <article class="pcard p1">
+          <span class="num" aria-hidden="true">01</span>
+          <h3>They don’t leave voicemails. They leave.</h3>
+          <p>The call came mid-service. The DM sat for four hours. By dinner, they’d booked somewhere else.</p>
+        </article>
+        <article class="pcard p2">
+          <span class="num" aria-hidden="true">02</span>
+          <h3>You have a no-show policy. You just never charge it.</h3>
+          <p>The 4:30 didn’t show. No card on file. The waitlist was full, and nobody texted them.</p>
+        </article>
+        <article class="pcard p3">
+          <span class="num" aria-hidden="true">03</span>
+          <h3>“I’ll book later” means no.</h3>
+          <p>They meant it. Nobody followed up. Now your list is full of people who used to come in.</p>
+        </article>
+        <article class="pcard p4 notch">
+          <span class="num" aria-hidden="true">04</span>
+          <h3>You’re already paying for the fix.</h3>
+          <p>Deposits. Waitlist texts. Review asks. All in your software, waiting for a free afternoon.</p>
+        </article>
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section id="book" aria-labelledby="book-h">
-    <div class="close-block">
-      <div class="label" style="margin-bottom:12px">Next step</div>
-      <h2 id="book-h">Fifteen minutes, and you'll know if this is worth your time</h2>
-      <p style="margin-top:14px;max-width:58ch;color:var(--ink-soft)">No pitch and no obligation. Tell us what's eating your week, and we'll name one thing you can fix immediately — whether or not you ever pay us anything.</p>
+    <section class="hours" id="hours" data-scene="hours" aria-labelledby="hours-heading">
+      <div class="hours-track" data-hours-track>
+        <div class="hours-pin" data-cursor-zone>
+          <div class="hours-halo" aria-hidden="true"></div>
+          <div class="hours-orb" data-hours-orb aria-hidden="true"></div>
+          <div class="hours-title-wrap">
+            <p class="hours-ghost hours-trail" aria-hidden="true" data-hours-trail>Fully booked<br>isn’t<br>fully paid.</p>
+            <p class="hours-ghost" aria-hidden="true" data-hours-ghost>Fully booked<br>isn’t<br>fully paid.</p>
+            <h2 id="hours-heading" class="hours-title">Fully booked<br>isn’t<br>fully paid.</h2>
+          </div>
+          <div class="hours-card">
+            <p class="hours-layer is-on" data-hours-layer>The gap is sitting in your own reports. Nobody’s had time to look.</p>
+            <p class="hours-layer" data-hours-layer>We look. Then we put it in dollars: no-shows, empty slots, lapsed clients.</p>
+            <p class="hours-layer" data-hours-layer>Then we show you the fix. Often it’s already in software you pay for.</p>
+          </div>
+          <a class="cta hours-cta" href="#shift">See the shift <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
 
-      <div class="cta-row" style="margin-top:24px">
-        <a class="btn btn-primary" href="#book" data-book>Book a free 15-minute call</a>
-        <a class="btn btn-ghost" href="#contact-form" data-jump-form>Or send a note instead</a>
+    <section class="shift" id="shift" data-scene="shift" aria-labelledby="shift-heading">
+      <div class="shift-track" data-shift-track>
+        <div class="shift-pin">
+          <p class="plate plate-shift" data-plate="shift" aria-hidden="true">Software</p>
+          <div class="shift-layout">
+            <div class="shift-copy">
+              <p class="eyebrow">The shift</p>
+              <h2 id="shift-heading" class="display display-md">You’re not bad at admin. You’re doing a job software should do.</h2>
+              <p class="lede">Scroll. You doing it all slides out. Software doing the chasing slides in.</p>
+              <a class="cta" href="#how">See how we work <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="shift-mask" data-cursor-zone>
+              <div class="shift-disc" aria-hidden="true"></div>
+              <article class="ba before" data-shift-before>
+                <p class="ba-kicker">Before</p>
+                <ul>
+                  <li>Texting the waitlist between clients</li>
+                  <li>Waiving the fee because it’s awkward</li>
+                  <li>Typing the price list into DMs, again</li>
+                  <li>Paying for features nobody turned on</li>
+                </ul>
+              </article>
+              <article class="ba after ba-hot" data-shift-after>
+                <p class="ba-kicker accent">After</p>
+                <ul>
+                  <li>Your leak in dollars, from your reports</li>
+                  <li>3–7 fixes matched to your software</li>
+                  <li>What to switch on first, and who owns it</li>
+                  <li>Deposits the software charges, not you</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how" data-scene="how" aria-labelledby="how-heading">
+      <div class="how-track" data-how-track>
+        <div class="how-pin">
+          <div class="how-copy">
+            <p class="eyebrow">Process</p>
+            <h2 id="how-heading" class="display display-sm">Four steps. None of them is a demo.</h2>
+            <ol class="how-steps">
+              <li class="is-on" data-how-step="0">
+                <span>01</span>
+                <div>
+                  <h3>Discover</h3>
+                  <p>45 minutes. You tell us how the week really goes. We don’t pitch anything. Novel, we know.</p>
+                </div>
+              </li>
+              <li data-how-step="1">
+                <span>02</span>
+                <div>
+                  <h3>Map the leak</h3>
+                  <p>We pull your booking reports and price each leak. “I think we’re fine” gets a dollar figure.</p>
+                </div>
+              </li>
+              <li data-how-step="2">
+                <span>03</span>
+                <div>
+                  <h3>Prescribe</h3>
+                  <p>One fix per leak. What you already pay for comes first. New tools only for the gaps. Nothing custom.</p>
+                </div>
+              </li>
+              <li data-how-step="3">
+                <span>04</span>
+                <div>
+                  <h3>Deliver</h3>
+                  <p>A written plan and a review call. Want help switching it on? We’ll do it with you. Entirely optional.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="how-stage">
+            <button class="eye" type="button" data-eye aria-label="Advance the plan">
+              <span class="eye-ticks" aria-hidden="true"></span>
+              <span class="eye-core" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M1.5 11S5 4.5 11 4.5 20.5 11 20.5 11 17 17.5 11 17.5 1.5 11 1.5 11z" stroke="#fff" stroke-width="1.5"/>
+                  <circle cx="11" cy="11" r="2.4" fill="#fff"/>
+                </svg>
+              </span>
+              <span class="eye-label">See the plan</span>
+            </button>
+
+            <article class="device" data-cursor-zone>
+              <div class="device-bezel">
+                <div class="browser-chrome">
+                  <span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="browser-url">runmarcha.com / the-plan</span>
+                </div>
+                <div class="device-screen" data-device-screen>
+                  <div class="device-scroll" data-device-scroll>
+                    <section class="sheet">
+                      <p class="mock-kicker">01 · Discover</p>
+                      <h3>The week, in your words</h3>
+                      <ul class="sheet-notes">
+                        <li><b>Owner</b><span>We’re slammed. The account says otherwise.</span></li>
+                        <li><b>Desk</b><span>The waitlist is a group text.</span></li>
+                        <li><b>9pm</b><span>Still answering DMs. Obviously.</span></li>
+                      </ul>
+                      <p class="sheet-foot">We listen. We don’t demo.</p>
+                    </section>
+                    <section class="sheet">
+                      <p class="mock-kicker">02 · Map</p>
+                      <h3>Where the money actually went</h3>
+                      <ul class="mock-rows">
+                        <li><span>4:30 no-show</span><span class="mock-mid">No deposit</span><b>$600–900</b></li>
+                        <li><span>Missed consult</span><span class="mock-mid">Went to voicemail</span><b>$400–1k</b></li>
+                        <li><span>Lapsed regular</span><span class="mock-mid">“I’ll book later”</span><b>~$935/yr</b></li>
+                      </ul>
+                      <div class="mock-foot"><span>Illustrative</span><b>Yours, priced in the report</b></div>
+                    </section>
+                    <section class="sheet sheet-rx">
+                      <p class="mock-kicker">03 · Prescribe</p>
+                      <h3>Leak → fix → when</h3>
+                      <ul class="mock-rows rx">
+                        <li><span>Missed calls</span><span class="mock-mid">Text-back</span><b class="plus">Day 1</b></li>
+                        <li><span>No-shows</span><span class="mock-mid">Deposits + waitlist</span><b class="plus">Day 2</b></li>
+                        <li><span>Lapsed clients</span><span class="mock-mid">Rebook texts</span><b class="plus">Day 3</b></li>
+                      </ul>
+                      <div class="mock-foot"><span>3–7 fixes for your software</span><b>Paid-for modules first</b></div>
+                    </section>
+                    <section class="sheet">
+                      <p class="mock-kicker">04 · Deliver</p>
+                      <h3>Four days. Ten minutes a day.</h3>
+                      <ol class="day-list">
+                        <li><span>Day 1</span> Turn on missed-call text-back. Nothing else.</li>
+                        <li><span>Day 2</span> Turn on deposits and automatic waitlist offers.</li>
+                        <li><span>Day 3</span> Send rebook reminders to clients who drifted.</li>
+                        <li><span>Day 4</span> Review call. Keep what the team will actually use.</li>
+                      </ol>
+                      <p class="sheet-foot">After that, it runs without you.</p>
+                      <p class="sheet-foot is-ink">It’s 9pm. You’re home.</p>
+                    </section>
+                  </div>
+                  <div class="device-bar" aria-hidden="true"><span data-device-thumb></span></div>
+                  <div class="scroll-pill device-pill" aria-hidden="true"><i></i> Scroll</div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="who" id="who" data-scene="who" aria-labelledby="who-heading">
+      <div class="who-head">
+        <div>
+          <p class="eyebrow">Who we help</p>
+          <h2 id="who-heading" class="display display-xl">Owners</h2>
+          <p class="lede">You’re great at the work. It’s everything else that’s drowning you. Medspas first, then pilates and fitness, nail and beauty, dental, and small outpatient practices. About 2 to 20 people.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter practices">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="medspa" aria-pressed="false">Medspa</button>
+          <button type="button" data-filter="adjacent" aria-pressed="false">Studios &amp; more</button>
+        </div>
+      </div>
+      <div class="tile-grid" data-tile-grid>
+        <article class="tile reveal" data-kind="medspa" id="who-medspa">
+          <div class="tile-art art-medspa">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <path d="M100 118c-28-18-58-38-58-66a28 28 0 0 1 50-16 28 28 0 0 1 50 16c0 28-30 48-42 66z" fill="#223034"/>
+              <circle cx="78" cy="58" r="16" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+              <path d="M86 58h16M94 50v16" stroke="#FF5A1F" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="tile-cat">Our focus</p>
+          <h3>Medspas &amp; aesthetic practices</h3>
+          <p>Consults always call mid-appointment. Miss one and that’s a $400–1,000 first visit. The fix is often already in Zenoti or Boulevard.</p>
+        </article>
+        <article class="tile reveal notch-tile" data-kind="adjacent" id="who-pilates">
+          <div class="tile-art art-well">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="tile-cat">Also</p>
+          <h3>Pilates &amp; boutique fitness</h3>
+          <p>Full waitlist, empty reformers, same 6pm class. Three late cancels a week in one $40 class: about $6,200 a year.</p>
+        </article>
+        <article class="tile reveal" data-kind="adjacent" id="who-beauty">
+          <div class="tile-art art-out">
+            <b></b><b></b><b></b>
+          </div>
+          <p class="tile-cat">Also</p>
+          <h3>Nail &amp; beauty studios</h3>
+          <p>Phone buzzing mid-fill, wet brush in hand. A $55 gel regular every three weeks is about $935 a year. Until they forget to rebook.</p>
+        </article>
+        <article class="tile reveal" data-kind="adjacent" id="who-dental">
+          <div class="tile-art art-dental">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <p class="tile-cat">Also</p>
+          <h3>Dental &amp; outpatient</h3>
+          <p>Lunch calls go to voicemail. Recall lists sit. Notes still open at 8pm? We point you to scribes with a BAA.</p>
+        </article>
+      </div>
+      <p class="wrap who-note">Not a fit if you want custom software, an AI that diagnoses, or a robot receptionist. We fix leaks with tools that already exist. Hover a tile; the art is the room, the line under it is the leak.</p>
+    </section>
+
+    <section class="why" id="why" data-scene="why" aria-labelledby="why-heading">
+      <div class="wrap why-grid">
+        <div class="why-copy reveal">
+          <p class="eyebrow">Why <span data-brand>Marcha</span></p>
+          <h2 id="why-heading" class="display display-md">Everyone says use AI. Nobody tells you which.</h2>
+          <p class="lede">We do. Our team is led by a registered nurse, someone who knows what it’s like to be needed by three people at once, and why “just use AI” falls apart right there.</p>
+          <p class="lede">No software project. We tell you which tools, in what order, starting with the ones you already pay for. We stay if you want help switching them on.</p>
+          <a class="cta" href="#offer">See the offer <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="why-stage">
+          <div class="why-halo" aria-hidden="true"></div>
+          <div class="why-orb" data-disc aria-hidden="true"></div>
+          <article class="cred">
+            <span>Leadership</span>
+            <p>Registered nurse–led team</p>
+          </article>
+          <article class="cred">
+            <span>Focus</span>
+            <p>Medspas, studios, and practices. Not tech startups.</p>
+          </article>
+          <article class="cred">
+            <span>Method</span>
+            <p>What you already pay for first. New tools only for the gaps.</p>
+          </article>
+          <article class="cred cred-last">
+            <span>Afterward</span>
+            <p>Optional: we set it up with you, plus an AI concierge</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer" id="offer" data-scene="offer" aria-labelledby="offer-heading">
+      <div class="wrap offer-top">
+        <div class="offer-copy reveal">
+          <p class="eyebrow">The AI tools assessment</p>
+          <h2 id="offer-heading" class="display display-lg">Find out what “busy” is costing you.</h2>
+          <p class="lede">One conversation. Your own reports, priced out. A written plan with 3–7 fixes for the software you already run. A review call. Fixed at <strong>$999</strong>.</p>
+          <ul class="chips" aria-label="What the assessment includes">
+            <li>Discovery</li>
+            <li>Leak in dollars</li>
+            <li>Written plan</li>
+            <li>4-day quick-start</li>
+            <li>Review call</li>
+            <li>Fixed fee</li>
+          </ul>
+          <a class="cta cta-lg" href="#book">Book the assessment <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="offer-visual reveal" aria-hidden="true">
+          <div class="offer-halo"></div>
+          <div class="offer-orb" data-disc></div>
+          <article class="price-card">
+            <p>Fixed price</p>
+            <strong>$999</strong>
+            <p class="guarantee-line">Your leak, in dollars</p>
+            <span>Tools run separately. Paid-for features come first, so early fixes often cost nothing new.</span>
+          </article>
+        </div>
       </div>
 
-      <form class="form" id="contact-form" data-contact-form novalidate>
-        <div class="form-grid">
+      <div class="wrap offer-grid">
+        <article class="ocard">
+          <h3>What’s included</h3>
+          <ul>
+            <li>45-minute discovery with the owner</li>
+            <li>Each leak priced from your own booking reports</li>
+            <li>One fix per leak, starting with what you already pay for</li>
+            <li>Written report: leak → fix → cost → setup → dollars at stake</li>
+            <li>Effort vs impact, aimed at quick wins</li>
+            <li>4-day quick-start, about 10 minutes a day</li>
+            <li>30-minute review call to walk it through</li>
+          </ul>
+        </article>
+        <article class="ocard ocard-hot">
+          <p class="eyebrow">What you walk away with</p>
+          <h3>A number, not a vibe.</h3>
+          <p>Every leak gets a dollar figure from your own reports and a first move to fix it. If a fix isn’t worth it at your size, we’ll say so.</p>
+          <p class="aside">Worst case: 45 minutes and a clear picture. Best case: money back on the books, and your evenings with it.</p>
+        </article>
+        <article class="ocard">
+          <p class="eyebrow">Why the fee is easy</p>
+          <h3>Do the math on one empty slot.</h3>
+          <p>A medspa no-show can be a $600–900 slot. A gel regular who stops rebooking: about $935 a year. Three late cancels a week in one class: about $6,200. The report shows yours.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" data-scene="faq" aria-labelledby="faq-heading">
+      <div class="wrap faq-grid">
+        <div class="faq-intro">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-heading" class="display display-sm">Straight answers</h2>
+          <p class="lede">No soft sell. If it’s not a fit, we’ll say so. Politely.</p>
+          <a class="cta" href="#book">Book assessment <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="accordion">
+          <details class="acc">
+            <summary>Do we need to know AI already?</summary>
+            <p>No. Most of what we recommend isn’t flashy. It’s reminders, deposits, waitlists, and missed-call text-backs, finally set up.</p>
+          </details>
+          <details class="acc">
+            <summary>Will you build custom software?</summary>
+            <p>No. You don’t need an app. You need the features you already pay for, switched on.</p>
+          </details>
+          <details class="acc">
+            <summary>What does the assessment cost?</summary>
+            <p>A fixed <strong>$999</strong>. Tools run separately. We start with what’s already in your plan, so the first fixes often cost nothing extra. Anything new is priced in the report before you decide.</p>
+          </details>
+          <details class="acc">
+            <summary>Will this replace my front desk?</summary>
+            <p>No, and we won’t sell you that. The tools catch what the desk can’t get to: the call mid-service, the after-hours DM, the cancel that needs refilling. Your people stay the face of the place.</p>
+          </details>
+          <details class="acc">
+            <summary>Which software do you work with?</summary>
+            <p>Whatever runs your booking today: Zenoti, Boulevard, Mindbody, GlossGenius, Weave, NexHealth, and similar. We work inside your setup. We don’t start by making you switch.</p>
+          </details>
+          <details class="acc">
+            <summary>Who shows up on the calls?</summary>
+            <p>You work directly with our lead, a registered nurse. If you want help switching things on afterward, our team joins for that part.</p>
+          </details>
+          <details class="acc">
+            <summary>Can these tools touch client or health information?</summary>
+            <p>For medspas, dental, and outpatient practices, any tool that touches patient information needs a signed BAA on the right plan. After-hours note scribes always keep a clinician’s sign-off. We never recommend putting client health details into ChatGPT or similar. For most studios, the tools never touch health info at all. The report marks which is which and says “needs verification” instead of guessing. We’re not lawyers, this isn’t legal advice, and nothing here diagnoses.</p>
+          </details>
+          <details class="acc">
+            <summary>What if we’re tiny?</summary>
+            <p>Small teams feel it most. The person answering the phone is usually also the one doing the service. The sweet spot is about 2 to 20 people.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="book" id="book" data-scene="book" aria-labelledby="book-heading">
+      <div class="book-orb" aria-hidden="true"></div>
+      <div class="wrap book-grid">
+        <div class="book-copy">
+          <p class="eyebrow light">Ready</p>
+          <h2 id="book-heading" class="display display-md light">Find the leak. Then log off.</h2>
+          <p>The $999 AI tools assessment for medspas, studios, and owner-led practices. Remote. We’ll reply to schedule discovery.</p>
+          <ul>
+            <li>Fixed fee — no surprise scope</li>
+            <li>Your leak, priced from your own reports</li>
+            <li>RN-led, desk-fluent, no coding</li>
+          </ul>
+        </div>
+        <form class="book-form" id="book-form" novalidate>
           <div class="field">
-            <label for="f-name">Your name</label>
-            <input type="text" id="f-name" name="name" autocomplete="name" required>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" required aria-required="true" aria-describedby="name-error" placeholder="Jordan Lee">
+            <p class="field-error" id="name-error" hidden></p>
           </div>
           <div class="field">
-            <label for="f-practice">Practice</label>
-            <input type="text" id="f-practice" name="practice" autocomplete="organization">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required aria-required="true" aria-describedby="email-error" placeholder="you@email.com">
+            <p class="field-error" id="email-error" hidden></p>
           </div>
           <div class="field">
-            <label for="f-email">Email</label>
-            <input type="email" id="f-email" name="email" autocomplete="email" required>
-          </div>
-          <div class="field">
-            <label for="f-size">People in the practice</label>
-            <select id="f-size" name="size">
-              <option>Just me</option>
-              <option>2–5</option>
-              <option selected>5–15</option>
-              <option>15–30</option>
-              <option>30+</option>
+            <label for="practice">Studio or practice</label>
+            <select id="practice" name="practice" required aria-required="true" aria-describedby="practice-error">
+              <option value="" selected>Select one</option>
+              <option>Medspa / aesthetic</option>
+              <option>Pilates / boutique fitness</option>
+              <option>Nail / beauty</option>
+              <option>Dental</option>
+              <option>Wellness / longevity</option>
+              <option>Outpatient medical</option>
+              <option>Other studio or practice</option>
             </select>
+            <p class="field-error" id="practice-error" hidden></p>
           </div>
-        </div>
-        <div class="field">
-          <label for="f-note">What's eating the week?</label>
-          <textarea id="f-note" name="note" placeholder="The thing you'd hand off tomorrow if you could."></textarea>
-        </div>
-        <div class="hp" aria-hidden="true">
-          <label for="f-company">Company (leave blank)</label>
-          <input type="text" id="f-company" name="company" tabindex="-1" autocomplete="off">
-        </div>
-        <div class="cta-row">
-          <button class="btn btn-primary" type="submit">Send it</button>
-          <span class="form-note" data-form-status role="status"></span>
-        </div>
-        <p class="form-note">This opens your own email app with the note filled in — nothing is stored on this site, and no patient information should go in it.</p>
-      </form>
+          <div class="field">
+            <label for="note">Anything we should know? <span class="optional">(optional)</span></label>
+            <textarea id="note" name="note" rows="3" aria-required="false" placeholder="Team size, software, what keeps you up at 9pm…"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn-solid" id="book-submit">Request assessment</button>
+          <p class="form-status" id="form-status" role="alert" aria-live="assertive" data-form-status></p>
+          <p class="form-note">Opens your email to <a href="mailto:hello@runmarcha.com" data-brand-email>hello@runmarcha.com</a>. Nothing is stored on this site. Please don’t include client names or health details.</p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-      <p class="setup-flag" data-setup-flag hidden>Setup needed: put your booking link and contact address into the SITE config at the top of this page's script, and these buttons go live. Until then they sit here doing nothing.</p>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="#hero">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <circle cx="20" cy="20" r="18.25" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11.2 28V12.2h4.2l4.6 11L24.6 12.2H28.8V28h-3.2v-9.2L21.4 28h-2.5l-4.2-9.2V28h-3.5z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo-word" data-brand>Marcha</span>
+        </a>
+        <p data-brand-tagline>AI tools assessments for medspas, studios, and practices. So you’re not needed at 9pm.</p>
+      </div>
+      <div class="footer-meta">
+        <a href="mailto:hello@runmarcha.com" data-brand-email>hello@runmarcha.com</a>
+        <p>Remote assessments · RN-led</p>
+        <nav aria-label="Footer">
+          <a href="#problem">The leak</a>
+          <a href="#how">Process</a>
+          <a href="#offer">Offer</a>
+          <a href="#book">Book</a>
+          <a href="tools/">Assessment toolkit</a>
+        </nav>
+      </div>
     </div>
-  </section>
-
-</main>
-
-  <footer>
-    <div>
-      <p>Frigeri &amp; Co. · Operations for small practices</p>
-      <p>Remote across the US · Based in Miami</p>
+    <div class="wrap footer-bottom">
+      <p>© <span id="year">2026</span> <span data-brand>Marcha</span>. Nothing here is legal or clinical advice.</p>
     </div>
-    <div class="foot-links">
-      <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">Questions</a>
-      <a href="#book" data-book>Book a call</a>
-      <a href="tools/">Toolkit</a>
-      <a href="#" data-email hidden>Email</a>
-    </div>
-    <p style="width:100%;margin-top:6px">© <span data-year>2026</span> Frigeri &amp; Co. Nothing here is legal or clinical advice.</p>
   </footer>
 
-</div>
+  <div class="mobile-bar" id="mobile-bar" hidden>
+    <a class="cta" href="#book">Book assessment <span aria-hidden="true">→</span></a>
+  </div>
 
-<script>
-  /* ——————————————————————————————————————————————
-     SETUP: fill these in and the buttons go live.
-     BOOKING_URL  — your Cal.com / Calendly / SavvyCal link
-     CONTACT_EMAIL — the address you want replies at
-     —————————————————————————————————————————————— */
-  var SITE = {
-    BOOKING_URL: "",
-    CONTACT_EMAIL: "",
-    SUBJECT: "The Practice Hours Audit — a question"
-  };
-
-  (function () {
-    "use strict";
-
-    var store = {
-      get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
-      set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
-    };
-
-    /* ——— theme (initial value is set by the head script) ——— */
-    var root = document.documentElement;
-    var toggle = document.querySelector("[data-theme-toggle]");
-    function systemDark() {
-      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Marcha",
+    "url": "https://runmarcha.com/",
+    "description": "RN-led AI tools assessments for medspas, studios, and owner-led practices, including pilates, boutique fitness, nail and beauty, dental, and outpatient clinics. The assessment prescribes off-the-shelf tools. It does not diagnose.",
+    "email": "hello@runmarcha.com",
+    "areaServed": "US",
+    "offers": {
+      "@type": "Offer",
+      "name": "AI Tools Assessment",
+      "price": "999",
+      "priceCurrency": "USD",
+      "description": "A structured assessment that prices your revenue leaks from your own reports, with a written plan of 3–7 tools matched to the software you already run."
     }
-    function labelTheme() {
-      if (!toggle) return;
-      var t = root.getAttribute("data-theme");
-      var dark = t === "dark" || (t === "auto" && systemDark());
-      toggle.textContent = dark ? "Light" : "Dark";
-      toggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-    }
-    if (toggle) {
-      toggle.addEventListener("click", function () {
-        var t = root.getAttribute("data-theme");
-        var dark = t === "dark" || (t === "auto" && systemDark());
-        var next = dark ? "light" : "dark";
-        root.setAttribute("data-theme", next);
-        store.set("fc-theme", next);
-        labelTheme();
-      });
-      labelTheme();
-    }
-
-    /* ——— booking + email wiring ——— */
-    var bookButtons = document.querySelectorAll("[data-book]");
-    var emailLinks = document.querySelectorAll("[data-email]");
-    var flag = document.querySelector("[data-setup-flag]");
-
-    function mailto(subject, body) {
-      if (!SITE.CONTACT_EMAIL) return "";
-      var url = "mailto:" + SITE.CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject || SITE.SUBJECT);
-      if (body) url += "&body=" + encodeURIComponent(body);
-      return url;
-    }
-
-    if (SITE.BOOKING_URL) {
-      Array.prototype.forEach.call(bookButtons, function (b) {
-        b.href = SITE.BOOKING_URL;
-        b.target = "_blank";
-        b.rel = "noopener";
-      });
-    } else {
-      /* no calendar yet: send the booking buttons to the form on the page */
-      Array.prototype.forEach.call(bookButtons, function (b) { b.setAttribute("href", "#contact-form"); });
-    }
-
-    if (SITE.CONTACT_EMAIL) {
-      Array.prototype.forEach.call(emailLinks, function (b) {
-        b.href = mailto(SITE.SUBJECT, "");
-        b.hidden = false;
-      });
-    }
-
-    if (flag && !SITE.BOOKING_URL && !SITE.CONTACT_EMAIL) flag.hidden = false;
-
-    /* ——— contact form → email draft ——— */
-    var form = document.querySelector("[data-contact-form]");
-    var status = document.querySelector("[data-form-status]");
-    function say(msg) { if (status) status.textContent = msg || ""; }
-
-    if (form) {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (form.querySelector("#f-company").value) return; /* honeypot */
-
-        var name = form.querySelector("#f-name").value.trim();
-        var email = form.querySelector("#f-email").value.trim();
-        if (!name || !email || email.indexOf("@") < 1) {
-          say("Name and email, and we'll write back today.");
-          return;
-        }
-        if (!SITE.CONTACT_EMAIL) {
-          say("Email address not set up on this page yet.");
-          if (flag) flag.hidden = false;
-          return;
-        }
-
-        var body = [
-          "Name: " + name,
-          "Practice: " + form.querySelector("#f-practice").value.trim(),
-          "Email: " + email,
-          "Size: " + form.querySelector("#f-size").value,
-          "",
-          "What's eating the week:",
-          form.querySelector("#f-note").value.trim()
-        ].join("\n");
-
-        window.location.href = mailto("Practice Hours Audit — " + name, body);
-        say("Opening your email app…");
-      });
-    }
-
-    var jump = document.querySelector("[data-jump-form]");
-    if (jump && form) {
-      jump.addEventListener("click", function (e) {
-        e.preventDefault();
-        form.scrollIntoView({ behavior: "smooth", block: "center" });
-        var first = form.querySelector("#f-name");
-        if (first) setTimeout(function () { first.focus(); }, 320);
-      });
-    }
-
-    /* ——— the arithmetic ——— */
-    var hours = document.querySelector("[data-calc-hours]");
-    var rate = document.querySelector("[data-calc-rate]");
-    var outH = document.querySelector("[data-out-hours]");
-    var outR = document.querySelector("[data-out-rate]");
-    var outY = document.querySelector("[data-out-year]");
-
-    function money(n) {
-      return "$" + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    function recalc() {
-      if (!hours || !rate) return;
-      var h = Number(hours.value), r = Number(rate.value);
-      if (outH) outH.textContent = String(h);
-      if (outR) outR.textContent = String(r);
-      if (outY) outY.textContent = money(h * r * 52);
-    }
-    if (hours && rate) {
-      hours.addEventListener("input", recalc);
-      rate.addEventListener("input", recalc);
-      recalc();
-    }
-
-    /* ——— sticky masthead shadow ——— */
-    var masthead = document.querySelector("[data-masthead]");
-    function onScroll() {
-      if (masthead) masthead.setAttribute("data-stuck", window.scrollY > 8 ? "true" : "false");
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    /* ——— reveal + active nav ——— */
-    if ("IntersectionObserver" in window) {
-      var reveals = document.querySelectorAll(".reveal");
-      var ro = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); }
-        });
-      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-      Array.prototype.forEach.call(reveals, function (el) { ro.observe(el); });
-
-      var navLinks = document.querySelectorAll(".nav-links a");
-      var byId = {};
-      Array.prototype.forEach.call(navLinks, function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-      var spy = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var link = byId[en.target.id];
-          if (!link) return;
-          if (en.isIntersecting) {
-            Array.prototype.forEach.call(navLinks, function (a) { a.removeAttribute("aria-current"); });
-            link.setAttribute("aria-current", "true");
-          }
-        });
-      }, { rootMargin: "-40% 0px -55% 0px" });
-      Object.keys(byId).forEach(function (id) {
-        var sec = document.getElementById(id);
-        if (sec) spy.observe(sec);
-      });
-    } else {
-      Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (el) { el.classList.add("in"); });
-    }
-
-    /* ——— footer year ——— */
-    var year = document.querySelector("[data-year]");
-    if (year) year.textContent = String(new Date().getFullYear());
-  })();
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Frigeri & Co.",
-  "description": "Nurse-led operations audits for small healthcare practices. The Practice Hours Audit finds and fixes the admin hours a practice loses each week.",
-  "areaServed": "US",
-  "founder": { "@type": "Person", "name": "Quinn Frigeri", "honorificSuffix": "RN" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Miami", "addressRegion": "FL", "addressCountry": "US" },
-  "offers": {
-    "@type": "Offer",
-    "name": "The Practice Hours Audit",
-    "price": "999",
-    "priceCurrency": "USD",
-    "description": "A 45-minute audit call, a five-page prescription of specific software fixes with pricing and BAA status, and a 30-minute walkthrough."
   }
-}
-</script>
-
+  </script>
+  <script src="brand.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

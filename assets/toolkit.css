@@ -1,15 +1,15 @@
-/* Frigeri & Co. toolkit — shared tokens and components.
+/* Marcha toolkit — shared tokens and components.
    Same design system as the marketing site, extracted so every tool
    in /tools looks like it came from the same practice. */
 
 :root{
-  --ground:#F6F7F4;
+  --ground:#FFFFFF;
   --surface:#FFFFFF;
-  --ink:#12211F;
-  --ink-soft:#4A5A57;
-  --rule:#D9DEDA;
-  --accent:#0B5F54;
-  --accent-soft:#E4EFEC;
+  --ink:#223034;
+  --ink-soft:#4E5E62;
+  --rule:rgba(34,48,52,.18);
+  --accent:#FF5A1F;
+  --accent-soft:#FFF1EC;
   --amber:#B4620E;
   --amber-soft:#FBF0E4;
   --red:#A23127;
@@ -18,12 +18,12 @@
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --veil:rgba(246,247,244,.88);
+  --veil:rgba(255,255,255,.92);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --ground:#0E1A19; --surface:#142322; --ink:#EAF0ED; --ink-soft:#A3B4B0;
-    --rule:#273936; --accent:#5FC9B6; --accent-soft:#1B322E;
+    --rule:#273936; --accent:#FF8A55; --accent-soft:#3A241C;
     --amber:#E3A163; --amber-soft:#332417; --red:#E38B80; --red-soft:#331D1A;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
     --veil:rgba(14,26,25,.88);
@@ -31,7 +31,7 @@
 }
 :root[data-theme="dark"]{
   --ground:#0E1A19; --surface:#142322; --ink:#EAF0ED; --ink-soft:#A3B4B0;
-  --rule:#273936; --accent:#5FC9B6; --accent-soft:#1B322E;
+  --rule:#273936; --accent:#FF8A55; --accent-soft:#3A241C;
   --amber:#E3A163; --amber-soft:#332417; --red:#E38B80; --red-soft:#331D1A;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
   --veil:rgba(14,26,25,.88);
@@ -52,7 +52,7 @@ h2{font-size:clamp(21px,2.8vw,27px);line-height:1.18}
 h3{font-size:17px;letter-spacing:-.01em}
 p{margin:0}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
 .label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-soft)}
 .muted{color:var(--ink-soft)}
