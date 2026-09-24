@@ -39,6 +39,7 @@
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Open menu");
     panel.classList.remove("is-open");
+    requestFrame();
   };
   if (toggle && panel) {
     toggle.addEventListener("click", () => {
@@ -46,6 +47,7 @@
       toggle.setAttribute("aria-expanded", String(open));
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
       panel.classList.toggle("is-open", open);
+      requestFrame();
     });
     panel.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeNav));
     window.addEventListener("keydown", (e) => {
@@ -304,12 +306,18 @@
     }
 
     if (mobileBar && book && narrow.matches) {
+      const heroEl = $("#hero");
+      const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : 0;
       const bookTop = book.getBoundingClientRect().top;
-      const show = y > 520 && bookTop > window.innerHeight * 0.85;
+      const navOpen = panel && panel.classList.contains("is-open");
+      const show = !navOpen && heroBottom < window.innerHeight * 0.42 && bookTop > window.innerHeight * 0.8;
       mobileBar.classList.toggle("is-on", show);
       mobileBar.hidden = !show;
+      document.body.classList.toggle("has-book-bar", show);
     } else if (mobileBar) {
+      mobileBar.classList.remove("is-on");
       mobileBar.hidden = true;
+      document.body.classList.remove("has-book-bar");
     }
   }
 
@@ -397,7 +405,35 @@
   /* ---------- booking ---------- */
   const form = $("#book-form");
   const status = $("[data-form-status]");
+  const submitBtn = $("#book-submit");
+  const emailOk = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const setFieldError = (id, message) => {
+    const input = document.getElementById(id);
+    const err = document.getElementById(`${id}-error`);
+    if (!input || !err) return;
+    if (message) {
+      input.setAttribute("aria-invalid", "true");
+      err.hidden = false;
+      err.textContent = message;
+    } else {
+      input.removeAttribute("aria-invalid");
+      err.hidden = true;
+      err.textContent = "";
+    }
+  };
+  const setStatus = (message, kind) => {
+    if (!status) return;
+    status.textContent = message || "";
+    status.classList.toggle("is-error", kind === "error");
+    status.classList.toggle("is-ok", kind === "ok");
+  };
   if (form) {
+    ["name", "email", "practice"].forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.addEventListener("input", () => setFieldError(id, ""));
+      input.addEventListener("change", () => setFieldError(id, ""));
+    });
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if ($("#company") && $("#company").value) return;
@@ -406,9 +442,18 @@
       const email = ($("#email").value || "").trim();
       const practice = ($("#practice").value || "").trim();
       const note = ($("#note").value || "").trim();
-      if (!name || !email || !practice) {
-        form.reportValidity();
-        if (status) status.textContent = "Name, email, and practice type — then we can write back.";
+      const problems = [];
+      if (!name) problems.push(["name", "Add your name."]);
+      else setFieldError("name", "");
+      if (!emailOk(email)) problems.push(["email", "Use an email we can reply to."]);
+      else setFieldError("email", "");
+      if (!practice) problems.push(["practice", "Choose a practice type."]);
+      else setFieldError("practice", "");
+      if (problems.length) {
+        problems.forEach(([id, message]) => setFieldError(id, message));
+        setStatus("Name, email, and practice type — then we can write back.", "error");
+        const first = document.getElementById(problems[0][0]);
+        if (first) first.focus();
         return;
       }
       const subject = encodeURIComponent(`${brand.name} assessment request — ${practice}`);
@@ -427,8 +472,15 @@
           name,
         ].filter(Boolean).join("\n")
       );
-      if (status) status.textContent = "Opening your email…";
+      if (submitBtn) submitBtn.disabled = true;
+      form.setAttribute("aria-busy", "true");
+      setStatus("Opening your email…", "ok");
       window.location.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
+      window.setTimeout(() => {
+        if (submitBtn) submitBtn.disabled = false;
+        form.removeAttribute("aria-busy");
+        setStatus(`Your email app should be open. If it isn’t, write us at ${brand.email}.`, "ok");
+      }, 700);
     });
   }
 

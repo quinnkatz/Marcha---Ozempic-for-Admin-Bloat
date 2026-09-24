@@ -25,7 +25,15 @@ The assessment instruments under `tools/` load JSON with `fetch`, so they need t
 
 Screenshot helpers: `?preview=loader|hero|problem|hours|shift|mock|who|why|offer|faq|book`. For the plan frame, `?preview=mock&at=0.55` parks on a settled sheet (`at` is 0–1).
 
-Booking opens a `mailto:` to the address in `brand.js`. Voice on the page is we / our team. Beachhead copy leads with medspas.
+Booking opens a `mailto:` to the address in `brand.js`. The form checks name, email, and practice type first, then disables the button while the mail app opens. Voice on the page is we / our team. Beachhead copy leads with medspas.
+
+## Publishing
+
+GitHub Pages for this repo is already on, from the **`main` branch**, path `/`:
+
+[https://quinnkatz.github.io/Marcha---Ozempic-for-Admin-Bloat/](https://quinnkatz.github.io/Marcha---Ozempic-for-Admin-Bloat/)
+
+`canonical`, `og:url`, `og:image`, `sitemap.xml`, and `robots.txt` use that URL. Merge to `main` when the page should go live. A custom domain later means updating those five spots to the new origin. The worksheets under `tools/` stay `noindex` and are disallowed in `robots.txt`.
 
 ## The toolkit
 
