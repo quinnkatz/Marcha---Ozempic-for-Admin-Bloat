@@ -1983,7 +1983,11 @@ html.reduce .tile h3::after { transition: none; }
     background: var(--canvas);
     border-bottom: 1px solid var(--line-strong);
   }
-  .nav-panel.is-open { display: flex; }
+  .nav-panel.is-open {
+    display: flex;
+    max-height: calc(100svh - var(--nav-h));
+    overflow-y: auto;
+  }
   .nav-links { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
   .nav-links a, .sub-clip a { min-height: 44px; display: flex; align-items: center; }
   .sub-clip {
@@ -2001,7 +2005,8 @@ html.reduce .tile h3::after { transition: none; }
   }
   .sub-clip::before { display: none; }
   .sub-clip a { opacity: 1; transform: none; padding: 0.35rem 0 0.35rem 0.4rem; }
-  .nav-cta { justify-content: flex-start; margin-top: 0.6rem; }
+  .nav-cta { justify-content: flex-start; align-items: center; margin-top: 0.6rem; min-height: 44px; }
+  .cta { min-height: 44px; }
   .rail, .rail-name, .scroll-nav, .scene-launcher, .scene-menu { display: none !important; }
   .hero-grid, .why-grid, .offer-top, .faq-grid, .book-grid, .shift-layout, .how-pin {
     grid-template-columns: 1fr;
