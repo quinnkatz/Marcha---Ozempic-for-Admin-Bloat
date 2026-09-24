@@ -32,55 +32,84 @@ def bird_foot(x,y,d=1,s=1.0,seed=1):
         out.append(stroke([(x,y),(x+d*(9+i*4)*s, y+ (5 if i==0 else 3)*s)],2.4,seed+i+4,0.7,twice=False))
     return "".join(out)
 
+# --- Grok bots, drawn to the reference: flat solid forms, no outline,
+# --- two small dark eyes, no mouth, no limbs. Crisp against the inked world.
+GROK={ "pink":"#E5447E", "purple":"#7B4FD8", "orange":"#E8712B", "charcoal":"#3E4654",
+       "teal":"#35C4A5", "blue":"#2E7DE8", "yellow":"#F2C43F", "white":"#FFFFFF" }
+GROK_EYE="#1A1D2E"
+_MAP={ RED:"orange", BLUE:"blue", YELLOW:"yellow", GREEN:"teal", PINK:"pink",
+       CREAM:"white", INK:"charcoal" }
+_FORMS=["circle","egg","tri","square","hex","drop","arch"]
+
+def _rr(pts, r, close=True):
+    """Polygon with rounded corners -> path d."""
+    n=len(pts); d=""
+    for i in range(n):
+        p0=pts[(i-1)%n]; p1=pts[i]; p2=pts[(i+1)%n]
+        v1=(p1[0]-p0[0], p1[1]-p0[1]); v2=(p2[0]-p1[0], p2[1]-p1[1])
+        l1=math.hypot(*v1) or 1; l2=math.hypot(*v2) or 1
+        rr=min(r, l1/2, l2/2)
+        a=(p1[0]-v1[0]/l1*rr, p1[1]-v1[1]/l1*rr)
+        c=(p1[0]+v2[0]/l2*rr, p1[1]+v2[1]/l2*rr)
+        d += (f"M {a[0]:.1f},{a[1]:.1f} " if i==0 else f"L {a[0]:.1f},{a[1]:.1f} ")
+        d += f"Q {p1[0]:.1f},{p1[1]:.1f} {c[0]:.1f},{c[1]:.1f} "
+    return d+("Z" if close else "")
+
+def grok_form(cx,cy,w,h,form,fill):
+    if form=="circle":
+        return f'<ellipse cx="{cx:.1f}" cy="{cy:.1f}" rx="{w*0.5:.1f}" ry="{h*0.5:.1f}" fill="{fill}"/>'
+    if form=="egg":
+        return (f'<path d="M {cx:.1f},{cy-h*0.5:.1f} C {cx+w*0.46:.1f},{cy-h*0.38:.1f} '
+                f'{cx+w*0.52:.1f},{cy+h*0.22:.1f} {cx:.1f},{cy+h*0.5:.1f} '
+                f'C {cx-w*0.52:.1f},{cy+h*0.22:.1f} {cx-w*0.46:.1f},{cy-h*0.38:.1f} '
+                f'{cx:.1f},{cy-h*0.5:.1f} Z" fill="{fill}"/>')
+    if form=="tri":
+        p=[(cx,cy-h*0.52),(cx+w*0.52,cy+h*0.42),(cx-w*0.52,cy+h*0.42)]
+        return f'<path d="{_rr(p,w*0.22)}" fill="{fill}"/>'
+    if form=="square":
+        p=[(cx-w*0.44,cy-h*0.48),(cx+w*0.44,cy-h*0.48),(cx+w*0.44,cy+h*0.48),(cx-w*0.44,cy+h*0.48)]
+        return f'<path d="{_rr(p,w*0.30)}" fill="{fill}"/>'
+    if form=="hex":
+        p=[(cx,cy-h*0.52),(cx+w*0.47,cy-h*0.24),(cx+w*0.47,cy+h*0.26),
+           (cx,cy+h*0.52),(cx-w*0.47,cy+h*0.26),(cx-w*0.47,cy-h*0.24)]
+        return f'<path d="{_rr(p,w*0.20)}" fill="{fill}"/>'
+    if form=="drop":
+        return (f'<path d="M {cx-w*0.36:.1f},{cy-h*0.40:.1f} '
+                f'C {cx+w*0.18:.1f},{cy-h*0.58:.1f} {cx+w*0.50:.1f},{cy-h*0.06:.1f} '
+                f'{cx+w*0.36:.1f},{cy+h*0.22:.1f} '
+                f'C {cx+w*0.20:.1f},{cy+h*0.54:.1f} {cx-w*0.34:.1f},{cy+h*0.52:.1f} '
+                f'{cx-w*0.44:.1f},{cy+h*0.16:.1f} '
+                f'C {cx-w*0.50:.1f},{cy-h*0.10:.1f} {cx-w*0.46:.1f},{cy-h*0.30:.1f} '
+                f'{cx-w*0.36:.1f},{cy-h*0.40:.1f} Z" fill="{fill}"/>')
+    # arch: round top, flat bottom
+    return (f'<path d="M {cx-w*0.42:.1f},{cy+h*0.48:.1f} L {cx-w*0.42:.1f},{cy-h*0.06:.1f} '
+            f'A {w*0.42:.1f},{h*0.44:.1f} 0 0 1 {cx+w*0.42:.1f},{cy-h*0.06:.1f} '
+            f'L {cx+w*0.42:.1f},{cy+h*0.48:.1f} Z" fill="{fill}"/>')
+
 def bot(cx, cy, s=1.0, col=RED, seed=5, eyes=2, mood="open", tilt=-14,
-        arms=True, legs=True, look=(0,0), hatch=True, fur=True):
-    """A Grok bot, drawn the way everything else in the book is drawn:
-    lumpy pear body, drooping antenna, splayed hands, bird feet."""
-    g=[]; bw,bh=50*s,60*s
-    r=random.Random(seed)
-    if legs:
-        for d in (-1,1):
-            hx=cx+d*15*s
-            g.append(stroke([(hx,cy+bh*0.72),(hx+d*4*s,cy+bh*1.16),(hx+d*(10+r.randint(0,6))*s,cy+bh*1.52)],
-                            2.8*s**0.4,seed+d+2,1.4))
-            g.append(bird_foot(cx+d*(10+ (6 if d>0 else 4))*s, cy+bh*1.52, d, s*0.95, seed+d))
-    body=lump(cx,cy,bw,bh,seed=seed,n=24,amt=0.055,squash=0.05)
-    hid=uid("b")
-    g.append(shape(body,col,seed=seed,w=2.9*s**0.3,amp=1.35,
-                   hatch=hatching(cx-bw*1.2,cy-bh*1.2,cx+bw*1.2,cy+bh*1.2,
-                                  step=6.0,ang=-34,w=1.05,op=0.155,seed=seed+3) if hatch else None,
-                   hid=hid if hatch else None))
-    if fur:
-        g.append(tuft(cx-bw*0.60,cy-bh*0.70,4,14*s,24,seed+11,2.0*s**0.4))
-        g.append(tuft(cx+bw*0.58,cy-bh*0.68,3,11*s,26,seed+13,1.9*s**0.4))
-    if arms:
-        for d in (-1,1):
-            ex=cx+d*bw*1.72; ey=cy+(14 if d<0 else -16)*s
-            g.append(stroke([(cx+d*bw*0.88,cy-4*s),(cx+d*bw*1.35,ey-8*s),(ex,ey)],2.9*s**0.35,seed+d+20,1.6))
-            g.append(hand(ex,ey,0 if d>0 else 180,s*0.95,seed+d+30))
-    # antenna: droops, then curls, then a knob
-    ax,ay=cx+tilt*0.5*s, cy-bh*0.98
-    tx,ty=ax+tilt*1.5*s, ay-34*s
-    g.append(stroke([(cx,cy-bh*0.88),(ax,ay-18*s),(tx,ty)],2.8*s**0.4,seed+50,1.3))
-    g.append(f'<circle cx="{tx:.1f}" cy="{ty:.1f}" r="{6.5*s:.1f}" fill="{CREAM}" stroke="{INK}" stroke-width="{2.6*s**0.4:.1f}"/>')
-    ec=cy-10*s
+        arms=True, legs=True, look=(0,0), hatch=True, fur=True, form=None):
+    """A Grok bot: one flat form, two eyes, nothing else."""
+    key=_MAP.get(col,"blue"); fill=GROK.get(key,GROK["blue"])
+    form=form or _FORMS[random.Random(seed*97+13).randrange(len(_FORMS))]
+    w=h=104*s
+    if form in ("egg","arch"): h=112*s; w=96*s
+    if form=="square": w=h=98*s
+    rot=tilt*0.42
+    g=[f'<g transform="rotate({rot:.1f} {cx:.1f} {cy:.1f})">']
+    g.append(grok_form(cx,cy,w,h,form,fill))
+    ey=cy-h*0.06 if form!="tri" else cy+h*0.06
+    ex=w*0.145; er=w*0.052; eh=er*1.5
     if mood=="sleep":
-        for dx in ((-17*s,17*s) if eyes==2 else (0,)):
-            g.append(eye(cx+dx,ec,13*s,shut=True,seed=seed+60))
-    elif eyes==2:
-        g.append(eye(cx-17*s,ec,12.5*s,look,seed=seed+60))
-        g.append(eye(cx+17*s,ec,12.5*s,look,seed=seed+63))
+        for d in (-1,1):
+            g.append(f'<path d="M {cx+d*ex-er*1.3:.1f},{ey:.1f} Q {cx+d*ex:.1f},{ey+er*1.7:.1f} '
+                     f'{cx+d*ex+er*1.3:.1f},{ey:.1f}" fill="none" stroke="{GROK_EYE}" '
+                     f'stroke-width="{er*0.8:.1f}" stroke-linecap="round"/>')
     else:
-        g.append(eye(cx,ec,20*s,look,seed=seed+60))
-    my=cy+19*s
-    if mood=="open":
-        g.append(stroke([(cx-12*s,my-3*s),(cx,my+9*s),(cx+12*s,my-3*s)],2.7*s**0.4,seed+70,1.0,twice=False))
-    elif mood=="flat":
-        g.append(stroke([(cx-12*s,my),(cx+12*s,my-2*s)],2.7*s**0.4,seed+70,1.0,twice=False))
-    elif mood=="oh":
-        g.append(shape(lump(cx,my+2*s,7*s,9*s,seed=seed+80,n=9,amt=0.12),INK,seed=seed+80,w=1.6,amp=0.8))
-    elif mood=="sleep":
-        g.append(stroke([(cx-9*s,my),(cx,my+7*s),(cx+9*s,my)],2.5*s**0.4,seed+70,0.9,twice=False))
+        k=1.22 if mood=="oh" else (0.82 if mood=="flat" else 1.0)
+        for d in (-1,1):
+            g.append(f'<ellipse cx="{cx+d*ex+look[0]*0.5:.1f}" cy="{ey+look[1]*0.4:.1f}" '
+                     f'rx="{er*k:.1f}" ry="{eh*k:.1f}" fill="{GROK_EYE}"/>')
+    g.append('</g>')
     return "".join(g)
 
 def person(cx, cy, s=1.0, col=BLUE, seed=9, face="calm", hairstyle="tuft",

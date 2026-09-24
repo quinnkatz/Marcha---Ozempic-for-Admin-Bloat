@@ -37,10 +37,11 @@ def bubble(cx,cy,rx,ry,txt="",seed=1,tail=(-0.4,1.0),fs=42):
 def s_cover():
     g=[f'<rect width="{W}" height="{H}" fill="{PAPER}"/>']
     g.append(hill(H-86,W,86,seed=4,col=YELLOW))
-    cast=[(148,RED,1.20,"open",-16,2),(368,BLUE,1.02,"flat",8,2),
-          (592,YELLOW,1.28,"oh",-5,1),(796,GREEN,0.96,"open",15,2)]
-    for i,(x,c,sc,m,t,e) in enumerate(cast):
-        g.append(bot(x,H-116-60*sc*1.5,s=sc,col=c,seed=10+i*7,eyes=e,mood=m,tilt=t,
+    GY=H-86
+    cast=[(150,RED,1.24,"open",-16,"drop"),(372,BLUE,1.04,"flat",9,"circle"),
+          (596,YELLOW,1.32,"oh",-6,"tri"),(800,GREEN,0.98,"open",16,"hex")]
+    for i,(x,c,sc,m,t,fm) in enumerate(cast):
+        g.append(bot(x,GY-56*sc-12,s=sc,col=c,seed=10+i*3,mood=m,tilt=t,form=fm,
                      look=(2 if i%2 else -2,2)))
     return svg(W,H,"".join(g))
 
@@ -55,9 +56,10 @@ def s_crowd():
            (516,398,.22,YELLOW),(206,404,.22,BLUE)]
     r=random.Random(7)
     for i,(x,y,sc,c) in enumerate(spots):
-        g.append(bot(x,y,s=sc,col=c,seed=30+i*3,eyes=2 if i%3 else 1,
-                     mood=["open","flat","oh"][i%3],tilt=r.randint(-22,22),
-                     legs=False,arms=False,look=(r.randint(-3,3),2),fur=(i%2==0)))
+        g.append(bot(x,y,s=sc*2.0,col=c,seed=30+i*3,
+                     mood=["open","flat","oh"][i%3],tilt=r.randint(-24,24),
+                     form=["circle","egg","tri","square","hex","drop","arch"][i%7],
+                     look=(r.randint(-3,3),2)))
     g.append(ground(H-110,W,seed=5))
     return svg(W,H,"".join(g))
 
@@ -121,13 +123,13 @@ def s_funeral():
     g.append(shape(lump(bx+6,by-44,9,8,seed=62,n=11,amt=0.12),RED,seed=62,w=2.2,amp=1.0))
     g.append(tuft(bx+6,by-52,3,11,30,63,2.0))
     # eulogist at a lectern
-    g.append(bot(492,H-284,s=0.86,col=BLUE,seed=64,mood="oh",tilt=-12,look=(4,1)))
+    g.append(bot(492,H-250,s=1.02,col=BLUE,seed=64,mood="oh",tilt=-12,form="arch",look=(4,1)))
     g.append(shape([(470,H-196),(438,H-118),(546,H-118),(514,H-196)],PINK,seed=65,w=3.0,amp=1.5))
     g.append(shape([(434,H-208),(548,H-212),(548,H-192),(434,H-188)],CREAM,seed=66,w=2.8,amp=1.3))
-    for i,(x,sc,c) in enumerate([(650,0.72,RED),(744,0.60,YELLOW),(828,0.66,PINK)]):
-        g.append(bot(x,H-250,s=sc,col=c,seed=70+i*5,mood="flat",tilt=6,look=(-4,3)))
-    g.append(shape(lump(796,H-218,12,11,seed=75,n=13,amt=0.08),CREAM,seed=75,w=2.4,amp=1.0))
-    g.append(stroke([(796,H-218),(796,H-226)],2.2,76,0.6,twice=False))
+    for i,(x,sc,c) in enumerate([(646,0.96,RED),(748,0.80,YELLOW),(836,0.88,PINK)]):
+        g.append(bot(x,H-206,s=sc,col=c,seed=70+i*5,mood="flat",tilt=6,look=(-4,3)))
+    g.append(shape(lump(800,H-150,13,12,seed=75,n=13,amt=0.08),CREAM,seed=75,w=2.4,amp=1.0))
+    g.append(stroke([(800,H-150),(800,H-158)],2.2,76,0.6,twice=False))
     return svg(W,H,"".join(g))
 
 # ---------------------------------------------------------------- 6. gork
@@ -261,7 +263,7 @@ def s_window():
 def s_footnote():
     g=[f'<rect width="{W}" height="{H}" fill="{PAPER}"/>']
     g.append(person(648,H-262,s=1.78,col=YELLOW,seed=210,face="flat",hairstyle="frizz"))
-    g.append(bot(248,H-176,s=0.64,col=BLUE,seed=214,mood="flat",tilt=-8,look=(6,0)))
+    g.append(bot(258,H-172,s=1.06,col=BLUE,seed=214,mood="flat",tilt=-8,form="circle",look=(6,0)))
     nx,ny=418,H-236
     g.append(f'<g transform="rotate(-8 {nx} {ny})">')
     g.append(shape([(nx-48,ny-34),(nx+48,ny-30),(nx+46,ny+34),(nx-50,ny+30)],CREAM,seed=218,w=3.0,amp=1.4))
@@ -269,7 +271,6 @@ def s_footnote():
         g.append(stroke([(nx-32,ny-14+k*15),(nx+wd,ny-15+k*15)],2.6,220+k,0.9,twice=False,op=0.7))
     g.append(f'<text x="{nx-38}" y="{ny-20}" font-family="Fredoka, sans-serif" font-size="21" font-weight="700" fill="{RED}">1.</text>')
     g.append('</g>')
-    g.append(stroke([(306,H-206),(380,H-228)],2.8,224,1.2))
     g.append(ground(H-70,W,seed=20))
     return svg(W,H,"".join(g))
 
@@ -295,7 +296,7 @@ def s_drawing():
         g.append(stroke([(ccx-32,ccy-16+k*6),(ccx-4,ccy-22+k*9)],2.2,242+k,0.8,twice=False))
     g.append('</g>')
     g.append(person(692,H-226,s=0.94,col=RED,seed=250,face="calm",hairstyle="frizz"))
-    g.append(bot(836,H-226,s=0.92,col=BLUE,seed=254,mood="flat",tilt=18,look=(-6,0)))
+    g.append(bot(830,H-214,s=1.10,col=BLUE,seed=254,mood="flat",tilt=18,form="egg",look=(-6,0)))
     g.append(ground(H-96,W,seed=21))
     return svg(W,H,"".join(g))
 
@@ -341,15 +342,11 @@ def s_sill():
     g=sky_night()
     g.append(moon(716,168,78,seed=290))
     SY=H-196
-    cast=[(300,RED,0.80),(438,BLUE,0.70),(566,YELLOW,0.84),(690,GREEN,0.66)]
-    for i,(x,c,sc) in enumerate(cast):
-        g.append(bot(x,SY-60*sc,s=sc,col=c,seed=292+i*6,mood="sleep",
-                     tilt=[-10,6,-4,11][i],legs=False,arms=False))
+    cast=[(300,RED,0.80,"arch"),(430,BLUE,0.70,"circle"),(556,YELLOW,0.86,"square"),(676,GREEN,0.68,"drop")]
+    for i,(x,c,sc,fm) in enumerate(cast):
+        g.append(bot(x,SY-54*sc,s=sc,col=c,seed=292+i*6,mood="sleep",
+                     tilt=[-10,6,-4,11][i],form=fm))
     g.append(shape([(-20,SY),(W+20,SY-6),(W+20,SY+36),(-20,SY+40)],PINK,seed=300,w=3.6,amp=1.8))
-    for i,(x,c,sc) in enumerate(cast):
-        for d in (-1,1):
-            g.append(stroke([(x+d*15*sc,SY-2),(x+d*19*sc,SY+22*sc),(x+d*17*sc,SY+48*sc)],2.9,302+i*2+d,1.3))
-            g.append(bird_foot(x+d*17*sc,SY+48*sc,d,sc*0.95,310+i*2+d))
     g.append(f'<rect x="0" y="{SY+36}" width="{W}" height="{H-SY-36}" fill="#2A3A4B"/>')
     g.append(stroke([(-20,SY+62),(W+20,SY+58)],3.0,320,1.4,op=0.4))
     return svg(W,H,"".join(g),bg=NIGHT)
