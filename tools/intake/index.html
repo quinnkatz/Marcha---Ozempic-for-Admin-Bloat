@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit worksheet — Frigeri &amp; Co.</title>
+<meta name="description" content="The working sheet for the 45-minute audit call. Records the practice's week in their own words, then exports it for the report builder.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/toolkit.css">
+<style>
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  @media (max-width:700px){ .grid-2,.grid-4{grid-template-columns:1fr} }
+  .area{margin-top:26px}
+  .area > h2{display:flex;align-items:baseline;gap:12px}
+  .area > h2 .label{font-size:11px}
+  .q{padding-block:16px;border-bottom:1px dotted var(--rule)}
+  .q:last-child{border-bottom:0}
+  .q .prompt{font-family:var(--display);font-weight:600;font-size:15.5px;display:block;margin-bottom:3px}
+  .q .hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:8px}
+  .bn{display:grid;grid-template-columns:minmax(0,1fr) 120px 150px 42px;gap:12px;align-items:start;padding-block:12px;border-bottom:1px dotted var(--rule)}
+  @media (max-width:700px){ .bn{grid-template-columns:1fr} }
+  .bar{
+    position:sticky;bottom:0;background:var(--veil);backdrop-filter:blur(8px);
+    border-top:1px solid var(--rule);margin-inline:-20px;padding:14px 20px;z-index:30;
+  }
+  .bar-in{max-width:980px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .saved{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+  .rm{background:none;border:1px solid var(--rule);color:var(--ink-soft);cursor:pointer;border-radius:2px;font-family:var(--mono);padding:9px 0;width:100%}
+  .rm:hover{border-color:var(--red);color:var(--red)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="../../">Frigeri <span>&amp; Co.</span><small>Toolkit</small></a>
+    <nav>
+      <a href="../">All tools</a>
+      <a href="./" aria-current="page">Intake</a>
+      <a href="../report/">Report</a>
+      <a href="../vendors/">Register</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+<main id="main">
+  <div style="padding-block:34px 6px">
+    <div class="label">Step 02 · the audit call</div>
+    <h1 style="margin-block:10px 14px">Audit worksheet</h1>
+    <p class="muted" style="max-width:62ch">Fill this in while they talk. Nothing leaves the browser — it saves to this device and exports a file you hand to the report builder. <strong>Don't type patient names or clinical detail into it.</strong></p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-bottom:14px">The practice</h2>
+    <div class="grid-2">
+      <div class="field"><label for="p-name">Practice name</label><input type="text" id="p-name" data-p="name"></div>
+      <div class="field"><label for="p-type">Type</label><input type="text" id="p-type" data-p="type" placeholder="Dental, chiro, med spa, vet…"></div>
+    </div>
+    <div class="grid-4" style="margin-top:14px">
+      <div class="field"><label for="p-people">People</label><input type="number" id="p-people" data-p="people" min="1" step="1"></div>
+      <div class="field"><label for="p-rate">Hourly value ($)</label><input type="number" id="p-rate" data-p="hourly_value" min="0" step="5" value="85"></div>
+      <div class="field"><label for="p-contact">Contact</label><input type="text" id="p-contact" data-p="contact"></div>
+      <div class="field"><label for="p-date">Call date</label><input type="date" id="p-date" data-p="call_date"></div>
+    </div>
+  </div>
+
+  <div data-areas></div>
+
+  <div class="card" style="margin-top:26px">
+    <h2>The bottlenecks</h2>
+    <p class="muted small" style="margin-block:8px 6px">In their words, not yours. Hours are per week, and it is better to guess low — the guarantee is measured against this number.</p>
+    <div data-bottlenecks></div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn btn-ghost btn-sm" type="button" data-add-bn>+ Add a bottleneck</button>
+      <span class="saved">Total: <span data-bn-hours>0</span> hrs/week · <span data-bn-year>$0</span>/year</span>
+    </div>
+  </div>
+
+  <p class="small muted" style="margin-block:22px 0">Saved on this device only. Clearing your browser data clears this sheet — export before you close the call.</p>
+</main>
+
+<footer class="foot">
+  <p>Frigeri &amp; Co. · Audit worksheet</p>
+  <p>Step 02 of four · <a href="../report/">on to the report →</a></p>
+</footer>
+</div>
+
+<div class="bar no-print">
+  <div class="bar-in">
+    <span class="saved" data-status>Ready.</span>
+    <div class="row">
+      <button class="btn btn-ghost btn-sm" type="button" data-clear>Clear sheet</button>
+      <label class="btn btn-ghost btn-sm" style="margin:0">
+        Load a file<input type="file" accept="application/json,.json" data-load hidden>
+      </label>
+      <button class="btn btn-primary btn-sm" type="button" data-export>Export for the report →</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/toolkit.js"></script>
+<script>
+(function () {
+  "use strict";
+  FC.initTheme();
+
+  var KEY = "fc-intake-v1";
+  var areasEl = document.querySelector("[data-areas]");
+  var bnEl = document.querySelector("[data-bottlenecks]");
+  var statusEl = document.querySelector("[data-status]");
+  var state = { practice: {}, answers: {}, bottlenecks: [] };
+  var questions = null;
+
+  function say(msg) { statusEl.textContent = msg; }
+
+  function collect() {
+    var p = {};
+    document.querySelectorAll("[data-p]").forEach(function (el) { p[el.getAttribute("data-p")] = el.value; });
+    var a = {};
+    document.querySelectorAll("[data-q]").forEach(function (el) {
+      if (el.value.trim()) a[el.getAttribute("data-q")] = el.value;
+    });
+    return {
+      kind: "fc-audit-intake", version: 1,
+      saved_at: new Date().toISOString(),
+      practice: p, answers: a, bottlenecks: readBottlenecks()
+    };
+  }
+
+  function readBottlenecks() {
+    return Array.prototype.map.call(bnEl.querySelectorAll("[data-bn-row]"), function (row) {
+      return {
+        quote: row.querySelector("[data-bn-quote]").value,
+        hours_per_week: Number(row.querySelector("[data-bn-hours-in]").value) || 0,
+        area: row.querySelector("[data-bn-area]").value
+      };
+    }).filter(function (b) { return b.quote.trim() || b.hours_per_week; });
+  }
+
+  var save = FC.autosave(KEY, collect, 500);
+  function touched() { save(); recalcBn(); say("Saved · " + new Date().toLocaleTimeString()); }
+
+  function recalcBn() {
+    var rows = readBottlenecks();
+    var hrs = rows.reduce(function (n, b) { return n + b.hours_per_week; }, 0);
+    var rate = Number(document.querySelector('[data-p="hourly_value"]').value) || 0;
+    document.querySelector("[data-bn-hours]").textContent = String(Math.round(hrs * 10) / 10);
+    document.querySelector("[data-bn-year]").textContent = FC.money(hrs * rate * 52);
+  }
+
+  function addBottleneck(b) {
+    b = b || { quote: "", hours_per_week: "", area: "" };
+    var areaOpts = (questions ? questions.areas : []).map(function (a) {
+      return '<option value="' + FC.esc(a.id) + '"' + (b.area === a.id ? " selected" : "") + ">" + FC.esc(a.title) + "</option>";
+    }).join("");
+    var row = document.createElement("div");
+    row.className = "bn";
+    row.setAttribute("data-bn-row", "");
+    row.innerHTML =
+      '<div class="field"><label>In their words</label><textarea data-bn-quote rows="2">' + FC.esc(b.quote) + "</textarea></div>" +
+      '<div class="field"><label>Hrs / week</label><input type="number" min="0" step="0.5" data-bn-hours-in value="' + FC.esc(b.hours_per_week) + '"></div>' +
+      '<div class="field"><label>Area</label><select data-bn-area><option value="">—</option>' + areaOpts + "</select></div>" +
+      '<div class="field"><label>&nbsp;</label><button class="rm" type="button" data-bn-rm aria-label="Remove this bottleneck">×</button></div>';
+    bnEl.appendChild(row);
+    row.querySelector("[data-bn-rm]").addEventListener("click", function () { row.remove(); touched(); });
+    row.querySelectorAll("textarea,input,select").forEach(function (el) { el.addEventListener("input", touched); });
+  }
+
+  function hydrate(data) {
+    if (!data) return;
+    Object.keys(data.practice || {}).forEach(function (k) {
+      var el = document.querySelector('[data-p="' + k + '"]');
+      if (el) el.value = data.practice[k];
+    });
+    Object.keys(data.answers || {}).forEach(function (k) {
+      var el = document.querySelector('[data-q="' + k + '"]');
+      if (el) el.value = data.answers[k];
+    });
+    bnEl.innerHTML = "";
+    (data.bottlenecks || []).forEach(addBottleneck);
+    if (!bnEl.children.length) addBottleneck();
+    recalcBn();
+  }
+
+  fetch("../../data/intake-questions.json")
+    .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function (data) {
+      questions = data;
+      areasEl.innerHTML = data.areas.map(function (a, i) {
+        return '<section class="card area"><h2><span class="label">' +
+          String(i + 1).padStart(2, "0") + "</span>" + FC.esc(a.title) + "</h2>" +
+          a.questions.map(function (q) {
+            return '<div class="q"><label class="prompt" for="' + FC.esc(q.id) + '">' + FC.esc(q.prompt) + "</label>" +
+              (q.hint ? '<div class="hint">' + FC.esc(q.hint) + "</div>" : "") +
+              '<textarea id="' + FC.esc(q.id) + '" data-q="' + FC.esc(q.id) + '" rows="2"></textarea></div>';
+          }).join("") + "</section>";
+      }).join("");
+
+      document.querySelectorAll("[data-q],[data-p]").forEach(function (el) { el.addEventListener("input", touched); });
+      hydrate(FC.restore(KEY) || null);
+      if (!bnEl.children.length) addBottleneck();
+      say(FC.restore(KEY) ? "Restored from this device." : "Ready.");
+    })
+    .catch(function (e) {
+      areasEl.innerHTML = '<div class="warn">Couldn’t load the question set (' + FC.esc(e.message) +
+        "). If you opened this file directly, serve the folder instead: python3 -m http.server</div>";
+      addBottleneck();
+    });
+
+  document.querySelector("[data-add-bn]").addEventListener("click", function () { addBottleneck(); touched(); });
+
+  document.querySelector("[data-export]").addEventListener("click", function () {
+    var data = collect();
+    var slug = (data.practice.name || "practice").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    FC.downloadJSON(slug + "-intake.json", data);
+    say("Exported.");
+  });
+
+  document.querySelector("[data-load]").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    FC.readJSONFile(f).then(function (data) {
+      if (data.kind !== "fc-audit-intake") { say("That is not an intake file."); return; }
+      hydrate(data); touched(); say("Loaded " + f.name);
+    }).catch(function (err) { say(err.message); });
+    e.target.value = "";
+  });
+
+  document.querySelector("[data-clear]").addEventListener("click", function () {
+    if (!confirm("Clear this worksheet? Export first if you want to keep it.")) return;
+    FC.store.set(KEY, "");
+    document.querySelectorAll("[data-q],[data-p]").forEach(function (el) {
+      if (el.getAttribute("data-p") === "hourly_value") el.value = "85"; else el.value = "";
+    });
+    bnEl.innerHTML = ""; addBottleneck(); recalcBn(); say("Cleared.");
+  });
+})();
+</script>
+</body>
+</html>

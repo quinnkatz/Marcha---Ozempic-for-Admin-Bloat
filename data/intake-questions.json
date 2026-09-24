@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "_comment": "The audit call worksheet. Order matters: the practice describes its week before anyone says the word software.",
+  "areas": [
+    {
+      "id": "front-desk",
+      "title": "Front desk",
+      "questions": [
+        {
+          "id": "fd-inbound",
+          "prompt": "How does an inquiry reach you outside office hours?",
+          "hint": "Phone, web form, Instagram DM, all three — and who sees it first."
+        },
+        {
+          "id": "fd-response",
+          "prompt": "How long before a new inquiry gets a human reply?",
+          "hint": "The honest number, not the target."
+        },
+        {
+          "id": "fd-repeat",
+          "prompt": "Which five questions does your front desk answer over and over?",
+          "hint": "Hours, parking, insurance, pricing, what to bring."
+        },
+        {
+          "id": "fd-owner",
+          "prompt": "When someone is out sick, what stops moving?",
+          "hint": ""
+        }
+      ]
+    },
+    {
+      "id": "scheduling",
+      "title": "Scheduling",
+      "questions": [
+        {
+          "id": "sc-book",
+          "prompt": "Can a patient book without talking to a person? Should they be able to?",
+          "hint": ""
+        },
+        {
+          "id": "sc-noshow",
+          "prompt": "What is your no-show rate, and what happens to that slot?",
+          "hint": "Do you try to refill it, and how?"
+        },
+        {
+          "id": "sc-remind",
+          "prompt": "How do reminders go out, and who sends them?",
+          "hint": ""
+        },
+        {
+          "id": "sc-waitlist",
+          "prompt": "Is there a waitlist? How is it worked?",
+          "hint": "A list nobody calls is not a waitlist."
+        }
+      ]
+    },
+    {
+      "id": "follow-up",
+      "title": "Follow-up and reactivation",
+      "questions": [
+        {
+          "id": "fu-unconverted",
+          "prompt": "What happens to a consult who says \"let me think about it\"?",
+          "hint": "This is usually the most expensive answer on the page."
+        },
+        {
+          "id": "fu-lapsed",
+          "prompt": "How do you know when a patient has gone quiet?",
+          "hint": ""
+        },
+        {
+          "id": "fu-treatment",
+          "prompt": "Is there treatment that was planned and never scheduled?",
+          "hint": "Roughly how much, and where is it recorded?"
+        }
+      ]
+    },
+    {
+      "id": "billing",
+      "title": "Billing and payments",
+      "questions": [
+        {
+          "id": "bl-collect",
+          "prompt": "At what point do you take payment, and how?",
+          "hint": ""
+        },
+        {
+          "id": "bl-chase",
+          "prompt": "Who chases unpaid balances, and with what?",
+          "hint": ""
+        },
+        {
+          "id": "bl-claims",
+          "prompt": "Where do claims get stuck?",
+          "hint": ""
+        }
+      ]
+    },
+    {
+      "id": "documentation",
+      "title": "Documentation and handoffs",
+      "questions": [
+        {
+          "id": "dc-notes",
+          "prompt": "Where do clinical notes live, and how long do they take?",
+          "hint": ""
+        },
+        {
+          "id": "dc-handoff",
+          "prompt": "What gets handed between staff by memory or sticky note?",
+          "hint": "The failure mode we read about afterwards."
+        },
+        {
+          "id": "dc-sop",
+          "prompt": "If someone new started Monday, what would they have to be told out loud?",
+          "hint": ""
+        }
+      ]
+    },
+    {
+      "id": "stack",
+      "title": "What you already pay for",
+      "questions": [
+        {
+          "id": "st-list",
+          "prompt": "List every piece of software the practice pays for.",
+          "hint": "Including the ones nobody logs into."
+        },
+        {
+          "id": "st-talk",
+          "prompt": "Which of those are supposed to talk to each other and do not?",
+          "hint": ""
+        },
+        {
+          "id": "st-unused",
+          "prompt": "What did you buy and never roll out?",
+          "hint": ""
+        },
+        {
+          "id": "st-phi",
+          "prompt": "Where does patient information currently live?",
+          "hint": "Every place, including phones and personal email."
+        }
+      ]
+    }
+  ]
+}

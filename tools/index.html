@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toolkit — Frigeri &amp; Co.</title>
+<meta name="description" content="The instruments behind the Practice Hours Audit: the call worksheet, the prescription builder, and the vendor register.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/toolkit.css">
+<style>
+  .tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+  @media (max-width:800px){ .tools{grid-template-columns:1fr} }
+  .tool{display:flex;flex-direction:column;gap:9px;text-decoration:none;background:var(--surface);border:1px solid var(--rule);box-shadow:var(--shadow);padding:22px;transition:border-color .12s ease,transform .12s ease}
+  .tool:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .tool .step{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
+  .tool h2{font-size:19px}
+  .tool p{font-size:14.5px;color:var(--ink-soft)}
+  .flow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:30px;padding-top:22px;border-top:1px solid var(--rule)}
+  .flow code{background:var(--accent-soft);color:var(--accent);padding:3px 7px;border-radius:2px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="../">Frigeri <span>&amp; Co.</span><small>Toolkit</small></a>
+    <nav>
+      <a href="./" aria-current="page">All tools</a>
+      <a href="intake/">Intake</a>
+      <a href="report/">Report</a>
+      <a href="vendors/">Register</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+<main id="main">
+  <div style="padding-block:38px 0">
+    <div class="label">Internal toolkit</div>
+    <h1 style="margin-block:10px 14px">The instruments</h1>
+    <p class="muted" style="max-width:62ch">The audit is a product, so it has tools rather than a folder of half-named documents. These three run in the browser, keep their state on the device, and hand work to each other as plain JSON files. Nothing is uploaded anywhere.</p>
+  </div>
+
+  <div class="tools">
+    <a class="tool" href="intake/">
+      <span class="step">Step 02</span>
+      <h2>Audit worksheet</h2>
+      <p>Twenty-one questions across six areas of the practice, asked in the order that keeps software out of the conversation until the week has been described. Exports the bottlenecks.</p>
+    </a>
+    <a class="tool" href="report/">
+      <span class="step">Step 03</span>
+      <h2>Prescription builder</h2>
+      <p>Takes the worksheet, puts a named tool against each bottleneck, and computes the arithmetic. Prints the five-page report. Warns when the total falls under the five-hour guarantee.</p>
+    </a>
+    <a class="tool" href="vendors/">
+      <span class="step">Reference</span>
+      <h2>Vendor register</h2>
+      <p>Every tool we would consider recommending, and the honest state of what we have checked — above all whether the vendor will sign a BAA.</p>
+    </a>
+  </div>
+
+  <div class="flow">
+    <span>Worksheet</span> <code>intake.json</code> <span>→</span> <span>Builder</span> <code>report.json</code> <span>→</span> <span>printed PDF</span>
+  </div>
+
+  <div class="card" style="margin-top:26px">
+    <h2 style="font-size:19px">Why these are plain files</h2>
+    <p class="muted small" style="margin-top:8px">A practice's week, written down, is sensitive even when it carries no patient names. Keeping every tool client-side means there is no database to breach, no account to manage and no vendor to add to anybody's risk assessment — including ours. The cost is that clearing your browser clears your work, so both tools export a file and say so.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <p>Frigeri &amp; Co. · Internal toolkit</p>
+  <p><a href="../">Back to the site</a></p>
+</footer>
+</div>
+
+<script src="../assets/toolkit.js"></script>
+<script>FC.initTheme();</script>
+</body>
+</html>

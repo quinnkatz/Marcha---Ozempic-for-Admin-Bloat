@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vendor register",
+  "description": "The tools we consider recommending to practices, and what we have actually verified about each one. Unverified is the default and the honest state; a claim only leaves it with a source and a date.",
+  "type": "object",
+  "required": ["version", "vendors"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "vendors": { "type": "array", "items": { "$ref": "#/$defs/vendor" } }
+  },
+  "$defs": {
+    "vendor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "category", "what_it_does", "url", "phi_exposure", "baa", "pricing"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "category": {
+          "type": "string",
+          "enum": ["scheduling", "phones-and-messaging", "intake-and-forms", "documentation",
+                   "billing-and-payments", "reactivation-and-recall", "reviews-and-reputation",
+                   "knowledge-and-sops", "automation-glue", "general-purpose-ai"]
+        },
+        "what_it_does": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+
+        "phi_exposure": {
+          "description": "In ordinary practice use, does this tool end up touching protected health information? 'avoidable' means it can be used in a way that keeps PHI out of it.",
+          "type": "string",
+          "enum": ["likely", "avoidable", "none"]
+        },
+
+        "baa": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "tier", "source_url", "verified_on", "notes"],
+          "properties": {
+            "status": {
+              "description": "unverified is the default. Nothing else may be set without a source_url and verified_on — scripts/validate-data.mjs enforces it.",
+              "type": "string",
+              "enum": ["unverified", "offered", "offered_on_tier", "not_offered"]
+            },
+            "tier": { "type": ["string", "null"], "description": "Plan tier the BAA requires, when it requires one." },
+            "source_url": { "type": ["string", "null"], "description": "Where the vendor says so, in writing." },
+            "verified_on": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+            "notes": { "type": "string" }
+          }
+        },
+
+        "pricing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from_usd_month", "tier_note", "checked_on"],
+          "properties": {
+            "from_usd_month": { "type": ["number", "null"], "minimum": 0 },
+            "tier_note": { "type": "string" },
+            "checked_on": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+          }
+        },
+
+        "setup": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "effort": { "type": "string", "enum": ["minutes", "an-afternoon", "a-week", "needs-a-developer"] },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

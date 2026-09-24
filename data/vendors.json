@@ -1,0 +1,486 @@
+{
+  "version": 1,
+  "_comment": "Every claim here starts unverified on purpose. A status only changes with a source_url and a verified_on date; scripts/validate-data.mjs fails the build otherwise. Prices are left null until someone has opened the pricing page and written down the date.",
+  "vendors": [
+    {
+      "id": "cal-com",
+      "name": "Cal.com",
+      "category": "scheduling",
+      "what_it_does": "Self-serve booking pages that sync to a real calendar, with reminders and reschedule links.",
+      "url": "https://cal.com",
+      "phi_exposure": "avoidable",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "minutes",
+        "notes": ""
+      }
+    },
+    {
+      "id": "calendly",
+      "name": "Calendly",
+      "category": "scheduling",
+      "what_it_does": "Booking links for consults and callbacks, with round-robin across staff.",
+      "url": "https://calendly.com",
+      "phi_exposure": "avoidable",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "minutes",
+        "notes": ""
+      }
+    },
+    {
+      "id": "nexhealth",
+      "name": "NexHealth",
+      "category": "scheduling",
+      "what_it_does": "Online booking and recall that writes back into practice management systems.",
+      "url": "https://www.nexhealth.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "a-week",
+        "notes": ""
+      }
+    },
+    {
+      "id": "openphone",
+      "name": "OpenPhone",
+      "category": "phones-and-messaging",
+      "what_it_does": "A shared business number with a team inbox, so texts stop living on one persons phone.",
+      "url": "https://www.openphone.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "spruce",
+      "name": "Spruce Health",
+      "category": "phones-and-messaging",
+      "what_it_does": "Secure messaging, calls and faxes built for clinical teams.",
+      "url": "https://www.sprucehealth.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "ringcentral",
+      "name": "RingCentral",
+      "category": "phones-and-messaging",
+      "what_it_does": "Phone system with routing, voicemail transcription and call recording.",
+      "url": "https://www.ringcentral.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "a-week",
+        "notes": ""
+      }
+    },
+    {
+      "id": "jotform",
+      "name": "Jotform",
+      "category": "intake-and-forms",
+      "what_it_does": "Intake and consent forms that land somewhere searchable instead of on paper.",
+      "url": "https://www.jotform.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "fillout",
+      "name": "Fillout",
+      "category": "intake-and-forms",
+      "what_it_does": "Conditional intake forms that route answers to the right person.",
+      "url": "https://www.fillout.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "category": "documentation",
+      "what_it_does": "Mail, calendar, docs and shared drives — usually already in the building.",
+      "url": "https://workspace.google.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "minutes",
+        "notes": ""
+      }
+    },
+    {
+      "id": "microsoft-365",
+      "name": "Microsoft 365",
+      "category": "documentation",
+      "what_it_does": "Mail, calendar, documents and Teams, the other default.",
+      "url": "https://www.microsoft.com/microsoft-365",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "minutes",
+        "notes": ""
+      }
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "category": "billing-and-payments",
+      "what_it_does": "Card payments, payment links and deposits to cut no-shows.",
+      "url": "https://stripe.com",
+      "phi_exposure": "avoidable",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "cherry",
+      "name": "Cherry",
+      "category": "billing-and-payments",
+      "what_it_does": "Patient financing at the point of treatment planning.",
+      "url": "https://withcherry.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "weave",
+      "name": "Weave",
+      "category": "reactivation-and-recall",
+      "what_it_does": "Recall, reminders and reviews aimed at dental and small medical practices.",
+      "url": "https://www.getweave.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "a-week",
+        "notes": ""
+      }
+    },
+    {
+      "id": "podium",
+      "name": "Podium",
+      "category": "reviews-and-reputation",
+      "what_it_does": "Review requests and webchat that turn into text conversations.",
+      "url": "https://www.podium.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "category": "knowledge-and-sops",
+      "what_it_does": "One place for SOPs, onboarding and the answers staff keep re-asking.",
+      "url": "https://www.notion.com",
+      "phi_exposure": "avoidable",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "slite",
+      "name": "Slite",
+      "category": "knowledge-and-sops",
+      "what_it_does": "A searchable handbook for a small team.",
+      "url": "https://slite.com",
+      "phi_exposure": "avoidable",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "zapier",
+      "name": "Zapier",
+      "category": "automation-glue",
+      "what_it_does": "Moves records between tools that do not talk to each other.",
+      "url": "https://zapier.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "an-afternoon",
+        "notes": ""
+      }
+    },
+    {
+      "id": "make",
+      "name": "Make",
+      "category": "automation-glue",
+      "what_it_does": "Visual automation for multi-step workflows.",
+      "url": "https://www.make.com",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "a-week",
+        "notes": ""
+      }
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "category": "general-purpose-ai",
+      "what_it_does": "Drafting, summarising and answering from your own documents.",
+      "url": "https://claude.ai",
+      "phi_exposure": "avoidable",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "minutes",
+        "notes": ""
+      }
+    },
+    {
+      "id": "otter",
+      "name": "Otter.ai",
+      "category": "documentation",
+      "what_it_does": "Meeting and call transcription.",
+      "url": "https://otter.ai",
+      "phi_exposure": "likely",
+      "baa": {
+        "status": "unverified",
+        "tier": null,
+        "source_url": null,
+        "verified_on": null,
+        "notes": ""
+      },
+      "pricing": {
+        "from_usd_month": null,
+        "tier_note": "",
+        "checked_on": null
+      },
+      "setup": {
+        "effort": "minutes",
+        "notes": ""
+      }
+    }
+  ]
+}
