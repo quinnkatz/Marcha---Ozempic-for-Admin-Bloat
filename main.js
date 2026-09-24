@@ -451,11 +451,11 @@
       else setFieldError("name", "");
       if (!emailOk(email)) problems.push(["email", "Use an email we can reply to."]);
       else setFieldError("email", "");
-      if (!practice) problems.push(["practice", "Choose a practice type."]);
+      if (!practice) problems.push(["practice", "Choose a studio or practice."]);
       else setFieldError("practice", "");
       if (problems.length) {
         problems.forEach(([id, message]) => setFieldError(id, message));
-        setStatus("Name, email, and practice type — then we can write back.", "error");
+        setStatus("Name, email, and studio or practice — then we can write back.", "error");
         const first = document.getElementById(problems[0][0]);
         if (first) first.focus();
         return;
@@ -469,7 +469,7 @@
           "",
           `Name: ${name}`,
           `Email: ${email}`,
-          `Practice type: ${practice}`,
+          `Studio or practice: ${practice}`,
           note ? `Notes: ${note}` : null,
           "",
           "Thanks,",
