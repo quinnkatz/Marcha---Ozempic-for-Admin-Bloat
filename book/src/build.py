@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import base64, os, sys
 from scenes import SCENES
-from art import *
+from ink import *
+from chars import *
 
 FONT="/tmp/claude-0/-home-user-Marcha---Ozempic-for-Admin-Bloat/f6016564-9232-5a95-afee-dcad6f4064d0/scratchpad/fonts/fredoka-400.woff2"
 b64=base64.b64encode(open(FONT,'rb').read()).decode()
@@ -91,34 +92,34 @@ PAGES.append(("art","sill",None,"44",
     V("Goodnight, one bot.","Goodnight, two.","Goodnight, Gork.","","Goodnight, you."),"end dark"))
 
 def mini():
-    b=[bot(90,120,s=0.62,col=RED,seed=201,mood="open",tilt=-10),
-       bot(230,126,s=0.54,col=TEAL,seed=202,mood="flat",tilt=8,eyes=1),
-       bot(360,118,s=0.6,col=GOLD,seed=203,mood="oh",tilt=-4),
-       bot(490,128,s=0.5,col=GREEN,seed=204,mood="open",tilt=12,eyes=1)]
-    return svg(580,230,"".join(b))
+    b=[bot(96,126,s=0.62,col=RED,seed=201,mood="open",tilt=-12),
+       bot(236,132,s=0.54,col=BLUE,seed=207,mood="flat",tilt=8,eyes=1),
+       bot(366,124,s=0.60,col=YELLOW,seed=213,mood="oh",tilt=-4),
+       bot(496,134,s=0.50,col=GREEN,seed=219,mood="open",tilt=12,eyes=1)]
+    return svg(580,240,"".join(b))
 
 CSS = """
 @page { size: 10in 8in; margin: 0; }
 * { margin:0; padding:0; box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 @font-face { font-family:'Fredoka'; src:url(data:font/woff2;base64,__B64__) format('woff2');
              font-weight: 300 700; font-display:block; }
-html,body { background:#F7F1E3; }
-body { font-family:'Fredoka', system-ui, sans-serif; color:#232021; }
+html,body { background:#FAF4E4; }
+body { font-family:'Fredoka', system-ui, sans-serif; color:#1E1B1A; }
 .page { width:10in; height:8in; position:relative; overflow:hidden; page-break-after:always;
-        background:#F7F1E3; display:flex; align-items:center; justify-content:center; }
+        background:#FAF4E4; display:flex; align-items:center; justify-content:center; }
 .page:last-child { page-break-after:auto; }
 .bleed { position:absolute; inset:0; }
 .bleed svg { width:100%; height:100%; display:block; }
 
 .panel { position:absolute; top:50%; transform:translateY(-50%); width:4.05in;
-         background:rgba(251,246,234,0.96); border:4px solid #232021; border-radius:20px;
-         padding:0.36in 0.34in; box-shadow:0 10px 0 rgba(35,32,33,0.14); }
+         background:rgba(253,250,240,0.96); border:4px solid #1E1B1A; border-radius:20px;
+         padding:0.36in 0.34in; box-shadow:0 10px 0 rgba(30,27,26,0.14); }
 .panel.left { left:0.46in; } .panel.right { right:0.46in; }
 .panel p { font-size:25px; line-height:1.30; font-weight:600; white-space:nowrap; }
 .panel p.sp { height:0.14in; font-size:0; line-height:0; }
 
-.band { position:absolute; left:0; right:0; bottom:0; background:#FBF6EA;
-        border-top:5px solid #232021; padding:0.30in 0.6in 0.32in; text-align:center; }
+.band { position:absolute; left:0; right:0; bottom:0; background:#FDFAF0;
+        border-top:5px solid #1E1B1A; padding:0.30in 0.6in 0.32in; text-align:center; }
 .band p { font-size:27px; line-height:1.30; font-weight:600; }
 .band p.sp { height:0.10in; font-size:0; line-height:0; }
 
@@ -131,22 +132,22 @@ body { font-family:'Fredoka', system-ui, sans-serif; color:#232021; }
 
 .folio { position:absolute; bottom:0.28in; right:0.42in; font-size:13px; font-weight:400;
          opacity:0.42; letter-spacing:0.06em; }
-.page.dark .folio { color:#FBF6EA; opacity:0.55; }
-.page.band-page .folio { color:#232021; opacity:0.42; }
+.page.dark .folio { color:#FDFAF0; opacity:0.55; }
+.page.band-page .folio { color:#1E1B1A; opacity:0.42; }
 
 .cover { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
          justify-content:flex-start; padding-top:0.50in; }
 .cover h1 { font-size:74px; line-height:0.99; font-weight:700; text-align:center; letter-spacing:-0.025em; }
 .cover h1 span { display:block; }
-.cover .rule { width:2.6in; height:5px; background:#232021; border-radius:3px; margin:0.2in 0 0.14in; }
+.cover .rule { width:2.6in; height:5px; background:#1E1B1A; border-radius:3px; margin:0.2in 0 0.14in; }
 .cover .sub { font-size:19px; font-weight:400; text-align:center; opacity:0.72; line-height:1.4; }
 
 .endverse { position:absolute; left:0.66in; top:0.72in; width:4.4in; text-align:left; }
-.endverse p { font-size:33px; font-weight:600; color:#FBF6EA; line-height:1.34;
+.endverse p { font-size:33px; font-weight:600; color:#FDFAF0; line-height:1.34;
               text-shadow:0 2px 16px rgba(0,0,0,0.75); }
 .endverse p.sp { height:0.16in; font-size:0; line-height:0; }
 
-.notes { width:10in; height:8in; padding:0.7in 0.85in; background:#F7F1E3; }
+.notes { width:10in; height:8in; padding:0.7in 0.85in; background:#FAF4E4; }
 .notes h2 { font-size:30px; font-weight:700; margin-bottom:0.08in; }
 .notes .lead { font-size:15px; font-weight:400; opacity:0.75; margin-bottom:0.2in; line-height:1.5; }
 .notes ul { list-style:none; column-count:2; column-gap:0.5in; }
