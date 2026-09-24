@@ -137,12 +137,9 @@
   const rail = $("[data-rail]");
   const hoursTrack = $("[data-hours-track]");
   const hoursOrb = $("[data-hours-orb]");
-  const hoursGhost = $("[data-hours-ghost]");
-  const hoursTrail = $("[data-hours-trail]");
   const heroSeg = $(".hero-track span");
   const railName = $("[data-rail-name]");
   const sceneLabels = ["01 · Hero", "02 · Leak", "03 · Paid", "04 · Shift", "05 · Process", "06 · Owners", "07 · Why", "08 · Offer", "09 · FAQ", "10 · Book"];
-  const hoursLayers = $$("[data-hours-layer]");
   const howTrack = $("[data-how-track]");
   const shiftTrack = $("[data-shift-track]");
   const shiftBefore = $("[data-shift-before]");
@@ -172,18 +169,11 @@
   }
 
   function setHours(p) {
-    const n = hoursLayers.length || 1;
-    const scaled = p * n;
-    let idx = Math.min(n - 1, Math.floor(scaled));
-    if (p >= 0.995) idx = n - 1;
-    hoursLayers.forEach((el, i) => el.classList.toggle("is-on", i === idx));
     if (hoursOrb) {
       const shift = ((p - 0.5) * 18).toFixed(1);
       const grow = (1 + p * 0.035).toFixed(3);
       hoursOrb.style.transform = `translateY(${shift}px) scale(${grow})`;
     }
-    if (hoursGhost) hoursGhost.style.setProperty("--gy", `${((0.5 - p) * 72).toFixed(1)}px`);
-    if (hoursTrail) hoursTrail.style.setProperty("--gy2", `${((p - 0.5) * 40).toFixed(1)}px`);
   }
 
   function setShift(p) {
