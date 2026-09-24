@@ -902,10 +902,9 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   cursor: pointer;
   transition: color 180ms ease;
 }
-.trust li.is-lead,
-.trust li:focus-visible { color: var(--ink); }
-@media (hover: hover) {
-  .trust li:hover { color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  .trust li:hover,
+  .trust li:focus-visible { color: var(--ink); }
 }
 @media (prefers-reduced-motion: reduce) {
   .trust li { transition: none; }
