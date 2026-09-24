@@ -968,8 +968,16 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   transform: translate3d(var(--plate, 0px), 0, 0);
 }
 .problem-head, .problem-stage { position: relative; z-index: 1; }
-.problem-head { max-width: 26em; }
-.problem-head .display { max-width: none; }
+.problem-head { max-width: none; }
+.problem-head .display {
+  max-width: none;
+  /* "your own business" is the longest line. Stay just under the column so it never wraps to one word. */
+  font-size: clamp(2.6rem, 4.75vw, 4.25rem);
+  text-wrap: wrap;
+}
+@media (max-width: 350px) {
+  .problem-head .display { font-size: 11.2vw; }
+}
 .problem-stage {
   position: relative;
   min-height: 560px;
