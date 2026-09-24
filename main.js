@@ -423,9 +423,13 @@
   };
   const setStatus = (message, kind) => {
     if (!status) return;
-    status.textContent = message || "";
+    status.textContent = "";
     status.classList.toggle("is-error", kind === "error");
     status.classList.toggle("is-ok", kind === "ok");
+    if (!message) return;
+    window.requestAnimationFrame(() => {
+      status.textContent = message;
+    });
   };
   if (form) {
     ["name", "email", "practice"].forEach((id) => {

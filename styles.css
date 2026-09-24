@@ -49,16 +49,31 @@ h1, h2, h3, p { margin: 0; }
 ::selection { background: rgba(255, 90, 31, 0.22); color: var(--ink); }
 
 .skip {
-  position: absolute;
-  left: -999px;
-  top: 0;
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  transform: translateY(-160%);
   background: var(--ink);
   color: var(--white);
   padding: 0.7rem 1rem;
   z-index: 800;
 }
-.skip:focus { left: 12px; top: 12px; }
+.skip:focus,
+.skip:focus-visible {
+  transform: none;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.cta:focus-visible,
+.btn-solid:focus-visible,
+.nav-toggle:focus-visible,
+.filters button:focus-visible,
+.acc summary:focus-visible,
+.scene-launcher:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
 .wrap { width: min(1180px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
 
@@ -1966,7 +1981,11 @@ html.reduce .tile h3::after { transition: none; }
 .book { padding-top: calc(var(--nav-h) + clamp(2.5rem, 6vh, 4rem)); }
 
 @media (max-width: 1040px) {
-  body { overflow-x: clip; }
+  html, body { overflow-x: clip; }
+  .book-form input,
+  .book-form select,
+  .book-form textarea,
+  .book-form button { scroll-margin-bottom: 5.5rem; }
   body.has-book-bar { padding-bottom: 4.75rem; }
   html:has(body.has-book-bar) { scroll-padding-bottom: 5.25rem; }
   .logo, .nav-cta { width: auto; }
