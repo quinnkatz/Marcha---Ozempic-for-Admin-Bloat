@@ -1,8 +1,11 @@
 (() => {
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-  const reduce = document.documentElement.classList.contains("reduce");
-  const fine = window.matchMedia("(pointer: fine)").matches;
+  const reduce = document.documentElement.classList.contains("reduce")
+    || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = window.matchMedia("(pointer: fine)").matches
+    && window.matchMedia("(hover: hover)").matches
+    && !window.matchMedia("(pointer: coarse)").matches;
   const preview = document.documentElement.getAttribute("data-preview");
   const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
 

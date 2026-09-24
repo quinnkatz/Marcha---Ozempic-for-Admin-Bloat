@@ -490,7 +490,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .scene-menu a:hover { color: var(--accent); transform: translateX(4px); }
 
-/* contextual cursor */
+/* contextual cursor — compact label beside the pointer, never over the point */
 .cursor {
   position: fixed;
   left: 0;
@@ -501,27 +501,45 @@ h1, h2, h3, p { margin: 0; }
 }
 html.has-cursor .cursor { display: block; }
 .cursor-bubble {
-  width: 86px;
-  height: 86px;
-  margin: -43px 0 0 -43px;
-  border-radius: 50%;
+  position: absolute;
+  left: 22px;
+  top: 20px;
+  height: 28px;
+  margin: 0;
+  padding: 0 0.65rem;
+  border-radius: 999px;
   background: var(--accent);
   color: var(--white);
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--display);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 0.72rem;
+  font-size: 0.62rem;
+  line-height: 1;
+  white-space: nowrap;
   transform: scale(0);
+  transform-origin: left top;
   opacity: 0;
   transition: transform 0.3s var(--ease-micro), opacity 0.3s var(--ease-micro), background-color 0.5s var(--ease);
-  box-shadow: 0 12px 30px rgba(255, 90, 31, 0.35);
+  box-shadow: 0 6px 14px rgba(255, 90, 31, 0.28);
+}
+.cursor-bubble svg {
+  width: 7px;
+  height: 12px;
+  flex: none;
 }
 .cursor.is-on .cursor-bubble { transform: scale(1); opacity: 1; }
+@media (hover: none), (pointer: coarse) {
+  html.has-cursor .cursor { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.has-cursor .cursor { display: none; }
+}
+html.reduce .cursor,
+html.reduce.has-cursor .cursor { display: none; }
 
 /* reveals */
 html.js .reveal {
