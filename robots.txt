@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /tools/
 
-Sitemap: https://quinnkatz.github.io/Marcha---Ozempic-for-Admin-Bloat/sitemap.xml
+Sitemap: https://runmarcha.com/sitemap.xml

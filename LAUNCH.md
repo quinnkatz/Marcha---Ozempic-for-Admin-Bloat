@@ -4,7 +4,7 @@
 
 GitHub Pages publishes the **`main`** branch from the repository root:
 
-https://quinnkatz.github.io/Marcha---Ozempic-for-Admin-Bloat/
+https://runmarcha.com/
 
 The work on this branch is not live until it is merged. Do not expect the share card or the new pages to resolve on that URL before the merge.
 

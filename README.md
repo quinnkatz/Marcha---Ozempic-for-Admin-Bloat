@@ -31,7 +31,7 @@ Booking opens a `mailto:` to the address in `brand.js`. The form checks name, em
 
 GitHub Pages for this repo is already on, from the **`main` branch**, path `/`:
 
-[https://quinnkatz.github.io/Marcha---Ozempic-for-Admin-Bloat/](https://quinnkatz.github.io/Marcha---Ozempic-for-Admin-Bloat/)
+[https://runmarcha.com/](https://runmarcha.com/)
 
 `canonical`, `og:url`, `og:image`, `sitemap.xml`, and `robots.txt` use that URL. Merge to `main` when the page should go live. A custom domain later means updating those five spots to the new origin. The worksheets under `tools/` stay `noindex` and are disallowed in `robots.txt`.
 
