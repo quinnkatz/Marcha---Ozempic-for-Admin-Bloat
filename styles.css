@@ -864,12 +864,18 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   flex-wrap: wrap;
 }
 .trust p {
+  flex: 0 0 auto;
   font-family: var(--display);
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 1rem;
+  line-height: 1.2;
   color: var(--ink-50);
-  max-width: 16ch;
+}
+.trust p span {
+  display: block;
+  white-space: nowrap;
 }
 .trust ul { display: flex; flex-wrap: wrap; gap: clamp(1rem, 3vw, 2.4rem); align-items: center; }
 .trust li {
