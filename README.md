@@ -1,4 +1,4 @@
-# Frigeri &amp; Co. — The Practice Hours Audit
+# Hours Audit
 
 The site and the working tools behind a nurse-led operations practice: a fixed-scope
 audit that finds the admin hours a small healthcare practice loses every week, and
