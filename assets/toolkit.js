@@ -1,4 +1,4 @@
-/* Shared helpers for the Frigeri & Co. toolkit. No dependencies, no build step. */
+/* Shared helpers for the Marcha toolkit. No dependencies, no build step. */
 (function (global) {
   "use strict";
 
