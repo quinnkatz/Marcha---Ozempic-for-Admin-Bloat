@@ -4,7 +4,7 @@
  */
 window.REFIT_BRAND = {
   name: "Marcha",
-  email: "hello@marcha.com",
+  email: "hello@runmarcha.com",
   tagline: "AI tools assessments for medspas, studios, and practices. So you’re not needed at 9pm.",
 };
 

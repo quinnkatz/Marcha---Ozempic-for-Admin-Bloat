@@ -441,7 +441,7 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if ($("#company") && $("#company").value) return;
-      const brand = window.REFIT_BRAND || { name: "Marcha", email: "hello@marcha.com" };
+      const brand = window.REFIT_BRAND || { name: "Marcha", email: "hello@runmarcha.com" };
       const name = ($("#name").value || "").trim();
       const email = ($("#email").value || "").trim();
       const practice = ($("#practice").value || "").trim();

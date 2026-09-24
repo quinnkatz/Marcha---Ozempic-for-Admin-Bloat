@@ -22,5 +22,5 @@ Open http://localhost:8000. The assessment tools under `tools/` need that same s
 
 - [ ] Merge the open pull request into `main` when the page should go live.
 - [ ] Custom domain later: update `canonical`, `og:url`, `og:image`, `twitter:image` in `index.html`, the URL in `sitemap.xml`, and the Sitemap line in `robots.txt`.
-- [ ] Calendly is not connected. The book form opens the visitor’s mail app to hello@marcha.com. Stripe and email DNS are not set up either.
+- [ ] Calendly is not connected. The book form opens the visitor’s mail app to hello@runmarcha.com. Stripe and email DNS are not set up either.
 - [ ] Send one test request from a phone and confirm the draft looks right.
