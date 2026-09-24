@@ -5,7 +5,7 @@
 window.REFIT_BRAND = {
   name: "Marcha",
   email: "hello@marcha.com",
-  tagline: "AI tools assessments for medspas, studios, and owner-led practices.",
+  tagline: "AI tools assessments for medspas, studios, and practices. So you’re not needed at 11pm.",
 };
 
 document.addEventListener("DOMContentLoaded", () => {

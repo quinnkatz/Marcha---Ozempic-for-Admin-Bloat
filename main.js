@@ -138,7 +138,7 @@
   const hoursTrail = $("[data-hours-trail]");
   const heroSeg = $(".hero-track span");
   const railName = $("[data-rail-name]");
-  const sceneLabels = ["01 · Hero", "02 · Squeeze", "03 · Hours", "04 · Shift", "05 · Process", "06 · Practices", "07 · Why", "08 · Offer", "09 · FAQ", "10 · Book"];
+  const sceneLabels = ["01 · Hero", "02 · Leak", "03 · Paid", "04 · Shift", "05 · Process", "06 · Owners", "07 · Why", "08 · Offer", "09 · FAQ", "10 · Book"];
   const hoursLayers = $$("[data-hours-layer]");
   const howTrack = $("[data-how-track]");
   const shiftTrack = $("[data-shift-track]");
