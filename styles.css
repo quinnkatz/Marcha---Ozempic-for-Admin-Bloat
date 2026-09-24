@@ -679,15 +679,14 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 }
 .back-card ul { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.45rem; }
 .back-card li {
+  position: relative;
+  z-index: 1;
   font-size: 0.92rem;
   color: var(--ink);
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--line);
-  transition: transform 0.3s var(--ease-micro);
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
-.back-card:hover li:nth-child(1) { transform: translateX(4px); }
-.back-card:hover li:nth-child(2) { transform: translateX(4px); transition-delay: 0.04s; }
-.back-card:hover li:nth-child(3) { transform: translateX(4px); transition-delay: 0.08s; }
 .back-card-foot {
   margin-top: 0.55rem;
   font-family: var(--display);
@@ -734,7 +733,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .traffic i:nth-child(2) { background: #febc2e; }
 .traffic i:nth-child(3) { background: #28c840; }
 .browser-url { font-size: 0.72rem; letter-spacing: 0.02em; }
-.browser-screen { padding: 1rem 1.05rem 2.4rem; background: var(--white); position: relative; }
+.browser-screen { padding: 1rem 1.05rem 1.05rem; background: var(--white); position: relative; }
 .mock-kicker {
   font-family: var(--display);
   font-weight: 600;
@@ -755,6 +754,8 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 }
 .mock-rows { display: flex; flex-direction: column; gap: 0.4rem; }
 .mock-rows li {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.1fr 1fr auto;
   gap: 0.4rem;
@@ -766,14 +767,27 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   font-size: 0.82rem;
   transition: transform 0.3s var(--ease-micro), background 0.3s var(--ease-micro), box-shadow 0.3s var(--ease-micro);
 }
-.browser:hover .mock-rows li,
 .sheet:hover .mock-rows li { background: var(--white); box-shadow: 0 8px 16px rgba(34, 48, 52, 0.08); }
-.browser:hover .mock-rows li:nth-child(1),
 .sheet:hover .mock-rows li:nth-child(1) { transform: translateX(4px); }
-.browser:hover .mock-rows li:nth-child(2),
 .sheet:hover .mock-rows li:nth-child(2) { transform: translateX(4px); transition-delay: 0.04s; }
-.browser:hover .mock-rows li:nth-child(3),
 .sheet:hover .mock-rows li:nth-child(3) { transform: translateX(4px); transition-delay: 0.08s; }
+@media (hover: hover) and (pointer: fine) {
+  .browser .mock-rows li {
+    transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  }
+  .browser .mock-rows li:hover,
+  .back-card li:hover {
+    z-index: 3;
+    transform: translateY(-3px) scale(1.025);
+    box-shadow: 0 6px 14px rgba(34, 48, 52, 0.12);
+  }
+  .browser .mock-rows li:hover { background: #d5e4ea; }
+  .back-card li:hover { background: rgba(34, 48, 52, 0.04); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .browser .mock-rows li:hover,
+  .back-card li:hover { transform: none; }
+}
 .mock-rows b { font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.03em; color: var(--ink); }
 .mock-rows b.plus { color: var(--accent); }
 .mock-mid { color: var(--ink-50); text-align: right; }
