@@ -484,7 +484,7 @@
         [
           `Hi ${brand.name},`,
           "",
-          "Request for the $1,999 Marcha Business Assessment.",
+          "Request for the Marcha Business Assessment.",
           "",
           `Name: ${name}`,
           `Email: ${email}`,
