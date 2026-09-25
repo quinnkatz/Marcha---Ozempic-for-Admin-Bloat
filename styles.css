@@ -1499,19 +1499,40 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 /* who — portfolio grammar */
 .who { padding: 2vh 0 4.5rem; }
 .who-head {
-  position: sticky;
-  top: var(--nav-h);
-  z-index: 4;
-  min-height: 16vh;
+  position: static;
+  z-index: 1;
+  min-height: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 2rem;
-  padding: 0.6rem var(--gutter) 1rem;
+  padding: 0.6rem var(--gutter) 0.35rem;
   padding-left: max(var(--gutter), var(--rail-clear));
-  background: linear-gradient(var(--canvas) 55%, rgba(255, 255, 255, 0.88) 78%, rgba(255, 255, 255, 0));
+  background: none;
 }
-.who-head .display { line-height: 0.8; }
+.who-copy { min-width: 0; }
+.who-head .display {
+  line-height: 0.92;
+  max-width: 22ch;
+  text-wrap: balance;
+  hyphens: none;
+}
+.who-lede {
+  margin-top: 1.15rem;
+  max-width: 46ch;
+  font-size: clamp(1.15rem, 1.35vw, 1.32rem);
+  line-height: 1.45;
+  text-wrap: balance;
+  hyphens: none;
+}
+.who-body {
+  margin-top: 0.75rem;
+  max-width: 48ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  text-wrap: balance;
+  hyphens: none;
+}
 .filters { display: flex; gap: 1.1rem; padding-bottom: 0.8rem; }
 .filters button {
   font-family: var(--display);
@@ -1543,9 +1564,10 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.6rem 1.4rem;
-  width: min(1440px, calc(100% - var(--gutter)));
-  margin-left: auto;
-  padding-right: 0;
+  width: min(1240px, calc(100% - var(--gutter) - max(var(--gutter), var(--rail-clear))));
+  margin-left: max(var(--gutter), var(--rail-clear));
+  margin-right: var(--gutter);
+  margin-top: 0.4rem;
 }
 .tile:nth-child(even) { margin-top: 4.5rem; }
 .tile {
@@ -1571,12 +1593,6 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .tile:hover .tile-art > span,
 .tile:hover .tile-art > i,
 .tile:hover .tile-art > b { transform: scale(1.06); }
-.art-medspa {
-  background: var(--wash);
-  display: grid;
-  place-items: center;
-}
-.art-medspa svg { width: 58%; transform-origin: center; }
 .art-well {
   background: var(--ink);
   display: grid;
@@ -2187,7 +2203,7 @@ html.reduce .tile h3::after { transition: none; }
   .tile:nth-child(even) { margin-top: 0; }
   .tile-grid { width: min(1180px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
   .tile-art { height: 240px; }
-  .who-head { position: static; min-height: 0; flex-direction: column; align-items: flex-start; background: none; padding-inline: 0; }
+  .who-head { position: static; min-height: 0; flex-direction: column; align-items: flex-start; background: none; padding-inline: var(--gutter); }
   .faq-intro { position: static; }
   .hours-track, .how-track, .shift-track { height: auto; }
   .hours-pin, .how-pin, .shift-pin { position: relative; height: auto; overflow: visible; }
@@ -2218,6 +2234,7 @@ html.reduce .tile h3::after { transition: none; }
 
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(3.3rem, 16vw, 4.4rem); }
+  .who-head .display { font-size: clamp(1.9rem, 8.5vw, 2.2rem); }
   .hours-stack { --hours-title: clamp(3.1rem, 16vw, 4.4rem); }
   .display-xl { font-size: clamp(4.2rem, 22vw, 6rem); }
   .browser { width: 92%; }
