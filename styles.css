@@ -499,57 +499,6 @@ h1, h2, h3, p { margin: 0; }
 }
 .scene-menu a:hover { color: var(--accent); transform: translateX(4px); }
 
-/* contextual cursor — compact label beside the pointer, never over the point */
-.cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 500;
-  pointer-events: none;
-  display: none;
-}
-html.has-cursor .cursor { display: block; }
-.cursor-bubble {
-  position: absolute;
-  left: 22px;
-  top: 20px;
-  height: 28px;
-  margin: 0;
-  padding: 0 0.65rem;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--white);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--display);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.62rem;
-  line-height: 1;
-  white-space: nowrap;
-  transform: scale(0);
-  transform-origin: left top;
-  opacity: 0;
-  transition: transform 0.3s var(--ease-micro), opacity 0.3s var(--ease-micro), background-color 0.5s var(--ease);
-  box-shadow: 0 6px 14px rgba(255, 90, 31, 0.28);
-}
-.cursor-bubble svg {
-  width: 7px;
-  height: 12px;
-  flex: none;
-}
-.cursor.is-on .cursor-bubble { transform: scale(1); opacity: 1; }
-@media (hover: none), (pointer: coarse) {
-  html.has-cursor .cursor { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html.has-cursor .cursor { display: none; }
-}
-html.reduce .cursor,
-html.reduce.has-cursor .cursor { display: none; }
-
 /* reveals */
 html.js .reveal {
   opacity: 0;
@@ -814,32 +763,6 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   font-weight: 600;
 }
 .mock-foot b { color: var(--accent); font-weight: 700; }
-.scroll-pill {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.28rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--line);
-  font-family: var(--display);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.68rem;
-  color: var(--ink);
-}
-.scroll-pill i {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-  animation: pulse 1.4s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(0.7); opacity: 0.45; }
-}
 .hours-badge {
   z-index: 5;
   right: 0;
@@ -1495,8 +1418,6 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   background: var(--accent);
   will-change: transform;
 }
-.device-pill { bottom: 10px; z-index: 3; }
-
 /* who — portfolio grammar */
 .who { padding-block: var(--section-y); }
 .who-copy { min-width: 0; }
@@ -2047,7 +1968,6 @@ html.reduce .marquee-track { transition: none; }
 html.reduce .device-bar { display: none; }
 html.reduce .marquee-track { animation: none; }
 html.reduce .how-steps li { opacity: 1; }
-html.reduce .scroll-pill i { animation: none; }
 html.reduce .loader-ring, html.reduce .loader-mark path { animation: none; stroke-dashoffset: 0; opacity: 1; }
 html.reduce .hero-copy-in .reveal { transition-delay: 0s; }
 html.reduce .mock-rows li,
