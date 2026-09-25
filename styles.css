@@ -986,9 +986,14 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .p4:hover { transform: rotate(0.2deg) translateY(-10px); }
 .notch { clip-path: none; }
 
-/* hours scene */
+/* hours scene
+   The disc and the type share the band under the nav (and above the
+   mobile book bar) so the cluster sits in the visible orange, not in
+   the full viewport the header covers. */
 .hours-track { height: 210vh; position: relative; }
 .hours-pin {
+  --hours-band-top: var(--nav-h);
+  --hours-band-bottom: 0px;
   position: sticky;
   top: 0;
   height: 100svh;
@@ -996,35 +1001,42 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   display: grid;
   place-items: center;
   align-content: center;
+  padding-top: var(--hours-band-top);
+  padding-bottom: var(--hours-band-bottom);
 }
 .hours-halo, .hours-orb {
   position: absolute;
   border-radius: 50%;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: var(--hours-band-top);
+  bottom: var(--hours-band-bottom);
   margin: auto;
 }
 .hours-halo {
-  width: min(120vmin, 1280px);
-  height: min(120vmin, 1280px);
+  --hours-disc: min(92vw, calc(100svh - var(--hours-band-top) - var(--hours-band-bottom) - 1.25rem), 1120px);
+  width: var(--hours-disc);
+  height: var(--hours-disc);
   background: rgba(255, 90, 31, 0.16);
 }
 .hours-orb {
-  width: min(108vmin, 1120px);
-  height: min(108vmin, 1120px);
+  --hours-disc: min(82vw, calc(100svh - var(--hours-band-top) - var(--hours-band-bottom) - 5.75rem), 980px);
+  width: var(--hours-disc);
+  height: var(--hours-disc);
   background: radial-gradient(circle at 40% 38%, var(--accent-hot), var(--accent) 62%, var(--accent));
   box-shadow: 0 30px 80px rgba(255, 90, 31, 0.22);
 }
 .hours-stack {
-  --hours-title: clamp(3.5rem, 6.6vw, 6.4rem);
-  --hours-gap: calc(var(--hours-title) * 0.82);
+  --hours-title: clamp(3.4rem, min(6.6vw, 11svh), 6.4rem);
+  --hours-rhythm: clamp(1.35rem, 3.6svh, 2.15rem);
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(980px, calc(100% - 2rem));
+  width: min(920px, calc(100% - 2.5rem));
   text-align: center;
-  gap: var(--hours-gap);
+  gap: var(--hours-rhythm);
 }
 .hours-title {
   position: relative;
@@ -1033,11 +1045,12 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   font-family: var(--display);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.82;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
   font-size: var(--hours-title);
   color: var(--ink);
   margin: 0;
+  white-space: nowrap;
 }
 .hours-sub {
   position: relative;
@@ -1059,7 +1072,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   align-items: center;
   justify-content: center;
   gap: 0.4em;
-  margin: 0;
+  margin: 0.2rem 0 0;
   min-height: 48px;
   padding: 0.7rem 1.35rem;
   border-radius: 999px;
@@ -1948,7 +1961,7 @@ html.reduce .hours-pin {
   display: grid;
   place-items: center;
   min-height: 100svh;
-  padding: 2rem 0;
+  padding: var(--hours-band-top) 1rem var(--hours-band-bottom);
 }
 html.reduce .hours-cta { transition: none; }
 html.reduce .hours-cta:hover { transform: none; }
@@ -2093,7 +2106,22 @@ html.reduce .tile h3::after { transition: none; }
   .plate-shift { display: none; }
   .shift-mask { height: auto; overflow: visible; display: grid; gap: 1rem; border-radius: 0; background: none; }
   .ba, .ba.before, .ba.after { position: relative; width: auto; left: auto; right: auto; top: auto; transform: none !important; }
-  .hours-pin { min-height: 100svh; display: grid; }
+  .hours-pin {
+    --hours-band-bottom: 4.75rem;
+    min-height: 100svh;
+    display: grid;
+  }
+  .hours-orb {
+    --hours-disc: min(132vw, calc(100svh - var(--hours-band-top) - var(--hours-band-bottom) - 4.25rem), 820px);
+  }
+  .hours-halo {
+    --hours-disc: min(150vw, calc(100svh - var(--hours-band-top) - var(--hours-band-bottom) - 1.25rem), 940px);
+  }
+  .hours-stack {
+    --hours-title: clamp(3.5rem, min(12.5vw, 8.6svh), 6.1rem);
+    --hours-rhythm: clamp(1.2rem, 3.4svh, 2rem);
+  }
+  .hours-sub { font-size: clamp(18px, 2.8vw, 24px); }
   .how-pin { display: grid; padding: calc(var(--nav-h) + 1.5rem) 0 3rem; }
   .how-steps li { opacity: 1; }
   .device-screen { height: auto; overflow: visible; --sheet: auto; }
@@ -2128,7 +2156,12 @@ html.reduce .tile h3::after { transition: none; }
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(3.3rem, 16vw, 4.4rem); }
   .who-copy .display { font-size: clamp(1.9rem, 8.5vw, 2.2rem); }
-  .hours-stack { --hours-title: clamp(3.1rem, 16vw, 4.4rem); }
+  .hours-stack {
+    --hours-title: clamp(2.85rem, 13.2vw, 4.15rem);
+    --hours-rhythm: clamp(1rem, 2.6svh, 1.45rem);
+    width: min(20rem, calc(100% - 2rem));
+  }
+  .hours-sub { font-size: clamp(17px, 4.4vw, 20px); max-width: 28ch; }
   .display-xl { font-size: clamp(4.2rem, 22vw, 6rem); }
   .browser { width: 92%; }
   .back-card { display: none; }
