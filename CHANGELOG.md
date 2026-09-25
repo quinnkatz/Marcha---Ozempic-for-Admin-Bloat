@@ -20,7 +20,7 @@ The public page is a scene-based marketing site. The $1,999 assessment price is 
 
 ## Story order
 
-Hero (promise + what Marcha sells) → recognition → why Marcha → economics → booked-vs-paid → philosophy → diagnostic → a shorter leave-with → trust → **then** the $1,999 assessment → a later Tuesday → monologue → who / leadership → FAQ → book. The fee is not in the hero or in Why Marcha.
+Hero (promise + what Marcha sells) → recognition → why Marcha → economics → booked-vs-paid → philosophy → diagnostic → a shorter leave-with → trust → **then** the $1,999 assessment → a later Tuesday → monologue → leadership → FAQ → book. The fee is not in the hero or in Why Marcha.
 
 ## Preview
 
@@ -28,4 +28,4 @@ Hero (promise + what Marcha sells) → recognition → why Marcha → economics 
 
 Screenshot helpers (loader stays up only for `loader`):
 
-`?preview=loader|hero|problem|hours|shift|mock|who|why|offer|faq|book`
+`?preview=loader|hero|problem|hours|shift|mock|why|offer|faq|book`

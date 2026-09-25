@@ -421,18 +421,6 @@
     paint();
   }
 
-  /* ---------- practice filters ---------- */
-  const filterBtns = $$("[data-filter]");
-  const tiles = $$("[data-kind]");
-  function applyFilter(kind) {
-    filterBtns.forEach((btn) => btn.setAttribute("aria-pressed", String(btn.dataset.filter === kind)));
-    tiles.forEach((tile) => {
-      const show = kind === "all" || tile.dataset.kind === kind;
-      tile.hidden = !show;
-    });
-  }
-  filterBtns.forEach((btn) => btn.addEventListener("click", () => applyFilter(btn.dataset.filter)));
-
   /* ---------- booking ---------- */
   const form = $("#book-form");
   const status = $("[data-form-status]");
