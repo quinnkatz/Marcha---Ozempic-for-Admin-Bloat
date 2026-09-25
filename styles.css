@@ -880,6 +880,13 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   align-items: center;
   padding: var(--nav-h) 0 2rem;
 }
+.problem-short {
+  min-height: 0;
+  display: block;
+  padding: clamp(4.5rem, 12vh, 7.5rem) 0;
+}
+.problem-short .turn { max-width: 16ch; }
+.problem-short .lede { max-width: 42ch; font-size: 1.12rem; }
 .problem-layout {
   width: min(1280px, calc(100% - var(--gutter) - max(var(--gutter), var(--rail-clear))));
   margin-left: max(var(--gutter), var(--rail-clear));
@@ -2110,6 +2117,7 @@ html.reduce .cred { transition: none; }
   gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: start;
 }
+.offer .stance-grid { margin-top: clamp(3rem, 8vh, 5.5rem); }
 .stance .turn { max-width: 14ch; }
 .stance-list { display: flex; flex-direction: column; }
 .stance-list li {
