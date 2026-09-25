@@ -230,17 +230,33 @@
   let currentScene = 0;
   function frame() {
     const y = window.scrollY;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const p = max > 0 ? y / max : 0;
 
     if (header) header.classList.toggle("scrolled", y > 8);
     if (launcher) launcher.classList.toggle("is-on", y > window.innerHeight * 0.72 && !narrow.matches);
 
-    if (rail && railSeg) {
-      const travel = rail.clientHeight - railSeg.offsetHeight;
-      const segY = p * travel;
-      railSeg.style.transform = `translateY(${segY.toFixed(1)}px)`;
-      if (railName) railName.style.top = `${(rail.getBoundingClientRect().top + segY).toFixed(1)}px`;
+    const marker = y + window.innerHeight * 0.34;
+    currentScene = 0;
+    scenes.forEach((el, i) => {
+      if (sceneTop(el) <= marker) currentScene = i;
+    });
+    if (railName) {
+      const label = sceneLabels[currentScene] || sceneLabels[0];
+      if (railName.textContent !== label) railName.textContent = label;
+    }
+    if (rail && railName && !narrow.matches) {
+      const scene = scenes[currentScene];
+      const anchor = scene?.querySelector(".eyebrow") || scene?.querySelector("h1, h2");
+      if (anchor) {
+        const box = anchor.getBoundingClientRect();
+        const labelH = railName.offsetHeight || 16;
+        const raw = box.height < 48 ? box.top + (box.height - labelH) / 2 : box.top;
+        const min = (header ? header.offsetHeight : 78) + 8;
+        const max = window.innerHeight - labelH - 24;
+        const top = clamp(raw, min, max);
+        rail.style.top = `${top.toFixed(1)}px`;
+        if (railSeg) railSeg.style.transform = "translateY(0)";
+        railName.style.top = `${top.toFixed(1)}px`;
+      }
     }
     if (heroSeg) {
       const track = heroSeg.parentElement;
@@ -286,17 +302,8 @@
       }
     }
 
-    const marker = y + window.innerHeight * 0.34;
-    currentScene = 0;
-    scenes.forEach((el, i) => {
-      if (sceneTop(el) <= marker) currentScene = i;
-    });
     if (prevBtn) prevBtn.disabled = currentScene <= 0;
     if (nextBtn) nextBtn.disabled = currentScene >= scenes.length - 1;
-    if (railName) {
-      const label = sceneLabels[currentScene] || sceneLabels[0];
-      if (railName.textContent !== label) railName.textContent = label;
-    }
 
     if (mobileBar && book && narrow.matches) {
       const heroEl = $("#hero");
