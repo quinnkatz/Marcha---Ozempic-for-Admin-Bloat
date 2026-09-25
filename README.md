@@ -25,7 +25,7 @@ The assessment instruments under `tools/` load JSON with `fetch`, so they need t
 
 Screenshot helpers: `?preview=loader|hero|problem|hours|shift|mock|why|offer|faq|book`. For the plan frame, `?preview=mock&at=0.55` parks on a settled sheet (`at` is 0–1).
 
-Booking opens a `mailto:` to the address in `brand.js`. The form checks name, email, and practice type first, then disables the button while the mail app opens. Voice on the page is we / our team. Beachhead copy leads with medspas.
+Booking opens a `mailto:` to the address in `brand.js`. The form checks name, email, and practice type first, then disables the button while the mail app opens. Voice on the page uses Marcha as the subject, and you/your for the owner. Beachhead copy leads with medspas.
 
 ## Publishing
 

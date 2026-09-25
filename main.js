@@ -468,13 +468,13 @@
       const problems = [];
       if (!name) problems.push(["name", "Add your name."]);
       else setFieldError("name", "");
-      if (!emailOk(email)) problems.push(["email", "Use an email we can reply to."]);
+      if (!emailOk(email)) problems.push(["email", "Use an email Marcha can reply to."]);
       else setFieldError("email", "");
       if (!practice) problems.push(["practice", "Choose a studio or practice."]);
       else setFieldError("practice", "");
       if (problems.length) {
         problems.forEach(([id, message]) => setFieldError(id, message));
-        setStatus("Name, email, and studio or practice — then we can write back.", "error");
+        setStatus("Name, email, and studio or practice — then Marcha can write back.", "error");
         const first = document.getElementById(problems[0][0]);
         if (first) first.focus();
         return;
@@ -482,9 +482,9 @@
       const subject = encodeURIComponent(`${brand.name} assessment request — ${practice}`);
       const body = encodeURIComponent(
         [
-          `Hi ${brand.name} team,`,
+          `Hi ${brand.name},`,
           "",
-          "We'd like to request the $1,999 Marcha Business Assessment.",
+          "Request for the $1,999 Marcha Business Assessment.",
           "",
           `Name: ${name}`,
           `Email: ${email}`,
@@ -502,7 +502,7 @@
       window.setTimeout(() => {
         if (submitBtn) submitBtn.disabled = false;
         form.removeAttribute("aria-busy");
-        setStatus(`Your email app should be open. If it isn’t, write us at ${brand.email}.`, "ok");
+        setStatus(`Your email app should be open. If it isn’t, write ${brand.name} at ${brand.email}.`, "ok");
       }, 700);
     });
   }
