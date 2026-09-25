@@ -1,6 +1,6 @@
 # Marcha — AI tools assessments for medspas
 
-The public site is a scene-based marketing page for Marcha’s **$999 AI tools assessment**: medspas and aesthetic practices first, then wellness, dental, and outpatient rooms of about 2–20 people. The story runs problem → hours back → how it works → who and why → then the price → FAQ → book. The fee is not in the hero.
+The public site is a scene-based marketing page for Marcha’s **$1,999 business assessment**. The story runs recognition → economics → philosophy → diagnostic → what you leave with → trust → then the fee. Implementation is separately scoped. The fee is not in the hero.
 
 Plain HTML, CSS, and vanilla JS. No build step.
 

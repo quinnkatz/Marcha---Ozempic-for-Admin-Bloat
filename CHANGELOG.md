@@ -1,6 +1,6 @@
 # Changelog — Marcha interaction system
 
-The public page is a scene-based marketing site, told with Marcha’s medspa-led story. The $999 assessment price is withheld until the offer scene.
+The public page is a scene-based marketing site. The $1,999 assessment price is withheld until after recognition, economics, and trust. Implementation is separately scoped.
 
 ## Techniques implemented
 
@@ -20,7 +20,7 @@ The public page is a scene-based marketing site, told with Marcha’s medspa-led
 
 ## Story order
 
-Problem (hero + squeeze) → hours back → the shift → how it works → who / why → **then** the $999 assessment → FAQ → book.
+Hero → recognition → economics → booked-vs-paid → philosophy → diagnostic → deliverable → trust → **then** the $1,999 assessment → a later Tuesday → monologue → who / about → FAQ → book.
 
 ## Preview
 

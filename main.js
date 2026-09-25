@@ -136,7 +136,7 @@
   const hoursOrb = $("[data-hours-orb]");
   const heroSeg = $(".hero-track span");
   const railName = $("[data-rail-name]");
-  const sceneLabels = ["01 · Hero", "02 · Leak", "03 · Paid", "04 · Shift", "05 · Process", "06 · Owners", "07 · Why", "08 · Offer", "09 · FAQ", "10 · Book"];
+  const sceneLabels = scenes.map((el, i) => el.dataset.sceneLabel || `${String(i + 1).padStart(2, "0")} · Scene`);
   const howTrack = $("[data-how-track]");
   const shiftTrack = $("[data-shift-track]");
   const shiftBefore = $("[data-shift-before]");
@@ -364,6 +364,63 @@
     });
   });
 
+  /* ---------- economics sketch ---------- */
+  const econForm = document.querySelector("[data-econ]");
+  if (econForm) {
+    const emptyEl = econForm.querySelector("[data-math-empty]");
+    const resultEl = econForm.querySelector("[data-math-result]");
+    const linesEl = econForm.querySelector("[data-math-lines]");
+    const monthEl = econForm.querySelector("[data-math-month]");
+    const yearEl = econForm.querySelector("[data-math-year]");
+    const usd = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    });
+    const num = (name) => {
+      const el = econForm.elements.namedItem(name);
+      if (!el || !("value" in el)) return 0;
+      const n = Number(String(el.value).trim());
+      return Number.isFinite(n) && n > 0 ? n : 0;
+    };
+    const paint = () => {
+      const missed = num("inquiries") * num("customer");
+      const empty = num("slots") * num("appointment");
+      const labor = num("staffHours") * num("staffRate") * 4.33;
+      const owner = num("ownerHours") * num("ownerRate") * 4.33;
+      const month = missed + empty + labor + owner;
+      const rows = [
+        ["Unanswered leads", missed],
+        ["Empty appointments", empty],
+        ["Repetitive labor", labor],
+        ["Owner attention", owner],
+      ].filter((row) => row[1] > 0);
+      if (!rows.length) {
+        if (resultEl) resultEl.hidden = true;
+        if (emptyEl) emptyEl.hidden = false;
+        return;
+      }
+      if (emptyEl) emptyEl.hidden = true;
+      if (resultEl) resultEl.hidden = false;
+      if (linesEl) {
+        linesEl.replaceChildren(...rows.map(([label, amount]) => {
+          const li = document.createElement("li");
+          const name = document.createElement("span");
+          name.textContent = label;
+          const value = document.createElement("b");
+          value.textContent = usd.format(amount);
+          li.append(name, value);
+          return li;
+        }));
+      }
+      if (monthEl) monthEl.textContent = usd.format(month);
+      if (yearEl) yearEl.textContent = `About ${usd.format(month * 12)} across a year, on these assumptions.`;
+    };
+    econForm.addEventListener("submit", (e) => e.preventDefault());
+    econForm.addEventListener("input", paint);
+    paint();
+  }
+
   /* ---------- practice filters ---------- */
   const filterBtns = $$("[data-filter]");
   const tiles = $$("[data-kind]");
@@ -439,7 +496,7 @@
         [
           `Hi ${brand.name} team,`,
           "",
-          "We'd like to book the $999 AI tools assessment.",
+          "We'd like to request the $1,999 Marcha Business Assessment.",
           "",
           `Name: ${name}`,
           `Email: ${email}`,
@@ -472,8 +529,8 @@
         window.scrollTo(0, sceneTop(track) + total * 0.55);
       };
       if (preview === "hours") mid(hoursTrack);
-      else if (preview === "shift") mid(shiftTrack);
-      else if (preview === "mock") {
+      else if (preview === "shift" || preview === "philosophy") mid(shiftTrack);
+      else if (preview === "mock" || preview === "how") {
         const total = howTrack ? Math.max(0, howTrack.offsetHeight - window.innerHeight) : 0;
         const at = Number(new URLSearchParams(location.search).get("at"));
         const p = Number.isFinite(at) ? clamp(at, 0, 0.99) : 0.3;
