@@ -1603,12 +1603,6 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 }
 .tile:hover h3::after { transform: scaleX(1); }
 .tile > p:last-child { margin-top: 0.4rem; max-width: 42ch; font-size: 0.98rem; }
-.who-note {
-  margin-top: 1.6rem;
-  max-width: 62ch;
-  color: var(--ink-50);
-  font-size: 0.95rem;
-}
 
 /* why */
 .why { padding: clamp(4rem, 9vh, 6.5rem) 0; overflow: hidden; }
