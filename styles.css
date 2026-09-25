@@ -1552,6 +1552,13 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .cred:nth-child(4) { right: 8%; top: 120px; z-index: 3; transform: rotate(2.2deg); }
 .cred:nth-child(5) { left: 8%; top: 250px; z-index: 4; transform: rotate(-1.2deg); }
 .cred-last { left: 18%; top: 390px; z-index: 5; transform: rotate(1.5deg); }
+/* Below the 360px card cap, a full last line runs under the focus card. */
+@media (min-width: 1041px) and (max-width: 1259px) {
+  .why-stage { min-height: 640px; }
+  .cred:nth-child(4) { top: 210px; }
+  .cred:nth-child(5) { top: 350px; }
+  .cred-last { top: 490px; }
+}
 .cred:focus-visible {
   z-index: 6;
   border-color: var(--accent);
@@ -1601,6 +1608,11 @@ html.reduce .cred { transition: none; }
   font-size: 1.45rem;
   line-height: 0.95;
   margin-top: 0.25rem;
+}
+/* Hold "critical care" on the same line as the words in front of it. */
+.cred:nth-child(3) p { max-width: 26rem; }
+@media (min-width: 1041px) {
+  .cred:nth-child(3) p { max-width: 18.75rem; }
 }
 
 /* offer — price lands here */
