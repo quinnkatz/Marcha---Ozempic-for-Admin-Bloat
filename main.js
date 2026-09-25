@@ -3,9 +3,6 @@
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   const reduce = document.documentElement.classList.contains("reduce")
     || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fine = window.matchMedia("(pointer: fine)").matches
-    && window.matchMedia("(hover: hover)").matches
-    && !window.matchMedia("(pointer: coarse)").matches;
   const preview = document.documentElement.getAttribute("data-preview");
   const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
 
@@ -378,29 +375,6 @@
     });
   }
   filterBtns.forEach((btn) => btn.addEventListener("click", () => applyFilter(btn.dataset.filter)));
-
-  /* ---------- cursor ---------- */
-  const cursor = $("#cursor");
-  if (cursor && fine && !reduce) {
-    document.documentElement.classList.add("has-cursor");
-    const zones = $$("[data-cursor-zone]");
-    let on = false;
-    let overLink = false;
-    window.addEventListener("pointermove", (e) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    }, { passive: true });
-    const sync = () => cursor.classList.toggle("is-on", on && !overLink);
-    zones.forEach((zone) => {
-      zone.addEventListener("pointerenter", () => { on = true; sync(); });
-      zone.addEventListener("pointerleave", () => { on = false; sync(); });
-    });
-    document.addEventListener("pointerover", (e) => {
-      const t = e.target;
-      overLink = Boolean(t && t.closest && t.closest("a, button, input, select, textarea, summary, label"));
-      sync();
-    }, true);
-  }
 
   /* ---------- booking ---------- */
   const form = $("#book-form");
