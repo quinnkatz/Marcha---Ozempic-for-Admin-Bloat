@@ -1,6 +1,6 @@
 # Changelog — Marcha interaction system
 
-The public page is a scene-based marketing site. The $1,999 assessment price is withheld until after recognition, economics, and trust. Implementation is separately scoped.
+The public page is a scene-based marketing site. The $1,999 assessment price is withheld until after recognition, Why Marcha, economics, and trust. Implementation is separately scoped. Sticky scrub is shorter: hours and the before/after hold at 140vh, and the diagnostic device at 190vh.
 
 ## Techniques implemented
 
@@ -20,7 +20,7 @@ The public page is a scene-based marketing site. The $1,999 assessment price is 
 
 ## Story order
 
-Hero → recognition → economics → booked-vs-paid → philosophy → diagnostic → deliverable → trust → **then** the $1,999 assessment → a later Tuesday → monologue → who / about → FAQ → book.
+Hero (promise + what Marcha sells) → recognition → why Marcha → economics → booked-vs-paid → philosophy → diagnostic → a shorter leave-with → trust → **then** the $1,999 assessment → a later Tuesday → monologue → who / leadership → FAQ → book. The fee is not in the hero or in Why Marcha.
 
 ## Preview
 

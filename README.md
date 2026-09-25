@@ -1,6 +1,6 @@
 # Marcha — AI tools assessments for medspas
 
-The public site is a scene-based marketing page for Marcha’s **$1,999 business assessment**. The story runs recognition → economics → philosophy → diagnostic → what you leave with → trust → then the fee. Implementation is separately scoped. The fee is not in the hero.
+The public site is a scene-based marketing page for Marcha’s **$1,999 business assessment**. The story runs hero (what Marcha sells) → recognition → why Marcha → economics → a shorter philosophy and diagnostic → trust → then the fee. Implementation is separately scoped. The fee is not in the hero or in Why Marcha.
 
 Plain HTML, CSS, and vanilla JS. No build step.
 

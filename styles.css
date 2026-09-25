@@ -582,8 +582,8 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .micro { padding-top: 0.2rem; max-width: 34ch; }
 .hero-sub {
   margin-top: 1.15rem;
-  max-width: 38ch;
-  font-size: 1.08rem;
+  max-width: 36rem;
+  font-size: 1.12rem;
   line-height: 1.45;
   color: var(--ink);
   text-wrap: balance;
@@ -1027,7 +1027,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
    The disc and the type share the band under the nav (and above the
    mobile book bar) so the cluster sits in the visible orange, not in
    the full viewport the header covers. */
-.hours-track { height: 210vh; position: relative; }
+.hours-track { height: 140vh; position: relative; }
 .hours-pin {
   --hours-band-top: var(--nav-h);
   --hours-band-bottom: 0px;
@@ -1142,7 +1142,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 
 /* shift — clipped before/after mask */
 .shift { position: relative; }
-.shift-track { height: 165vh; }
+.shift-track { height: 140vh; }
 .shift-pin {
   position: sticky;
   top: 0;
@@ -1250,7 +1250,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .section-cta { margin-top: 2rem; }
 
 /* how / device */
-.how-track { height: 250vh; }
+.how-track { height: 190vh; }
 .how-pin {
   position: sticky;
   top: 0;
@@ -1572,6 +1572,12 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 }
 .tile:hover h3::after { transform: scaleX(1); }
 .tile > p:last-child { margin-top: 0.4rem; max-width: 42ch; font-size: 0.98rem; }
+
+/* why — short block right after recognition */
+.why-early { padding-block: clamp(3.25rem, 7vh, 5.5rem); }
+.why-early-copy { max-width: 46rem; }
+.why-early .lede { max-width: 58ch; font-size: 1.12rem; line-height: 1.5; }
+.why-early .cta { margin-top: 1.35rem; }
 
 /* why */
 .why { padding-block: var(--section-y); overflow: hidden; }
