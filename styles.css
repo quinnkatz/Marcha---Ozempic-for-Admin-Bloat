@@ -1100,14 +1100,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 }
 .shift-copy { position: relative; z-index: 2; }
 .shift-copy .display { max-width: 12ch; }
-.shift-copy .lede {
-  font-size: clamp(1.25rem, 1.55vw, 1.45rem);
-  line-height: 1.5;
-  max-width: 34ch;
-  color: var(--ink);
-  text-wrap: balance;
-  hyphens: none;
-}
+.shift-copy .cta { margin-top: 1.75rem; }
 .shift-mask {
   position: relative;
   height: min(540px, 64vh);
