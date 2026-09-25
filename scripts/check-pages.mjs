@@ -47,8 +47,9 @@ for (const file of pages) {
     if (/^(https?:|mailto:|data:|#|\/\/)/i.test(ref)) continue;
     const [path] = ref.split(/[?#]/);
     if (!path) continue;
-    // a leading slash is site-root-relative once deployed, not filesystem-absolute
-    const target = path.startsWith("/") ? join(root, path) : resolve(here, path);
+    // A leading slash is site-root-relative once deployed, not filesystem-absolute.
+    // path.join() would treat that slash as an absolute path and drop `root`.
+    const target = path.startsWith("/") ? join(root, path.slice(1)) : resolve(here, path);
     const ok = existsSync(target) && (statSync(target).isFile() || existsSync(join(target, "index.html")));
     if (!ok) fail(`dead local reference "${ref}"`);
   }
