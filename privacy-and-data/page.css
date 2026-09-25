@@ -13,8 +13,32 @@ body.page-privacy {
 .pdata-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
-  gap: clamp(1.5rem, 4vw, 4.5rem);
-  align-items: end;
+  column-gap: clamp(1.5rem, 4vw, 4.5rem);
+  row-gap: 1.1rem;
+  align-items: center;
+}
+
+.pdata-hero-grid .eyebrow {
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 0;
+}
+
+.pdata-hero-grid h1 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.pdata-hero-grid .pdata-sub {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  align-self: center;
+}
+
+.pdata-hero-grid .pdata-actions {
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 0.35rem;
 }
 
 .pdata-hero h1 {
@@ -363,6 +387,10 @@ body.page-privacy {
   margin-top: 0.35rem;
 }
 
+.page-privacy .footer-meta nav a[aria-current="page"] {
+  color: var(--accent);
+}
+
 @media (max-width: 1040px) {
   .pdata-hero-grid,
   .pdata-split,
@@ -372,6 +400,14 @@ body.page-privacy {
   .call-notes,
   .pdata-close-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pdata-hero-grid .eyebrow,
+  .pdata-hero-grid h1,
+  .pdata-hero-grid .pdata-sub,
+  .pdata-hero-grid .pdata-actions {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .pdata-hero h1,
