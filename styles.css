@@ -15,6 +15,7 @@
   --nav-h: 78px;
   --gutter: clamp(1.25rem, 4vw, 4.25rem);
   --rail-clear: 0px;
+  --section-y: clamp(4rem, 6.5vh, 5.75rem);
   --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
   --sans: "Barlow", "Helvetica Neue", Arial, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -1497,7 +1498,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .device-pill { bottom: 10px; z-index: 3; }
 
 /* who — portfolio grammar */
-.who { padding: 2vh 0 4.5rem; }
+.who { padding-block: var(--section-y); }
 .who-copy { min-width: 0; }
 .who-copy .display {
   line-height: 0.92;
@@ -1605,15 +1606,15 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 .tile > p:last-child { margin-top: 0.4rem; max-width: 42ch; font-size: 0.98rem; }
 
 /* why */
-.why { padding: clamp(4rem, 9vh, 6.5rem) 0; overflow: hidden; }
+.why { padding-block: var(--section-y); overflow: hidden; }
 .why-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
+  align-items: start;
 }
 .why-copy .cta { margin-top: 1.5rem; }
-.why-stage { position: relative; min-height: 540px; }
+.why-stage { position: relative; min-height: 510px; }
 .why-halo, .why-orb {
   position: absolute;
   border-radius: 50%;
@@ -1700,23 +1701,23 @@ html.reduce .cred { transition: none; }
 }
 
 /* offer — price lands here */
-.offer { padding: clamp(3rem, 8vh, 6rem) 0 4rem; overflow: hidden; }
+.offer { padding-block: var(--section-y); overflow: hidden; }
 .offer-top {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
 }
-.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.2rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2.5rem; }
 .chips li {
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  padding: 0.35rem 0.75rem;
+  padding: 0.3rem 0.55rem;
   font-family: var(--display);
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--ink);
   background: rgba(255, 255, 255, 0.45);
 }
@@ -1736,10 +1737,11 @@ html.reduce .cred { transition: none; }
   background: radial-gradient(circle at 38% 36%, var(--accent-hot), var(--accent) 60%, var(--accent));
   box-shadow: 0 24px 50px rgba(255, 90, 31, 0.25);
 }
+.offer-copy .cta { margin-top: 2.5rem; }
 .price-card {
   z-index: 2;
   left: 0;
-  top: 70px;
+  top: 1.75rem;
   width: min(280px, 80%);
   background: var(--white);
   border-radius: 18px;
@@ -1773,7 +1775,7 @@ html.reduce .cred { transition: none; }
 .offer-grid {
   position: relative;
   z-index: 2;
-  margin-top: 0.5rem;
+  margin-top: clamp(4rem, 6vw, 6rem);
   display: grid;
   grid-template-columns: 1.15fr 0.95fr 0.95fr;
   gap: 1rem;
@@ -1786,17 +1788,17 @@ html.reduce .cred { transition: none; }
   box-shadow: var(--shadow);
 }
 .ocard { transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease); }
-.ocard:nth-child(1) { transform: rotate(-1.6deg) translateY(18px); }
+.ocard:nth-child(1) { transform: rotate(-1.4deg); }
 .ocard-hot {
   border: 1.5px solid var(--accent);
-  transform: translateY(-42px) rotate(0.8deg);
+  transform: rotate(0.6deg);
   background: linear-gradient(180deg, #fff, var(--wash));
   z-index: 2;
 }
-.ocard:nth-child(3) { transform: rotate(1.7deg) translateY(28px); }
-.ocard:nth-child(1):hover { transform: rotate(-0.4deg) translateY(4px); box-shadow: var(--shadow-hot); }
-.ocard-hot:hover { transform: translateY(-54px) rotate(0deg); box-shadow: var(--shadow-hot); }
-.ocard:nth-child(3):hover { transform: rotate(0.4deg) translateY(12px); box-shadow: var(--shadow-hot); }
+.ocard:nth-child(3) { transform: rotate(1.4deg); }
+.ocard:nth-child(1):hover { transform: rotate(-0.3deg) translateY(-6px); box-shadow: var(--shadow-hot); }
+.ocard-hot:hover { transform: rotate(0deg) translateY(-8px); box-shadow: var(--shadow-hot); }
+.ocard:nth-child(3):hover { transform: rotate(0.3deg) translateY(-6px); box-shadow: var(--shadow-hot); }
 .ocard h3 {
   font-family: var(--display);
   font-weight: 800;
@@ -1824,7 +1826,7 @@ html.reduce .cred { transition: none; }
 .ocard .aside { margin-top: 0.8rem; color: var(--ink-50); font-size: 0.95rem; }
 
 /* faq */
-.faq { padding: clamp(3rem, 8vh, 5.5rem) 0; }
+.faq { padding-block: var(--section-y); }
 .faq-grid {
   display: grid;
   grid-template-columns: 0.72fr 1.28fr;
@@ -1875,7 +1877,7 @@ html.reduce .cred { transition: none; }
   overflow: hidden;
   background: var(--ink);
   color: rgba(255, 255, 255, 0.82);
-  padding: clamp(3.5rem, 8vh, 5.5rem) 0;
+  padding-block: var(--section-y);
 }
 .book-orb {
   position: absolute;
@@ -2049,13 +2051,6 @@ html.reduce .ba li,
 html.reduce .how-steps h3::after,
 html.reduce .tile h3::after { transition: none; }
 
-.why,
-.offer,
-.faq {
-  padding-top: calc(var(--nav-h) + clamp(2.2rem, 6vh, 4.2rem));
-}
-.who { padding-top: calc(var(--nav-h) + 4vh); }
-.book { padding-top: calc(var(--nav-h) + clamp(2.5rem, 6vh, 4rem)); }
 
 @media (max-width: 1040px) {
   html, body { overflow-x: clip; }
@@ -2144,7 +2139,10 @@ html.reduce .tile h3::after { transition: none; }
   }
   .p1:hover, .p2:hover, .p3:hover, .p4:hover { transform: translateY(-8px); }
   .why-stage { min-height: 0; display: grid; gap: 0.75rem; }
-  .cred, .cred-last {
+  .cred, .cred-last,
+  .cred:nth-child(3),
+  .cred:nth-child(4),
+  .cred:nth-child(5) {
     position: relative;
     width: auto;
     left: auto; right: auto; top: auto;
@@ -2180,7 +2178,8 @@ html.reduce .tile h3::after { transition: none; }
   .filters button { min-height: 44px; padding: 0.55rem 0.1rem; }
   .footer-meta nav a { min-height: 44px; display: inline-flex; align-items: center; }
   .acc summary { min-height: 48px; }
-  .offer-visual { min-height: 420px; }
+  .offer-visual { min-height: 20rem; }
+  .offer-grid { margin-top: 3rem; }
   .footer-meta { text-align: left; }
   .footer-meta nav { justify-content: flex-start; }
   .mobile-bar.is-on { display: flex; }
