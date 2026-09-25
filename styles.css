@@ -1834,6 +1834,11 @@ html.reduce .cred { transition: none; }
   align-items: start;
 }
 .faq-intro { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+.faq-intro .lede {
+  max-width: 60ch;
+  text-wrap: balance;
+  line-height: 1.5;
+}
 .acc { border-bottom: 1px solid var(--line-strong); }
 .acc summary {
   list-style: none;
