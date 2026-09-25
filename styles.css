@@ -800,7 +800,7 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
   transform: translate3d(0, var(--py, 0px), 0);
 }
 
-/* trust + marquee */
+/* trust */
 .trust {
   display: flex;
   align-items: center;
@@ -842,30 +842,6 @@ html.reduce .reveal { opacity: 1; transform: none; filter: none; }
 @media (prefers-reduced-motion: reduce) {
   .trust li { transition: none; }
 }
-
-.marquee {
-  overflow: hidden;
-  border-block: 1px solid var(--line);
-  padding: 0.85rem 0;
-  margin-top: 0.5rem;
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: march 28s linear infinite;
-}
-.marquee p {
-  font-family: var(--display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: var(--ink);
-  white-space: nowrap;
-  padding-right: 0.4rem;
-}
-.marquee span { color: var(--accent); }
-@keyframes march { to { transform: translateX(-50%); } }
 
 /* problem */
 .problem {
@@ -1963,10 +1939,8 @@ html.reduce .ba,
 html.reduce .ba.before,
 html.reduce .ba.after { position: relative; left: auto; right: auto; top: auto; width: auto; }
 html.reduce .sub-clip,
-html.reduce .sub-clip a,
-html.reduce .marquee-track { transition: none; }
+html.reduce .sub-clip a { transition: none; }
 html.reduce .device-bar { display: none; }
-html.reduce .marquee-track { animation: none; }
 html.reduce .how-steps li { opacity: 1; }
 html.reduce .loader-ring, html.reduce .loader-mark path { animation: none; stroke-dashoffset: 0; opacity: 1; }
 html.reduce .hero-copy-in .reveal { transition-delay: 0s; }
