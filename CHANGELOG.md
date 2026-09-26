@@ -1,6 +1,6 @@
 # Changelog — Marcha interaction system
 
-The public page is a scene-based marketing site, told with Marcha’s medspa-led story. The $999 assessment price is withheld until the offer scene.
+The public page is a scene-based marketing site. The $1,999 assessment price is withheld until after recognition, Why Marcha, economics, and trust. Implementation is separately scoped. Sticky scrub is shorter: hours and the before/after hold at 140vh, and the diagnostic device at 190vh.
 
 ## Techniques implemented
 
@@ -20,7 +20,7 @@ The public page is a scene-based marketing site, told with Marcha’s medspa-led
 
 ## Story order
 
-Problem (hero + squeeze) → hours back → the shift → how it works → who / why → **then** the $999 assessment → FAQ → book.
+Hero (promise + what Marcha sells) → one recognition beat → economics → the $1,999 assessment, with judgment on tools and sensitive data → about → one data FAQ → fit call. Implementation is not bundled. The fee is not in the hero.
 
 ## Preview
 
@@ -28,4 +28,4 @@ Problem (hero + squeeze) → hours back → the shift → how it works → who /
 
 Screenshot helpers (loader stays up only for `loader`):
 
-`?preview=loader|hero|problem|hours|shift|mock|who|why|offer|faq|book`
+`?preview=loader|hero|problem|hours|shift|mock|why|offer|faq|book`
