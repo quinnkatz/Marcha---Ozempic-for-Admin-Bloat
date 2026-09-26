@@ -1,386 +1,337 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marcha — Your business shouldn’t need you at 9pm</title>
-  <meta name="description" content="Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs.">
-  <meta name="author" content="Marcha">
-  <meta name="theme-color" content="#FFFFFF">
-  <meta name="color-scheme" content="light">
-  <link rel="canonical" href="https://runmarcha.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Marcha">
-  <meta property="og:url" content="https://runmarcha.com/">
-  <meta property="og:title" content="Marcha — Your business shouldn’t need you at 9pm">
-  <meta property="og:description" content="Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs.">
-  <meta property="og:image" content="https://runmarcha.com/assets/og.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Marcha: Your business shouldn’t need you at 9pm.">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Marcha — Your business shouldn’t need you at 9pm">
-  <meta name="twitter:description" content="Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs.">
-  <meta name="twitter:image" content="https://runmarcha.com/assets/og.png">
-  <meta name="twitter:image:alt" content="Marcha: Your business shouldn’t need you at 9pm.">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    document.documentElement.classList.add("js");
-    try {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        document.documentElement.classList.add("reduce");
-      }
-      var preview = new URLSearchParams(location.search).get("preview");
-      if (preview) document.documentElement.setAttribute("data-preview", preview);
-    } catch (e) {}
-  </script>
-  <style>
-    html.reduce .loader, html:not(.js) .loader { display: none !important; }
-  </style>
-</head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marcha</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--or:#F2602A;--or2:#F7A57F;--orbg:#FDF1EB;--ink:#1E2A30;--mut:#5A646B;--line:#E4E7E9;--bg:#F6F6F4;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;color:var(--ink);background:#fff;font-size:18px;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.h{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;font-weight:800;line-height:.92;letter-spacing:.2px}
+.eyebrow{font-family:"Barlow Condensed";text-transform:uppercase;font-weight:600;letter-spacing:2.2px;font-size:14px;color:var(--mut)}
+.eyebrow.or{color:var(--or)}
+.card{background:var(--card);border-radius:14px;box-shadow:0 14px 40px rgba(30,42,48,.09),0 1px 2px rgba(30,42,48,.06)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:"Barlow Condensed";text-transform:uppercase;font-weight:700;letter-spacing:1.4px;font-size:17px;padding:16px 26px;border-radius:10px}
+.btn.p{background:var(--or);color:#fff}
+.btn.t{color:var(--or);padding-left:0;padding-right:0}
+section{position:relative;overflow:hidden}
+.pad{padding:120px 0}
+.muted{color:var(--mut)}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:2.4px;font-size:19px}
+.logo i{width:30px;height:30px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:15px}
+.links{display:flex;gap:32px}
+.links a{font-family:"Barlow Condensed";font-weight:600;letter-spacing:1.4px;font-size:15px;text-transform:uppercase}
+.navcta{font-family:"Barlow Condensed";font-weight:700;letter-spacing:1.4px;font-size:15px;text-transform:uppercase;color:#fff;background:var(--ink);padding:11px 18px;border-radius:8px}
+/* hero */
+.hero{padding:70px 0 0}
+.hero .hg{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;min-height:720px}
+.hero h1{font-size:112px;margin:20px 0 28px}
+.hero p.lede{font-size:21px;max-width:520px;color:#3c464c}
+.hero .ctas{display:flex;gap:26px;align-items:center;margin-top:36px}
+.orb{position:relative;height:640px}
+.orb .halo{position:absolute;inset:-40px -140px -40px 0;border-radius:50%;background:radial-gradient(circle,rgba(242,96,42,.13),rgba(242,96,42,.04) 60%,transparent 70%)}
+.orb .ball{position:absolute;width:560px;height:560px;left:40px;top:40px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#F99B6C,#F2602A 58%,#E24E17);box-shadow:0 40px 80px rgba(226,78,23,.25)}
+.msg{position:absolute;width:300px;padding:16px 18px}
+.msg .t{font-family:"Barlow Condensed";font-weight:600;letter-spacing:1.4px;font-size:13px;color:var(--or);text-transform:uppercase}
+.msg .b{font-weight:500;font-size:16.5px;margin-top:4px;line-height:1.35}
+.msg .s{font-size:12.5px;color:var(--mut);margin-top:6px}
+.tonight{position:absolute;right:10px;top:10px;width:220px;padding:18px 20px;transform:rotate(-2deg)}
+.tonight .n{font-family:"Barlow Condensed";font-weight:800;font-size:56px;line-height:1}
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:30px}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.trust .wrap>div{padding:26px 0 26px 22px;border-left:1px solid var(--line)}
+.trust .wrap>div:first-child{border-left:0;padding-left:0}
+.trust b{display:block;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:1.3px;font-size:17px}
+.trust span{font-size:15px;color:var(--mut)}
+/* problem */
+.problem{background:var(--bg)}
+.sechead{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:end;margin-bottom:56px}
+.sechead h2{font-size:84px;margin-top:14px}
+.leaks{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.leak{padding:28px 26px;min-height:300px;display:flex;flex-direction:column;border-top:4px solid var(--or)}
+.leak .num{font-family:"Barlow Condensed";font-weight:700;color:var(--or);letter-spacing:1.4px}
+.leak h3{font-size:34px;margin:14px 0 14px}
+.leak p{font-size:16px;color:var(--mut);margin-top:auto}
+.kicker{margin-top:56px;display:flex;justify-content:space-between;align-items:center;gap:40px;border-top:1px solid #d9dcdf;padding-top:36px}
+.kicker .h{font-size:46px}
+/* how */
+.steps{display:grid;grid-template-columns:1fr 1.05fr;gap:70px;align-items:start}
+.step{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:30px 0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0;padding-top:0}
+.step .n{font-family:"Barlow Condensed";font-weight:800;font-size:44px;color:var(--or);line-height:1}
+.step h3{font-size:30px;margin-bottom:10px}
+.step p{font-size:17px;color:#3c464c}
+.report{padding:28px;position:sticky;top:110px}
+@media (max-width:900px){.report table{font-size:13.5px}}
+.report table{width:100%;border-collapse:collapse;font-size:15px;margin-top:18px}
+.report th{text-align:left;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:1.2px;font-size:13px;color:var(--mut);font-weight:600;padding:0 8px 10px 0;border-bottom:1px solid var(--line)}
+.report td{padding:13px 8px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.pill{display:inline-block;font-family:"Barlow Condensed";font-weight:700;letter-spacing:1px;font-size:12px;text-transform:uppercase;padding:3px 8px;border-radius:5px}
+.hi{background:var(--orbg);color:#C2461A}.md{background:#EEF0F1;color:#4B555B}.lo{background:#F4F5F6;color:#7A8388}.keep{background:var(--ink);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{font-family:"Barlow Condensed";font-weight:600;letter-spacing:1.3px;text-transform:uppercase;font-size:13px;border:1.5px solid var(--line);border-radius:20px;padding:6px 12px}
+/* hours */
+.hours{background:var(--ink);color:#fff}
+.hours .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hours h2{font-size:84px}
+.hours p{font-size:20px;color:#D5DADD}
+.hours .eve{margin-top:26px;font-family:"Barlow Condensed";font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--or2);font-size:20px}
+/* offer */
+.offer .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.offer h2{font-size:84px;margin:14px 0 24px}
+.price{padding:36px}
+.price .amt{font-family:"Barlow Condensed";font-weight:800;font-size:64px;line-height:1;margin:10px 0 6px}
+.price li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);font-size:16.5px;display:flex;gap:12px}
+.price li:before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--or);margin-top:9px}
+/* about */
+.about{background:var(--bg)}
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center}
+.photo{aspect-ratio:4/5;border-radius:16px;background:linear-gradient(160deg,#EDE7E2,#DCD3CC);display:grid;place-items:center;color:#8C8078;font-family:"Barlow Condensed";letter-spacing:2px;text-transform:uppercase;position:relative}
+.photo:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:var(--or);right:-40px;bottom:-40px;z-index:-1}
+.about h2{font-size:72px;margin:14px 0 26px}
+.about p{font-size:18px;color:#3c464c;margin-bottom:18px}
+.pull{position:relative;min-height:420px;display:flex;align-items:center}
+.ball2{position:absolute;width:380px;height:380px;border-radius:50%;left:-20px;top:20px;background:radial-gradient(circle at 35% 35%,#F99B6C,#F2602A 58%,#E24E17)}
+.q{position:relative;padding:32px;margin-left:80px;max-width:400px;transform:rotate(-1.5deg)}
+/* faq */
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}
+.faq h2{font-size:72px;margin-top:14px}
+details{border-top:1px solid var(--line);padding:24px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;font-weight:600;font-size:19px}
+summary:after{content:"+";color:var(--or);font-size:26px;line-height:1}
+details[open] summary:after{content:"–"}
+details p{margin-top:12px;color:#3c464c;font-size:17px}
+/* final */
+.final{background:var(--or);color:#fff;text-align:center}
+.final h2{font-size:100px}
+.final p{font-size:20px;margin:22px auto 34px;max-width:560px;color:#FFE7DC}
+.final .btn{background:#fff;color:var(--ink)}
+footer{background:var(--ink);color:#AAB3B8;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;padding:34px 40px}
+@media (max-width:900px){
+ .wrap{padding:0 20px}
+ .links{display:none}
+ .hero .hg,.steps,.hours .wrap,.offer .wrap,.about .wrap,.faq .wrap,.sechead{grid-template-columns:1fr}
+ .hero h1{font-size:64px}
+ .orb{height:430px}
+ .orb .ball{width:360px;height:360px;left:0;top:40px}
+ .orb{height:560px;margin-top:10px}
+ .msg{width:250px}
+ .m1{left:0!important;top:190px!important}
+ .m2{left:auto!important;right:0;top:300px!important}
+ .m3{left:10px!important;top:420px!important}
+ .tonight{right:0;top:0}
+ .leak{min-height:0}
+ .leak p{margin-top:0}
+ .hero .ctas{flex-direction:column;align-items:flex-start;gap:14px}
+ .navcta{font-size:13px;padding:9px 12px}
+ body{overflow-x:hidden}
+ .trust .wrap{grid-template-columns:1fr 1fr}
+ .trust .wrap>div{border-left:0;padding-left:0}
+ .leaks{grid-template-columns:1fr}
+ .sechead h2,.hours h2,.offer h2{font-size:56px}
+ .about h2,.faq h2{font-size:52px}
+ .pull{min-height:320px}
+ .ball2{width:260px;height:260px}
+ .q{margin-left:30px}
+ .final h2{font-size:60px}
+ .pad{padding:80px 0}
+ .kicker{flex-direction:column;align-items:flex-start}
+ .report{position:static}
+}
 
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader-mark">
-      <svg viewBox="0 0 80 80" width="88" height="88" fill="none" aria-hidden="true">
-        <circle class="loader-ring" cx="40" cy="40" r="36" stroke="#FF5A1F" stroke-width="1.6"/>
-        <path d="M22 56V24h7.4l8.4 20.6L46.2 24H53.6v32h-5.9V35.2L39.6 56h-4.5L27.9 35.2V56H22z" fill="#FFFFFF"/>
-      </svg>
-    </div>
+/* calculator */
+.cost .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+.cost h2{font-size:72px;margin:14px 0 10px}
+.cost h3.sub{font-size:34px;color:var(--or);margin-bottom:22px}
+.calc{padding:30px}
+.calc .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;align-items:end}
+.calc label{display:block;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:1.2px;font-size:13px;color:var(--mut);font-weight:600;margin-bottom:6px}
+.calc input{width:100%;font:inherit;font-size:17px;padding:11px 13px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.calc input:focus{outline:none;border-color:var(--or)}
+.calc .grp{font-family:"Barlow Condensed";font-weight:700;letter-spacing:1.6px;text-transform:uppercase;font-size:13px;color:var(--or);margin-top:24px}
+.calc .grp:first-of-type{margin-top:6px}
+.tot{margin-top:24px;background:var(--ink);color:#fff;border-radius:12px;padding:22px 24px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tot .lab{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:1.4px;font-size:13px;color:#AAB3B8}
+.tot .v{font-family:"Barlow Condensed";font-weight:800;font-size:44px;line-height:1.05}
+.fine{font-size:13.5px;color:var(--mut);margin-top:14px}
+/* fit call */
+.fit{background:var(--ink);color:#fff}
+.fit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.fit h2{font-size:58px;line-height:.98}
+.form{padding:30px;color:var(--ink);position:relative;z-index:2}
+.form label{display:block;font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:1.2px;font-size:13px;font-weight:700;margin:14px 0 6px}
+.form input,.form select,.form textarea{width:100%;font:inherit;font-size:16px;padding:11px 13px;border:1.5px solid var(--line);border-radius:8px;background:#fff}
+.fit .ball3{position:absolute;width:520px;height:520px;border-radius:50%;right:-180px;bottom:-260px;background:radial-gradient(circle at 35% 35%,#F99B6C,#F2602A 58%,#E24E17)}
+.built{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:70px;padding-top:50px;border-top:1px solid var(--line)}
+.built h3{font-size:40px;margin-bottom:14px}
+.built p{font-size:17px;color:#3c464c}
+@media (max-width:900px){.cost .wrap,.fit .wrap,.built{grid-template-columns:1fr}.cost h2{font-size:52px}.fit h2{font-size:44px}.tot .v{font-size:34px}}
+</style></head><body>
+
+<nav><div class="wrap">
+ <a class="logo" href="#"><i>M</i>MARCHA</a>
+ <div class="links"><a href="#leaks">The leaks</a><a href="#cost">The cost</a><a href="#assessment">The assessment</a><a href="#about">About</a><a href="#faq">FAQ</a></div>
+ <a class="navcta" href="#book">Request assessment</a>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+ <div class="wrap hg">
+  <div>
+   <div class="eyebrow">Welcome to Marcha</div>
+   <h1 class="h">Your business shouldn’t need you at 9pm.</h1>
+   <p class="lede">Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs.</p>
+   <div class="ctas"><a class="btn p" href="#book">Request assessment →</a><a class="btn t" href="#leaks">See how it works →</a></div>
   </div>
-
-  <div class="grain" aria-hidden="true"></div>
-
-  <header class="header" id="header">
-    <div class="header-bar">
-      <a class="logo" href="#hero" aria-label="Marcha home">
-        <span class="logo-mark" aria-hidden="true">
-          <svg viewBox="0 0 40 40" width="38" height="38" fill="none">
-            <circle cx="20" cy="20" r="18.25" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M11.2 28V12.2h4.2l4.6 11L24.6 12.2H28.8V28h-3.2v-9.2L21.4 28h-2.5l-4.2-9.2V28h-3.5z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="logo-word" data-brand>Marcha</span>
-      </a>
-
-      <div class="nav-panel" id="nav-panel">
-        <ul class="nav-links">
-          <li><a href="#problem" data-nav="problem">The leaks</a></li>
-          <li><a href="#economics" data-nav="economics">The cost</a></li>
-          <li><a href="#offer" data-nav="offer">The assessment</a></li>
-          <li><a href="#why" data-nav="why">About</a></li>
-          <li><a href="#faq" data-nav="faq">FAQ</a></li>
-        </ul>
-        <a class="cta nav-cta" href="#book">Request assessment <span aria-hidden="true">→</span></a>
-      </div>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <div class="rail" data-rail aria-hidden="true">
-    <span class="rail-seg" data-rail-seg></span>
+  <div class="orb">
+   <div class="halo"></div><div class="ball"></div>
+   <div class="card tonight"><div class="eyebrow">Tonight</div><div class="n">9pm</div><div class="eyebrow" style="margin-top:4px">Still running it</div></div>
+   <div class="card msg m1" style="left:0;top:210px;transform:rotate(1.5deg)"><div class="t">9:02 PM · New message</div><div class="b">“Hi! Do you have anything tomorrow?”</div></div>
+   <div class="card msg m2" style="left:150px;top:330px;transform:rotate(-1.5deg)"><div class="t">9:14 PM · New message</div><div class="b">“Can I move my 10am?”</div></div>
+   <div class="card msg m3" style="left:40px;top:450px;transform:rotate(1deg)"><div class="t">9:31 PM · New message</div><div class="b">“Did you get my last message?”</div><div class="s">Unread</div></div>
   </div>
-  <p class="rail-name" data-rail-name aria-hidden="true">01 · Hero</p>
+ </div>
+ <div class="trust"><div class="wrap">
+  <div><b>Founder-led</b><span>You work with the founder directly</span></div>
+  <div><b>No time limit</b><span>on the discovery call</span></div>
+  <div><b>Nothing pitched</b><span>until the assessment is done</span></div>
+  <div><b>HIPAA &amp; BAA fluent</b><span>Client data handled with care</span></div>
+ </div></div>
+</section>
 
-  <div class="scroll-nav">
-    <button type="button" data-scroll="prev" aria-label="Previous section">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 11V3M7 3L3.5 6.5M7 3L10.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <button type="button" data-scroll="next" aria-label="Next section">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 3V11M7 11L3.5 7.5M7 11L10.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+<!-- RECOGNITION -->
+<section class="problem pad" id="leaks"><div class="wrap">
+ <div class="sechead">
+  <div><div class="eyebrow or">Recognition</div><h2 class="h">The evenings aren’t a work ethic problem.</h2></div>
+  <p class="muted">They’re what happens when money, capacity, owner attention, or customer experience leak out of the day-to-day system.</p>
+ </div>
+ <div class="leaks">
+  <div class="card leak"><span class="num">01</span><h3 class="h">They don't leave voicemails. They leave.</h3><p>A call comes in mid-service. A DM sits for four hours. By the time anyone answers, they've booked somewhere else.</p></div>
+  <div class="card leak"><span class="num">02</span><h3 class="h">You have a no-show policy.</h3><p>Most owners never feel right enforcing it. The slot stays empty and the waitlist never hears about it.</p></div>
+  <div class="card leak"><span class="num">03</span><h3 class="h">“I'll book later” means no.</h3><p>Clients mean to come back. Nobody follows up, and a regular quietly becomes a past client.</p></div>
+  <div class="card leak"><span class="num">04</span><h3 class="h">The follow-up never gets a quiet hour.</h3><p>Deposits, rebooking notes, the same answers typed by hand. It all waits for free time that busy days don't have.</p></div>
+ </div>
+</div></section>
+
+<!-- COST -->
+<section class="cost pad" id="cost"><div class="wrap">
+ <div>
+  <div class="eyebrow or">Economics</div>
+  <h2 class="h">Leaks cost real money and real owner time.</h2>
+  <h3 class="h sub">That cost is why a diagnosis comes before a build.</h3>
+  <p class="muted">Missed demand, unused capacity, and owner hours spent catching what the system drops are not soft problems. They show up in revenue and in the evenings. Run your own numbers if you want a sketch.</p>
+ </div>
+ <div class="card calc">
+  <div class="h" style="font-size:32px">What might this be costing you?</div>
+  <p class="fine" style="margin-top:6px">Use your own numbers. A row counts when both boxes are filled.</p>
+  <div class="grp">Last month</div>
+  <div class="row"><div><label for="a1">Unanswered leads</label><input id="a1" inputmode="decimal" placeholder="e.g. 6"></div><div><label for="a2">New customer value ($)</label><input id="a2" inputmode="decimal" placeholder="e.g. 250"></div></div>
+  <div class="row"><div><label for="b1">Empty appointments</label><input id="b1" inputmode="decimal" placeholder="e.g. 8"></div><div><label for="b2">Appointment value ($)</label><input id="b2" inputmode="decimal" placeholder="e.g. 120"></div></div>
+  <div class="grp">Each week</div>
+  <div class="row"><div><label for="c1">Repetitive staff hours</label><input id="c1" inputmode="decimal" placeholder="e.g. 5"></div><div><label for="c2">Loaded hourly cost ($)</label><input id="c2" inputmode="decimal" placeholder="e.g. 25"></div></div>
+  <div class="row"><div><label for="d1">Owner hours catching it</label><input id="d1" inputmode="decimal" placeholder="e.g. 4"></div><div><label for="d2">Value of an owner hour ($)</label><input id="d2" inputmode="decimal" placeholder="e.g. 75"></div></div>
+  <div class="tot"><div><div class="lab">Per month</div><div class="v" id="pm">—</div></div><div><div class="lab">Per year</div><div class="v" id="py">—</div></div></div>
+  <p class="fine" id="note">Add your numbers. This sketches a cost. It is not money you are promised back.</p>
+  <p class="fine">This is directional, not a promise of recoverable revenue. The assessment verifies what’s actually happening before recommending changes. Weekly hours are multiplied by 4.33 for a month, then by 12 for a year. Those assumptions stay visible on purpose.</p>
+ </div>
+</div></section>
+
+<!-- ASSESSMENT -->
+<section class="pad" id="assessment" style="background:var(--bg)"><div class="wrap">
+ <div class="sechead">
+  <div><div class="eyebrow or">Marcha Business Assessment</div><h2 class="h">The Marcha Business Assessment.</h2></div>
+  <p class="muted">You leave knowing which AI systems to implement, what to change, what to leave alone, and what it’s all worth.</p>
+ </div>
+ <div class="steps">
+  <div>
+   <div class="step"><div class="n">01</div><div><h3 class="h">Discovery call</h3><p>Marcha starts with a discovery call on how the business actually runs: where work stalls, where money and owner time leak, and what’s already in place. There’s no time limit on that call, and nothing gets pitched on it.</p></div></div>
+   <div class="step"><div class="n">02</div><div><h3 class="h">The review</h3><p>After the call, Marcha dissects your operations and designs a plan for the AI tools worth implementing.</p></div></div>
+   <div class="step"><div class="n">03</div><div><h3 class="h">The assessment</h3><p>Marcha then comes back and delivers the assessment: which AI systems to implement, what to change, what to leave alone, and the economics written down.</p></div></div>
+   <div class="step"><div class="n">04</div><div><h3 class="h">The hours come back</h3><p>Once those are in place, the business is free to put those hours into the work with the highest return: the client experience, relationships with new customers, and the follow-up that turns a first visit into a regular. You get your evenings back.</p></div></div>
   </div>
-
-  <button class="scene-launcher" type="button" aria-expanded="false" aria-controls="scene-menu" aria-label="Open section list">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="scene-menu" id="scene-menu" aria-label="Sections" hidden>
-    <a href="#problem">The leaks</a>
-    <a href="#economics">The cost</a>
-    <a href="#offer">The assessment</a>
-    <a href="#why">About</a>
-    <a href="#faq">FAQ</a>
-    <a href="#book">Request</a>
-  </nav>
-
-  <main id="main">
-
-    <section class="hero" id="hero" data-scene="hero" data-scene-label="01 · Hero" aria-labelledby="hero-heading">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="hero-track" aria-hidden="true"><span></span></div>
-          <div class="hero-copy-in">
-            <p class="eyebrow reveal">Welcome to <span data-brand>Marcha</span></p>
-            <h1 id="hero-heading" class="display reveal">Your business<br>shouldn’t need you<br>at 9pm.</h1>
-            <p class="hero-sub reveal">Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs.</p>
-            <a class="cta cta-lg reveal" href="#problem">See how it works <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-
-        <div class="hero-visual" data-parallax>
-          <div class="orb-halo" data-py="halo" aria-hidden="true"></div>
-          <div class="orb" data-py="orb" aria-hidden="true"></div>
-          <div class="ground" aria-hidden="true"></div>
-
-          <aside class="hours-badge" data-py="badge">
-            <p>Tonight</p>
-            <strong>9pm</strong>
-            <span>still running it</span>
-          </aside>
-
-          <div class="mark-badge" data-py="mark" aria-hidden="true">
-            <svg viewBox="0 0 48 48" width="46" height="46" fill="none">
-              <circle cx="24" cy="24" r="22" fill="#fff"/>
-              <path d="M14 33V15.5h3.6l3.9 9.4 3.9-9.4H29v17.5h-2.8v-11l-3.6 8.6h-2.1l-3.6-8.6v11H14z" fill="#FF5A1F"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="problem problem-short" id="problem" data-scene="problem" data-scene-label="02 · Leaks" aria-labelledby="problem-heading">
-      <div class="wrap">
-        <p class="eyebrow reveal">Recognition</p>
-        <h2 id="problem-heading" class="display display-md reveal">The evenings aren’t a work ethic problem.</h2>
-        <p class="lede reveal">They’re what happens when money, capacity, owner attention, or customer experience leak out of the day-to-day system.</p>
-      </div>
-    </section>
-
-    <section class="econ" id="economics" data-scene="economics" data-scene-label="03 · Cost" aria-labelledby="econ-heading">
-      <div class="wrap econ-grid">
-        <div class="econ-copy reveal">
-          <p class="eyebrow">Economics</p>
-          <h2 id="econ-heading" class="display display-sm">Leaks cost real money and real owner time.</h2>
-          <p class="turn">That cost is why a diagnosis comes before a build.</p>
-          <p class="lede">Missed demand, unused capacity, and owner hours spent catching what the system drops are not soft problems. They show up in revenue and in the evenings. Run your own numbers below if you want a sketch.</p>
-        </div>
-
-        <form class="math reveal" id="math" data-econ action="#" novalidate aria-describedby="math-note">
-          <p class="math-kicker">What might this be costing you?</p>
-          <p class="math-intro">Use your own numbers. A row counts when both boxes are filled.</p>
-
-          <fieldset class="math-group">
-            <legend>Last month</legend>
-            <div class="math-pair">
-              <label>Unanswered leads
-                <input type="number" name="inquiries" inputmode="numeric" min="0" max="100000" step="1" placeholder="0">
-              </label>
-              <label>New customer value
-                <input type="number" name="customer" inputmode="decimal" min="0" max="1000000" step="1" placeholder="0">
-              </label>
-            </div>
-            <div class="math-pair">
-              <label>Empty appointments
-                <input type="number" name="slots" inputmode="numeric" min="0" max="100000" step="1" placeholder="0">
-              </label>
-              <label>Appointment value
-                <input type="number" name="appointment" inputmode="decimal" min="0" max="1000000" step="1" placeholder="0">
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset class="math-group">
-            <legend>Each week</legend>
-            <div class="math-pair">
-              <label>Repetitive staff hours
-                <input type="number" name="staffHours" inputmode="decimal" min="0" max="1000" step="0.5" placeholder="0">
-              </label>
-              <label>Loaded hourly cost
-                <input type="number" name="staffRate" inputmode="decimal" min="0" max="10000" step="1" placeholder="0">
-              </label>
-            </div>
-            <div class="math-pair">
-              <label>Owner hours catching it
-                <input type="number" name="ownerHours" inputmode="decimal" min="0" max="168" step="0.5" placeholder="0">
-              </label>
-              <label>Value of an owner hour
-                <input type="number" name="ownerRate" inputmode="decimal" min="0" max="10000" step="1" placeholder="0">
-              </label>
-            </div>
-          </fieldset>
-
-          <div class="math-out" aria-live="polite">
-            <p class="math-empty" data-math-empty>Add your numbers. This sketches a cost. It is not money you are promised back.</p>
-            <div data-math-result hidden>
-              <ul class="math-lines" data-math-lines></ul>
-              <p class="math-total"><span data-math-month></span> <small>a rough month</small></p>
-              <p class="math-year" data-math-year></p>
-            </div>
-          </div>
-          <p class="math-note" id="math-note">This is directional, not a promise of recoverable revenue. The assessment verifies what’s actually happening before recommending changes. Weekly hours are multiplied by 4.33 for a month, then by 12 for a year. Those assumptions stay visible on purpose.</p>
-        </form>
-      </div>
-    </section>
-
-    <section class="offer" id="offer" data-scene="offer" data-scene-label="04 · Offer" aria-labelledby="offer-heading">
-      <div class="wrap offer-top">
-        <div class="offer-copy reveal">
-          <p class="eyebrow">Marcha Business Assessment</p>
-          <h2 id="offer-heading" class="display display-md">The Marcha Business Assessment.</h2>
-          <p class="lede">Marcha starts with a discovery call on how the business actually runs: where work stalls, where money and owner time leak, and what’s already in place. There’s no time limit on that call, and nothing gets pitched on it.</p>
-          <p class="lede">After the call, Marcha dissects your systems and designs a plan for the AI tools and systems worth implementing.</p>
-          <p class="lede">Marcha then comes back and delivers the assessment: which AI systems to implement, what to change, what to leave alone, and the economics written down.</p>
-          <p class="lede">When the right AI systems are in place, the hours come back. The business is then free to put those hours into the work with the highest return: the client experience, relationships with new customers, and the follow-up that turns a first visit into a regular. You get your evenings back.</p>
-          <p class="lede">The Marcha Business Assessment is a flat <strong>$1,999</strong>. Implementation of those AI systems is scoped and priced separately depending on the level of involvement requested.</p>
-          <ul class="chips" aria-label="What the assessment includes">
-            <li>Leak map</li>
-            <li>Economics</li>
-            <li>AI systems to implement</li>
-            <li>What to change</li>
-            <li>What to leave alone</li>
-          </ul>
-          <p class="lede">What gets built is the AI tools and systems that earn their place in how the business already runs. Marcha is not here to sell a stack of software. The plan only includes what closes a real leak and leaves the rest alone.</p>
-          <a class="cta cta-lg" href="#book">Request an assessment <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="why why-early" id="why" data-scene="why" data-scene-label="05 · About" aria-labelledby="why-heading">
-      <div class="wrap why-early-copy">
-        <p class="eyebrow reveal">About</p>
-        <h2 id="why-heading" class="display display-md reveal">Read the system before changing it.</h2>
-        <p class="lede reveal">Marcha is founder-led. As a registered nurse with nearly a decade of experience in healthcare startups, critical care medicine, and medical-legal consulting, she has seen incorrect assumptions and wrong interventions cause real harm to businesses and to people. Marcha is built on surgical precision to protect the people at the heart of the businesses it works with. Marcha walks with you through every part of your business, and only once the full picture is clear does it diagnose and recommend what to change, leave alone, or build new. There is no time limit on the discovery call. Marcha works with you as long as it takes to know your systems inside and out.</p>
-        <p class="lede reveal">That same background is fluency with HIPAA, BAAs, and careful handling of protected and sensitive information. Patient and client data does not go into consumer AI, and vendor terms get checked before anything that would touch sensitive information is recommended. It matters for clinics. It also matters for owner-led businesses whose clients care about their data.</p>
-      </div>
-    </section>
-
-    <section class="faq" id="faq" data-scene="faq" data-scene-label="06 · Data" aria-labelledby="faq-heading">
-      <div class="wrap faq-grid">
-        <div class="faq-intro">
-          <p class="eyebrow">FAQ</p>
-          <h2 id="faq-heading" class="display display-sm">Before you book</h2>
-        </div>
-        <div class="accordion">
-          <details class="acc" open>
-            <summary>How is client or patient data treated?</summary>
-            <p>Sensitive client and patient information is part of the work — not an afterthought. Marcha comes from healthcare: HIPAA, BAAs, and vendor terms get checked before anything that would touch that data is recommended. Patient and client data does not go into consumer AI tools that lack the right agreement. Where a BAA is required, a tool without a signed BAA does not get that information. That standard applies in a clinic, and it applies in a studio whose clients care what happens to their information.</p>
-          </details>
-          <details class="acc">
-            <summary>What does implementation cost?</summary>
-            <p>Implementation is scoped and priced separately after the assessment. The assessment covers the diagnosis and roadmap only.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="book" id="book" data-scene="book" data-scene-label="07 · Book" aria-labelledby="book-heading">
-      <div class="book-orb" aria-hidden="true"></div>
-      <div class="wrap book-grid">
-        <p class="eyebrow light book-kicker">Fit call</p>
-        <p class="book-value">Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs. Client and patient data carries real legal, financial, and personal risk. Marcha’s healthcare background is why that risk is treated as central to the work: what gets recommended, what gets built, and what never receives that information.</p>
-        <h2 id="book-heading" class="display display-md light book-stack">
-          <span>A SHORT CALL.</span>
-          <span>COFFEE OR A PET</span>
-          <span>ON THE VIDEO</span>
-          <span>IS ENCOURAGED.</span>
-          <span>WE’RE JUST</span>
-          <span>GETTING TO KNOW YOU AND</span>
-          <span>THE BUSINESS.</span>
-        </h2>
-        <form class="book-form" id="book-form" novalidate>
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name" autocapitalize="words" required aria-required="true" aria-describedby="name-error" placeholder="Jordan Lee">
-            <p class="field-error" id="name-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required aria-required="true" aria-describedby="email-error" placeholder="you@email.com">
-            <p class="field-error" id="email-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="practice">Studio or practice</label>
-            <select id="practice" name="practice" required aria-required="true" aria-describedby="practice-error">
-              <option value="" selected>Select one</option>
-              <option>Medspa / aesthetic</option>
-              <option>Pilates / boutique fitness</option>
-              <option>Nail / beauty</option>
-              <option>Dental</option>
-              <option>Wellness / longevity</option>
-              <option>Outpatient medical</option>
-              <option>Other studio or practice</option>
-            </select>
-            <p class="field-error" id="practice-error" hidden></p>
-          </div>
-          <div class="field">
-            <label for="note">Anything else? <span class="optional">(optional)</span></label>
-            <textarea id="note" name="note" rows="3" aria-required="false" placeholder="Team size, what keeps falling through, what you’re tired of catching…"></textarea>
-          </div>
-          <div class="hp" aria-hidden="true">
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
-          </div>
-          <button type="submit" class="btn-solid" id="book-submit">Request assessment</button>
-          <p class="form-status" id="form-status" role="alert" aria-live="assertive" data-form-status></p>
-          <p class="form-note">Opens your email to <a href="mailto:hello@runmarcha.com" data-brand-email>hello@runmarcha.com</a>. Nothing is stored on this site. Don’t include client names or health details.</p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap footer-grid">
-      <div>
-        <a class="logo" href="#hero">
-          <span class="logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-              <circle cx="20" cy="20" r="18.25" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M11.2 28V12.2h4.2l4.6 11L24.6 12.2H28.8V28h-3.2v-9.2L21.4 28h-2.5l-4.2-9.2V28h-3.5z" fill="currentColor"/>
-            </svg>
-          </span>
-          <span class="logo-word" data-brand>Marcha</span>
-        </a>
-        <p data-brand-tagline>Marcha finds the leaks, then implements the AI tools and systems for medspas, studios, and practices. So you’re not needed at 9pm.</p>
-      </div>
-      <div class="footer-meta">
-        <a href="mailto:hello@runmarcha.com" data-brand-email>hello@runmarcha.com</a>
-        <nav aria-label="Footer">
-          <a href="#problem">The leaks</a>
-          <a href="#offer">Assessment</a>
-          <a href="#why">About</a>
-          <a href="#book">Request</a>
-          <a href="tools/">Assessment toolkit</a>
-        </nav>
-      </div>
-    </div>
-    <div class="wrap footer-bottom">
-      <p>© <span id="year">2026</span> <span data-brand>Marcha</span>.</p>
-    </div>
-  </footer>
-
-  <div class="mobile-bar" id="mobile-bar" hidden>
-    <a class="cta" href="#book">Request assessment <span aria-hidden="true">→</span></a>
+  <div class="card price" id="book" style="position:sticky;top:110px">
+   <div class="eyebrow">Flat fee</div>
+   <div class="amt">$1,999</div>
+   <ul style="margin:18px 0 20px">
+    <li>Discovery call with no time limit</li>
+    <li>Review of how the business runs today</li>
+    <li>Written assessment with the economics for each leak</li>
+    <li>A plan for the AI systems worth implementing</li>
+   </ul>
+   <div style="margin:-4px 0 18px;font-family:'Barlow Condensed';font-weight:700;letter-spacing:1.4px;text-transform:uppercase;font-size:17px;color:var(--or)">The goal: your evenings back.</div>
+   <p class="fine" style="margin:0 0 20px">Implementation is scoped and priced separately, depending on how involved you want Marcha to be.</p>
+   <a class="btn p" href="#fit" style="width:100%;justify-content:center">Request an assessment →</a>
+   <div class="chips"><span class="chip">Leak map</span><span class="chip">Economics</span><span class="chip">AI systems to implement</span><span class="chip">What to change</span><span class="chip">What to leave alone</span></div>
   </div>
+ </div>
+ <div class="card report" style="position:static;margin-top:60px">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div class="eyebrow or">What you get</div><span class="chip" style="font-size:11px">Sample layout</span></div>
+  <div class="h" style="font-size:36px;margin-top:10px">Leak map &amp; plan</div>
+  <table>
+   <tr><th>Leak</th><th>What to do</th><th>Effort</th><th>Impact</th></tr>
+   <tr><td>Inquiries answered hours later</td><td>AI reply with a booking link, after hours included</td><td><span class="pill lo">Low</span></td><td><span class="pill hi">High</span></td></tr>
+   <tr><td>Late cancels left empty</td><td>Automatic waitlist offers</td><td><span class="pill lo">Low</span></td><td><span class="pill md">Med</span></td></tr>
+   <tr><td>Regulars who drift</td><td>Rebooking follow-ups timed to each service</td><td><span class="pill md">Med</span></td><td><span class="pill hi">High</span></td></tr>
+   <tr><td>First-visit welcome at the desk</td><td>Keep it human. Free up the time for it.</td><td>—</td><td><span class="pill keep">Leave alone</span></td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--mut);margin-top:16px">Your report puts a dollar figure on each row, from your own numbers.</p>
+ </div>
+ <div class="built">
+  <div><h3 class="h">What gets built</h3><p>What gets built is the AI tools and systems that earn their place in how the business already runs. Marcha is not here to sell a stack of software. The plan only includes what closes a real leak and leaves the rest alone.</p></div>
+  <div><h3 class="h">Client data, handled right</h3><p>Sensitive client and patient information is part of the work, not an afterthought. HIPAA, BAAs, and vendor terms get checked before anything that would touch that data is recommended. Most tech vendors treat privacy as fine print. Marcha treats it as part of the diagnosis.</p></div>
+ </div>
+</div></section>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Marcha",
-    "url": "https://runmarcha.com/",
-    "description": "Marcha finds where money, capacity, and owner time are leaking, then implements the AI tools and systems that earn their place in how the business runs. The assessment does not diagnose patients.",
-    "email": "hello@runmarcha.com",
-    "areaServed": "US",
-    "offers": {
-      "@type": "Offer",
-      "name": "Marcha Business Assessment",
-      "price": "1999",
-      "priceCurrency": "USD",
-      "description": "A flat $1,999 assessment. Marcha delivers which AI systems to implement, what to change, what to leave alone, and the economics written down. Implementation of those AI systems is scoped and priced separately."
-    }
-  }
-  </script>
-  <script src="brand.js"></script>
-  <script src="main.js"></script>
-</body>
-</html>
+<!-- ABOUT -->
+<section class="about pad" id="about"><div class="wrap">
+ <div class="pull"><div class="ball2"></div><div class="card q"><div class="eyebrow or">The method</div><div class="h" style="font-size:40px;margin-top:12px">Marcha works with you as long as it takes to know your systems inside and out.</div></div></div>
+ <div>
+  <div class="eyebrow or">About</div>
+  <h2 class="h">Read the system before changing it.</h2>
+  <p>Marcha is founder-led. As a registered nurse with nearly a decade of experience in healthcare startups, critical care medicine, and medical-legal consulting, she has seen incorrect assumptions and wrong interventions cause real harm to businesses and to people. Marcha is built on surgical precision to protect the people at the heart of the businesses it works with. Marcha walks with you through every part of your business, and only once the full picture is clear does it diagnose and recommend what to change, leave alone, or build new. There is no time limit on the discovery call. Marcha works with you as long as it takes to know your systems inside and out.</p>
+  <p>That same background is fluency with HIPAA, BAAs, and careful handling of protected and sensitive information. Patient and client data does not go into consumer AI, and vendor terms get checked before anything that would touch sensitive information is recommended. It matters for clinics. It also matters for owner-led businesses whose clients care about their data.</p>
+ </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="faq pad" id="faq"><div class="wrap">
+ <div><div class="eyebrow or">FAQ</div><h2 class="h">Before you book.</h2></div>
+ <div>
+  <details open><summary>How is client or patient data treated?</summary><p>Sensitive client and patient information is part of the work, not an afterthought. Marcha comes from healthcare: HIPAA, BAAs, and vendor terms get checked before anything that would touch that data is recommended. Patient and client data does not go into consumer AI tools that lack the right agreement. Where a BAA is required, a tool without a signed BAA does not get that information. That standard applies in a clinic, and it applies in a studio whose clients care what happens to their information.</p></details>
+  <details><summary>What does implementation cost?</summary><p>It’s scoped after the assessment and priced before you decide, depending on how involved you want Marcha to be.</p></details>
+  <details><summary>Do I need to know anything about AI?</summary><p>No. The assessment is built around how your week actually runs, and every recommendation is explained in plain terms.</p></details>
+  <details><summary>Will this replace my front desk?</summary><p>No. The goal is to take repetitive work off your team so they have more time for the clients in front of them.</p></details>
+  <details><summary>Is my business too small?</summary><p>Probably not. Smaller teams often feel these leaks the most, because the person answering the phone is also the person doing the work. The best fit is a team of about 2 to 20.</p></details>
+ </div>
+</div></section>
+
+<!-- FIT CALL -->
+<section class="fit pad" id="fit"><div class="ball3"></div><div class="wrap">
+ <div><div class="eyebrow" style="color:var(--or2)">Fit call</div><h2 class="h" style="margin-top:14px">A short call. Coffee or a pet on the video is encouraged. We’re just getting to know you and the business.</h2></div>
+ <div class="card form">
+  <label for="fn">Name</label><input id="fn" placeholder="Jordan Lee">
+  <label for="fe">Email</label><input id="fe" type="email" placeholder="you@email.com">
+  <label for="fs">Studio or practice</label><select id="fs"><option>Select one</option><option>Medspa / aesthetic</option><option>Pilates / boutique fitness</option><option>Nail / beauty</option><option>Dental</option><option>Wellness / longevity</option><option>Outpatient medical</option><option>Other studio or practice</option></select>
+  <label for="fx">Anything else? <span style="text-transform:none;font-weight:500;color:var(--mut)">(optional)</span></label><textarea id="fx" rows="3" placeholder="Team size, what keeps falling through, what you’re tired of catching…"></textarea>
+  <!-- GROK: replace href with the scheduling link (Calendly or Cal.com) --><a class="btn p" href="#" style="width:100%;justify-content:center;margin-top:18px">Request assessment</a>
+  <p class="fine" style="margin-top:10px">Nothing is stored on this site. Don’t include client names or health details.</p>
+ </div>
+</div></section>
+<footer><div class="wrap"><span>Marcha finds the leaks, then implements the AI tools and systems for medspas, studios, and practices. So you’re not needed at 9pm. · hello@runmarcha.com</span><span>© 2026 Marcha.</span></div></footer>
+<script>
+function n(id){var v=parseFloat((document.getElementById(id).value||'').replace(/[$,]/g,''));return isFinite(v)&&v>=0?v:null}
+function f(x){return '$'+Math.round(x).toLocaleString('en-US')}
+function calc(){var m=0,any=false;[['a1','a2',1],['b1','b2',1],['c1','c2',4.33],['d1','d2',4.33]].forEach(function(r){var a=n(r[0]),b=n(r[1]);if(a!==null&&b!==null&&document.getElementById(r[0]).value!==''&&document.getElementById(r[1]).value!==''){m+=a*b*r[2];any=true}});
+document.getElementById('pm').textContent=any?f(m):'—';document.getElementById('py').textContent=any?f(m*12):'—';
+document.getElementById('note').textContent=any?'A sketch from your numbers. It is not money you are promised back.':'Add your numbers. This sketches a cost. It is not money you are promised back.'}
+document.querySelectorAll('.calc input').forEach(function(i){i.addEventListener('input',calc)});
+</script>
+</body></html>
