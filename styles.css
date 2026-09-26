@@ -1932,6 +1932,18 @@ html.reduce .cred { transition: none; }
   align-items: start;
 }
 .econ .turn { max-width: 16ch; }
+.econ-closer {
+  margin-top: 1.35rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--line-strong);
+  max-width: 36rem;
+  font-size: 1.12rem;
+  line-height: 1.4;
+  color: var(--ink);
+  font-weight: 500;
+  text-transform: none;
+  text-wrap: pretty;
+}
 .econ-examples {
   margin-top: 1.35rem;
   display: flex;
