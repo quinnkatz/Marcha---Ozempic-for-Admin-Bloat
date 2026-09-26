@@ -1622,11 +1622,6 @@ html.reduce .cred { transition: none; }
   box-shadow: 0 24px 50px rgba(255, 90, 31, 0.25);
 }
 .offer .lede { max-width: 62ch; }
-.offer-privacy {
-  margin-top: 1.35rem;
-  padding-top: 1.15rem;
-  border-top: 1px solid var(--line-strong);
-}
 .offer-copy .cta { margin-top: 2.5rem; }
 .price-card {
   z-index: 2;
