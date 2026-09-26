@@ -1621,6 +1621,12 @@ html.reduce .cred { transition: none; }
   background: radial-gradient(circle at 38% 36%, var(--accent-hot), var(--accent) 60%, var(--accent));
   box-shadow: 0 24px 50px rgba(255, 90, 31, 0.25);
 }
+.offer .lede { max-width: 62ch; }
+.offer-privacy {
+  margin-top: 1.35rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--line-strong);
+}
 .offer-copy .cta { margin-top: 2.5rem; }
 .price-card {
   z-index: 2;
@@ -1796,25 +1802,38 @@ html.reduce .cred { transition: none; }
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.2fr) minmax(17.5rem, 0.8fr);
+  grid-template-areas:
+    "kicker kicker"
+    "value value"
+    "stack form";
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  row-gap: clamp(1.15rem, 3vw, 2rem);
+  align-items: end;
 }
-.book-copy .display { max-width: 12ch; }
-.book-copy p { margin-top: 1rem; max-width: 42ch; }
-.book-copy li {
-  margin-top: 0.45rem;
-  padding-left: 0.9rem;
-  position: relative;
+.book-kicker { grid-area: kicker; margin-bottom: 0; }
+.book-value {
+  grid-area: value;
+  max-width: 68ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.08rem;
+  line-height: 1.5;
 }
-.book-copy li::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0.55rem;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
+.book-stack {
+  grid-area: stack;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: clamp(1.85rem, 3.05vw, 3.05rem);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  text-wrap: nowrap;
 }
+.book-stack span { display: block; white-space: nowrap; }
+.book-form { grid-area: form; align-self: end; }
 .book-form {
   background: var(--white);
   color: var(--body);
@@ -2358,6 +2377,16 @@ html.reduce .how-steps h3::after { transition: none; }
   .footer-meta nav { justify-content: flex-start; }
   .mobile-bar.is-on { display: flex; }
   .book { padding-bottom: 5.5rem; }
+  .book-grid {
+    grid-template-areas:
+      "kicker"
+      "value"
+      "stack"
+      "form";
+    align-items: start;
+  }
+  .book-form { align-self: start; }
+  .book-stack { font-size: clamp(1.7rem, 6.4vw, 2.4rem); }
 }
 @media (max-width: 1040px) and (hover: hover) and (pointer: fine) {
   .cred:hover,
@@ -2391,4 +2420,5 @@ html.reduce .how-steps h3::after { transition: none; }
   .price-card strong { font-size: 3.35rem; }
   .lenses, .math-pair { grid-template-columns: 1fr; }
   .offer-orb, .offer-halo { right: -80px; }
+  .book-stack { font-size: clamp(1.28rem, 6.8vw, 1.7rem); }
 }
